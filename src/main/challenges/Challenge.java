@@ -10,8 +10,4 @@ public abstract class Challenge implements CanBeInRoom {
         return name;
     }
 
-    public String coucou(){
-        return "Coucou";
-    }
-
 }
