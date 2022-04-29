@@ -18,6 +18,7 @@ public class Generate {
         Utils.setCastleStairs(castle);
         Utils.setCastleExit(castle);
 
+        return castle;
     }
 
     public static Monster monster(){
