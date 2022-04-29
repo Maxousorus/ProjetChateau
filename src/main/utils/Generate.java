@@ -4,7 +4,6 @@ import static java.lang.Math.random;
 import main.challenges.Challenge;
 import main.challenges.Sage;
 import main.challenges.Trap;
-import main.entities.Entity;
 import main.entities.Monster;
 import main.locations.*;
 import main.objects.*;

@@ -6,8 +6,6 @@ import main.locations.Room;
 
 public class Utils {
 
-    private static Parameters Paramaters;
-
     public static void setCastleSpawn(Castle castle) {
             Floor stage0 = castle.getFloors()[0];
             int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE));
