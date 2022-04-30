@@ -6,8 +6,8 @@ public class Floor {
 
     private int floorSize = Parameters.FLOOR_SIZE;
     private Room[][] rooms = new Room[floorSize][floorSize];
-    private Passage[][] horizontal_passages = new Passage[floorSize -1][floorSize];
-    private Passage[][] vertical_passages = new Passage[floorSize][floorSize -1];
+    private Passage[][] horizontal_passages = new Passage[floorSize][floorSize-1];
+    private Passage[][] vertical_passages = new Passage[floorSize-1][floorSize];
 
     /**
      * Constructor
@@ -19,14 +19,6 @@ public class Floor {
                 rooms[i][j] = new Room();
             }
         }
-
-        for (int i = 0; i < floorSize -1; i++) {
-            for (int j = 0; j < floorSize; j++) {
-                horizontal_passages[i][j] = new Passage();
-                vertical_passages[j][i] = new Passage();
-            }
-        }
-
     }
 
     /**

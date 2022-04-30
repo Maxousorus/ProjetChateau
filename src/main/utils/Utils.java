@@ -47,4 +47,44 @@ public class Utils {
 
         laststage.getRooms()[x][y].setExit(true);
     }
+
+    public static void generateMaze(){
+        int FS = Parameters.FLOOR_SIZE;
+        int[][] grid = new int[FS][FS];
+        int[][] h_passages = new int[FS][FS-1];
+        int[][] v_passages = new int[FS-1][FS];
+
+        //Numérotation de chaque case de la grille
+        for(int i = 0; i < FS * FS; i++){
+            grid[i/FS][i%FS] = i;
+        }
+
+        //Bloquer tout les murs (mettre à 1) horizontaux
+        for(int i = 0; i < FS * FS; i++){
+            if((i+1)%FS != 0)
+                h_passages[i/FS][i%FS] = 1;
+        }
+
+        //Bloquer tout les murs (mettre à 1) verticaux
+        for(int i = 0; i < FS * FS; i++){
+            if(i/FS != FS-1)
+                v_passages[i/FS][i%FS] = 1;
+        }
+
+        //Boucle tant que le labyrinthe n'est pas terminé.
+        while(!isMazeFinish(grid)){
+
+        }
+    }
+
+    private static boolean isMazeFinish(int[][] grid){
+        //Si toutes les grilles ont le même numéro retourne TRUE
+        int FS = Parameters.FLOOR_SIZE;
+        int verif = grid[0][0];
+        for(int i = 0; i < FS * FS; i++) {
+            if (grid[i / FS][i % FS] != verif)
+                return false;
+        }
+        return true;
+    }
 }
