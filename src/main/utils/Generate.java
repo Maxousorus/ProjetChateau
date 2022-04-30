@@ -35,6 +35,6 @@ public class Generate {
         if(random()> 0.5) {
             return new Potion();
         }
-        return new Weapon();
+        return new Item();
     }
 }

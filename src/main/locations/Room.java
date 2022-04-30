@@ -23,9 +23,9 @@ public class Room {
         if(random() < Parameters.CHANCE_OF_ITEM_IN_ROOM) {
             this.roomEvent = Generate.item();
         }else if(random() < Parameters.CHANCE_OF_CHALLENGE_IN_ROOM){
-            this.roomEvent = Generate.challenge(); //TODO Generate.challenge()
+            this.roomEvent = Generate.challenge();
         }else if(random() < Parameters.CHANCE_OF_MONSTER_IN_ROOM){
-            this.roomEvent = Generate.monster(); //TODO Generate.monster()
+            this.roomEvent = Generate.monster();
         }else{
             this.roomEvent = null;
         }

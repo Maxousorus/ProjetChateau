@@ -13,4 +13,8 @@ public class Item implements CanBeInRoom {
     public Item(String name) {
         this.name = name;
     }
+
+    public Item() {
+
+    }
 }

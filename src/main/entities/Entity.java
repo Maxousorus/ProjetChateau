@@ -13,4 +13,11 @@ public class Entity implements CanBeInRoom {
         this.pv = pv;
         this.nom = nom;
     }
+
+    public Entity() {
+
+    }
+
+    public Entity(Entity entity) {
+    }
 }

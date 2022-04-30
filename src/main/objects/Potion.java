@@ -8,4 +8,8 @@ public class Potion extends Item {
         super(name);
         this.pv = pv;
     }
+
+    public Potion() {
+        super();
+    }
 }
