@@ -1,5 +1,7 @@
 package main.game;
 
+import main.entities.Entity;
+
 public class Main {
 
     /**

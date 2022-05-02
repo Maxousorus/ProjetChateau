@@ -31,10 +31,10 @@ public class Generate {
         return new Trap();
     }
 
-    public static Item item() {
+    /*public static Item item() {
         if(random()> 0.5) {
             return new Potion();
         }
         return new Item();
-    }
+    }*/
 }

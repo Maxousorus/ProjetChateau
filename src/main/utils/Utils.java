@@ -87,4 +87,9 @@ public class Utils {
         }
         return true;
     }
+
+    public static int randomInt(int min, int max){
+        //Formule mathématique qui retourne un chiffre aléatoire entre deux bornes passer en parametres
+        return (int) (min + (Math.random() * (max - min)));
+    }
 }

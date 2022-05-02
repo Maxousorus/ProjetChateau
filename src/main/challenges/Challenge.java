@@ -1,6 +1,9 @@
 package main.challenges;
 
 import main.interfaces.CanBeInRoom;
+import main.utils.Parameters;
+
+import java.lang.reflect.Parameter;
 
 public abstract class Challenge implements CanBeInRoom {
 
@@ -10,4 +13,8 @@ public abstract class Challenge implements CanBeInRoom {
         return name;
     }
 
+    public Challenge(){
+        if(Parameters.CHANCE_OF_CHALLENGE_IS_TRAP > Math.random()){
+        }
+    }
 }

@@ -1,15 +1,13 @@
 package main.objects;
 
-public class Weapon {
+import main.utils.Utils;
+
+public class Weapon extends Item {
 
     private int damage;
 
-    public Weapon(int damage, String name) {
-        super();
-        this.damage = damage;
-    }
-
     public Weapon() {
-
+        super();
+        this.damage = Utils.randomInt(1,500);
     }
 }
