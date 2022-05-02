@@ -6,11 +6,15 @@ import main.objects.*;
 public class Player extends Entity{
 
     private Weapon weapon;
-    private Room room;
+    //private Room room;
 
-    public Player(Weapon weapon, Room room) {
+    public Player(Weapon weapon /*Room room*/) {
         super();
         this.weapon = weapon;
-        this.room = room;
+        //this.room = room;
+    }
+
+    public Player() {
+
     }
 }

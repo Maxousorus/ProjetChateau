@@ -9,6 +9,7 @@ public class Entity implements CanBeInRoom {
     private int damage;
     private int pv;
     private String nom;
+
     private String [] tabName = {
             "GodJonas",
             "Tigrou",
@@ -26,5 +27,21 @@ public class Entity implements CanBeInRoom {
 
     public String getNom() {
         return nom;
+    }
+
+    public int getPv() {
+        return pv;
+    }
+
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }
