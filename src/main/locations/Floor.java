@@ -29,4 +29,12 @@ public class Floor {
     public Room[][] getRooms() {
         return rooms;
     }
+
+    public void setHorizontal_passage(Passage[][] horizontal_passages) {
+        this.horizontal_passages = horizontal_passages;
+    }
+
+    public void setVertical_passage(Passage[][] vertical_passages) {
+        this.vertical_passages = vertical_passages;
+    }
 }
