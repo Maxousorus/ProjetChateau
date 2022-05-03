@@ -16,6 +16,7 @@ public class Generate {
         Utils.setCastleSpawn(castle);
         Utils.setCastleStairs(castle);
         Utils.setCastleExit(castle);
+        Utils.setCastlePassages(castle);
 
         return castle;
     }
