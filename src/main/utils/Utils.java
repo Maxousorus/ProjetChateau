@@ -15,7 +15,6 @@ public class Utils {
             int y = random%Parameters.FLOOR_SIZE;
             rooms[x][y].setSpawn();
         }
-
     public static void setCastleStairs(Castle castle){
         Floor[] floors = castle.getFloors();
         for(int floor = 0; floor < castle.getFloors().length-1; floor++){
@@ -32,7 +31,6 @@ public class Utils {
             floors[floor+1].getRooms()[x][y].setUpStairs();
         }
     }
-
     public static void setCastleExit(Castle castle){
         Floor[] floors = castle.getFloors();
         int dernieretage = floors.length-1;
@@ -48,7 +46,6 @@ public class Utils {
 
         laststage.getRooms()[x][y].setExit(true);
     }
-
     public static void setCastlePassages(Castle castle){
         Floor[] floors = castle.getFloors();
         for(Floor floor : floors){
@@ -71,7 +68,6 @@ public class Utils {
             floor.setVertical_passage(v_passages);
         }
     }
-
     private static int[][][] generateMaze(){
         int FS = Parameters.FLOOR_SIZE;
         int[][] grid = new int[FS][FS];
