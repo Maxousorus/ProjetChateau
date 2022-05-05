@@ -15,7 +15,7 @@ public class Floor {
 
     public Floor() {
         for (int i = 0; i < floorSize; i++) {
-            for (int j = 0; j < 3; j++) {
+            for (int j = 0; j < floorSize; j++) {
                 rooms[i][j] = new Room();
             }
         }

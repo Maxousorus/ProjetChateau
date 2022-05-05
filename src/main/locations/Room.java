@@ -31,7 +31,7 @@ public class Room implements VisibleInMap {
         }else{
             this.roomEvent = null;
         }
-        this.visited = false;
+        this.visited = true; // TODO true juste pour le test enlever à la fin des tests
         this.upstairs = false;
         this.downstairs = false;
         this.spawn = false;
@@ -87,14 +87,14 @@ public class Room implements VisibleInMap {
             }
             return roomstring;
         }
-        if(upstairs){
+        if(downstairs){
             String l1 = "";
             for(int i = 0; i < Parameters.ROOM_SIZE-3;i++)
                 l1 += " ";
             roomstring.add("_  " + l1);
             roomstring.add(" |_" + l1);
             roomstring.add("  |" + l1);
-            for(int i = 0; i < Parameters.ROOM_SIZE-3; i++){
+            for(int i = 0; i < Parameters.ROOM_HEIGHT-3; i++){
                 String line = "";
                 for(int j = 0; j < Parameters.ROOM_SIZE;j++)
                     line += " ";
@@ -102,8 +102,8 @@ public class Room implements VisibleInMap {
             }
             return roomstring;
         }
-        if(downstairs){
-            for(int i = 0; i < Parameters.ROOM_SIZE-3; i++){
+        if(upstairs){
+            for(int i = 0; i < Parameters.ROOM_HEIGHT-3; i++){
                 String line = "";
                 for(int j = 0; j < Parameters.ROOM_SIZE;j++){
                     line += " ";
@@ -119,7 +119,7 @@ public class Room implements VisibleInMap {
             roomstring.add(l1 + "  |");
             return roomstring;
         }
-        for(int i = 0; i < Parameters.ROOM_SIZE; i++){
+        for(int i = 0; i < Parameters.ROOM_HEIGHT; i++){
             String line = "";
             for(int j = 0; j < Parameters.ROOM_SIZE;j++){
                 line += " ";
