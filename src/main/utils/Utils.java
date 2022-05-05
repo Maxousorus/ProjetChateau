@@ -5,6 +5,10 @@ import main.locations.Floor;
 import main.locations.Passage;
 import main.locations.Room;
 
+/**
+ * Utility class for various methods
+ * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ */
 public class Utils {
     /**
      * This method set the player spawn in the groundfloor of the castle.
@@ -65,7 +69,7 @@ public class Utils {
     }
 
     /**
-     * This method set the passages in the castle like a maze.
+     * This method set the passages in the castle like a maze (kruskal algorithm).
      * @param castle
      * @see Castle
      */
