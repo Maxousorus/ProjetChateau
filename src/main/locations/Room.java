@@ -2,11 +2,13 @@ package main.locations;
 
 import static java.lang.Math.random;
 import main.interfaces.CanBeInRoom;
-import main.objects.Item;
+import main.interfaces.VisibleInMap;
 import main.utils.Generate;
 import main.utils.Parameters;
 
-public class Room {
+import java.util.ArrayList;
+
+public class Room implements VisibleInMap {
 
     private CanBeInRoom roomEvent;
     private boolean visited;
@@ -71,5 +73,19 @@ public class Room {
 
     public void setExit(boolean exit) {
         this.exit = exit;
+    }
+    @Override
+    public ArrayList<String> toStringList(){
+        ArrayList<String> roomstring = new ArrayList<>();
+        if(!isVisited()){
+            for(int i = 0; i < Parameters.ROOM_SIZE; i++){
+                String line = "";
+                for(int j = 0; j < Parameters.ROOM_SIZE;j++){
+                    line += "#";
+                }
+                roomstring.add(line);
+            }
+        }
+        return roomstring;
     }
 }

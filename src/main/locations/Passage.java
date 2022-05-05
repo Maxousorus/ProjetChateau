@@ -2,9 +2,12 @@ package main.locations;
 
 import main.entities.*;
 import main.challenges.*;
+import main.interfaces.VisibleInMap;
 import main.utils.*;
 
-public class Passage {
+import java.util.ArrayList;
+
+public class Passage implements VisibleInMap {
 
     private int challenge_type; //Monster or Sage or Trap
     private Entity monster;
@@ -33,4 +36,8 @@ public class Passage {
         this.locked = (Math.random() < Parameters.CHANCE_OF_LOCKED_PASSAGE);
     }
 
+    @Override
+    public ArrayList<String> toStringList() {
+        return null; //TODO A faire
+    }
 }
