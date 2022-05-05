@@ -23,7 +23,7 @@ public class Room implements VisibleInMap {
 
     public Room() {
         if(random() < Parameters.CHANCE_OF_ITEM_IN_ROOM) {
-            this.roomEvent = Generate.item();
+            //this.roomEvent = Generate.item();
         }else if(random() < Parameters.CHANCE_OF_CHALLENGE_IN_ROOM){
             this.roomEvent = Generate.challenge();
         }else if(random() < Parameters.CHANCE_OF_MONSTER_IN_ROOM){
@@ -85,6 +85,46 @@ public class Room implements VisibleInMap {
                 }
                 roomstring.add(line);
             }
+            return roomstring;
+        }
+        if(upstairs){
+            String l1 = "";
+            for(int i = 0; i < Parameters.ROOM_SIZE-3;i++)
+                l1 += " ";
+            roomstring.add("_  " + l1);
+            roomstring.add(" |_" + l1);
+            roomstring.add("  |" + l1);
+            for(int i = 0; i < Parameters.ROOM_SIZE-3; i++){
+                String line = "";
+                for(int j = 0; j < Parameters.ROOM_SIZE;j++)
+                    line += " ";
+                roomstring.add(line);
+            }
+            return roomstring;
+        }
+        if(downstairs){
+            for(int i = 0; i < Parameters.ROOM_SIZE-3; i++){
+                String line = "";
+                for(int j = 0; j < Parameters.ROOM_SIZE;j++){
+                    line += " ";
+                }
+                roomstring.add(line);
+            }
+            String l1 = "";
+            for(int i = 0; i < Parameters.ROOM_SIZE-3;i++)
+                l1 += " ";
+
+            roomstring.add(l1 + "_  ");
+            roomstring.add(l1 + " |_");
+            roomstring.add(l1 + "  |");
+            return roomstring;
+        }
+        for(int i = 0; i < Parameters.ROOM_SIZE; i++){
+            String line = "";
+            for(int j = 0; j < Parameters.ROOM_SIZE;j++){
+                line += " ";
+            }
+            roomstring.add(line);
         }
         return roomstring;
     }
