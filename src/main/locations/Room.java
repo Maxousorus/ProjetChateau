@@ -8,6 +8,10 @@ import main.utils.Parameters;
 
 import java.util.ArrayList;
 
+/**
+ * Room class
+ * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ */
 public class Room implements VisibleInMap {
 
     private CanBeInRoom roomEvent;
@@ -18,7 +22,8 @@ public class Room implements VisibleInMap {
     private boolean exit;
 
     /**
-     * Constructor
+     * Constructor of the Room class
+     * Instanciates a random new Room
      */
 
     public Room() {
@@ -39,41 +44,72 @@ public class Room implements VisibleInMap {
     }
 
     /**
-     * isVisited method : returns true if the room has been visited
-     * @return boolean
+     * This method returns if the room has been visited
+     * @return true if the room has been visited, false otherwise
      */
 
     public boolean isVisited() {
         return this.visited;
     }
 
+    /**
+     * This method set the room as spawn
+     */
     public void setSpawn(){
         this.spawn = true;
     }
 
+    /**
+     * This method returns if the room is a spawn
+     * @return true if the room is a spawn, false otherwise
+     */
     public boolean isSpawn(){
         return spawn;
     }
 
+    /**
+     * This method set room as a room with upstairs
+     */
     public void setUpStairs(){
         this.upstairs = true;
     }
 
+    /**
+     * This method returns if the room is a room with upstairs
+     * @return true if the room is a room with upstairs, false otherwise
+     */
     public boolean isUpStairs(){
         return upstairs;
     }
+
+    /**
+     * This method set the room as a room with downstairs
+     */
 
     public void setDownStairs(){
         this.downstairs = true;
     }
 
+    /**
+     * This method returns if the room is a room with downstairs
+     * @return true if the room is a room with downstairs, false otherwise
+     */
     public boolean isDownStairs(){
         return downstairs;
     }
 
+    /**
+     * This method set the room as an exit
+     * @param exit true if the room is an exit, false otherwise
+     */
     public void setExit(boolean exit) {
         this.exit = exit;
     }
+
+    /**
+     * This method return a list of each line of the visible room like appears in the map.
+     * @return a list of each line of the visible room
+     */
     @Override
     public ArrayList<String> toStringList(){
         ArrayList<String> roomstring = new ArrayList<>();

@@ -3,6 +3,10 @@ package main.visibles;
 import main.locations.*;
 import main.utils.Parameters;
 
+/**
+ * This class represents a map.
+ * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias
+ */
 public class Map {
 
     private Castle castle;
@@ -12,13 +16,18 @@ public class Map {
     private String aroundPassage = "####";
 
     /**
-     * Constructor
+     * Constructor of the class Map.
+     * @param castle the castle
      */
 
     public Map(Castle castle) {
         this.castle = castle;
     }
 
+    /**
+     * This method returns the string of the updownwall.
+     * @return the string of the updownwall
+     */
     private String updownwall() {
         String room = "";
         for(int i = 0; i < Parameters.ROOM_SIZE; i++) {
@@ -36,8 +45,23 @@ public class Map {
         updownwall += sidewall;
         return updownwall;
     }
+
+    /**
+     * This method print the map of a floor on console.
+     *
+     * @param floor the index of the floor to show
+     */
     public void show(int floor) {
-        Room[][] rooms = castle.getFloors()[floor].getRooms();
+        show(castle.getFloors()[floor]);
+    }
+
+    /**
+     * This method print the map of a floor on console.
+     * @param floor the floor to show
+     * @see Floor
+     */
+    public void show (Floor floor) {
+        Room[][] rooms = floor.getRooms();
         System.out.println(updownwall());
         System.out.println(updownwall());
 

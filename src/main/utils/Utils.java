@@ -6,7 +6,11 @@ import main.locations.Passage;
 import main.locations.Room;
 
 public class Utils {
-
+    /**
+     * This method set the player spawn in the groundfloor of the castle.
+     * @param castle
+     * @see Castle
+     */
     public static void setCastleSpawn(Castle castle) {
             Floor stage0 = castle.getFloors()[0];
             int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE));
@@ -15,6 +19,13 @@ public class Utils {
             int y = random%Parameters.FLOOR_SIZE;
             rooms[x][y].setSpawn();
         }
+
+    /**
+     * This method set stairs in the castle.
+     * One downstairs and one upstairs per floor.
+     * @param castle
+     * @see Castle
+     */
     public static void setCastleStairs(Castle castle){
         Floor[] floors = castle.getFloors();
         for(int floor = 0; floor < castle.getFloors().length-1; floor++){
@@ -31,6 +42,12 @@ public class Utils {
             floors[floor+1].getRooms()[x][y].setUpStairs();
         }
     }
+
+    /**
+     * This method set the exit of the castle at the last floor.
+     * @param castle
+     * @see Castle
+     */
     public static void setCastleExit(Castle castle){
         Floor[] floors = castle.getFloors();
         int dernieretage = floors.length-1;
@@ -46,6 +63,12 @@ public class Utils {
 
         laststage.getRooms()[x][y].setExit(true);
     }
+
+    /**
+     * This method set the passages in the castle like a maze.
+     * @param castle
+     * @see Castle
+     */
     public static void setCastlePassages(Castle castle){
         Floor[] floors = castle.getFloors();
         for(Floor floor : floors){
@@ -68,6 +91,11 @@ public class Utils {
             floor.setVertical_passage(v_passages);
         }
     }
+
+    /**
+     * This method generate a maze using kruskal algorithm.
+     * @return the vertical and horizontal walls/passages of the maze.
+     */
     private static int[][][] generateMaze(){
         int FS = Parameters.FLOOR_SIZE;
         int[][] grid = new int[FS][FS];
@@ -118,6 +146,14 @@ public class Utils {
         }
         return new int[][][]{h_passages,v_passages};
     }
+
+    /**
+     * This method choose a random direction (horizontal or vertical) of the futur remove passage.
+     * @param grid the grid of the maze (Room with index).
+     * @param h_passages the horizontal passages of the maze.
+     * @param v_passages the vertical passages of the maze.
+     * @return the direction of the passage and the position of the passage.
+     */
     private static int[] randomPassageDirection(int[][] grid, int h_passages[][], int v_passages[][]){
         if(Math.random() < 0.5) //mur horizontaux
             return randomPassage(grid,h_passages,true);
@@ -125,6 +161,14 @@ public class Utils {
         else //mur verticaux
             return randomPassage(grid,v_passages,false);
     }
+
+    /**
+     * This method choose a random passage.
+     * @param grid the grid of the maze (Room with index).
+     * @param passages horizontal or vertical passages of the maze.
+     * @param h true if the passages are horizontal, false if they are vertical.
+     * @return the direction of the passage and the position of the passage.
+     */
     private static int[] randomPassage(int[][] grid, int[][] passages, boolean h){
         int[] infos = new int[3]; //0 = h(0) ou v(1), 1 = x, 2 = y
         if(h)
@@ -154,6 +198,16 @@ public class Utils {
         else
             return new int[]{1,a,b};
     }
+
+    /**
+     * This method check if the passage is removable.
+     * @param grid the grid of the maze (Room with index).
+     * @param passages horizontal or vertical passages of the maze.
+     * @param x the x position of the passage.
+     * @param y the y position of the passage.
+     * @param h true if the passages are horizontal, false if they are vertical.
+     * @return true if the passage is removable, false otherwise.
+     */
     private static boolean isRemovablePassage(int[][] grid, int[][] passages, int x, int y, boolean h){
         if(h){
             if(grid[x][y] == grid[x][y+1] )
@@ -167,6 +221,16 @@ public class Utils {
                 return true;
         }
     }
+
+    /**
+     * This method merge two ways (a way is a group of room connected by passages).
+     * This is the principle of the algorithm to create the maze.
+     * @param grid the grid of the maze (Room with index).
+     * @param x1 the x position of the first room to merge.
+     * @param y1 the y position of the first room to merge.
+     * @param x2 the x position of the second room to merge.
+     * @param y2 the y position of the second room to merge.
+     */
     private static void mergeWays(int[][] grid, int x1, int y1, int x2, int y2){
         int a = grid[x1][y1];
         int b = grid[x2][y2];
@@ -176,6 +240,13 @@ public class Utils {
                 grid[i/Parameters.FLOOR_SIZE][i%Parameters.FLOOR_SIZE] = a;
         }
     }
+
+    /**
+     * This method check if the solving of the maze is finish or not.
+     * A maze is finish if there is only one way in the maze.
+     * @param grid the grid of the maze (Room with index).
+     * @return true if the maze is finish, false otherwise.
+     */
     private static boolean isMazeFinish(int[][] grid){
         //Si toutes les grilles ont le même numéro retourne TRUE
         int FS = Parameters.FLOOR_SIZE;
@@ -186,6 +257,13 @@ public class Utils {
         }
         return true;
     }
+
+    /**
+     * This method permite to generate a random integer between min and max.
+     * @param min the minimum value of the random integer.
+     * @param max the maximum value of the random integer.
+     * @return the random integer.
+     */
     public static int randomInt(int min, int max){
         //Formule mathématique qui retourne un chiffre aléatoire entre deux bornes passer en parametres
         return (int) (min + (Math.random() * (max - min)));

@@ -1,5 +1,9 @@
 package main.utils;
 
+/**
+ * Class that contains the parameters of the program
+ * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ */
 public class Parameters {
 
     //This parameter need to be superior or equals to 2 ( >= 3 is better to play)

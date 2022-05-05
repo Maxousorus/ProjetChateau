@@ -1,13 +1,17 @@
 package main.locations;
 
+/**
+ * Castle class
+ * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ */
 public class Castle {
 
     private int nbFloors;
     private Floor[] floors;
 
     /**
-     * Constructor
-     * @param nbFloors
+     * Constructor of the class Castle
+     * @param nbFloors number of floors
      */
 
     public Castle(int nbFloors) {
@@ -18,6 +22,10 @@ public class Castle {
         }
     }
 
+    /**
+     * Getter of the list of floors
+     * @return the list of floors
+     */
     public Floor[] getFloors() {
         return floors;
     }
