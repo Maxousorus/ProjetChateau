@@ -1,5 +1,9 @@
 package main.game;
 
+import main.locations.Castle;
+import main.utils.Generate;
+import main.visibles.Map;
+
 public class Main {
 
     /**
@@ -9,5 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Castle castle = Generate.castle(3);
+        Map map = new Map(castle);
+        map.show(1);
     }
 }

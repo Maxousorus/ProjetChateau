@@ -93,19 +93,35 @@ public class Utils {
 
         //Boucle tant que le labyrinthe n'est pas terminé.
         while(!isMazeFinish(grid)){
-            int[] infosp = randomPassageDirection(grid,h_passages,v_passages);
+            int[] infosp;
+            do {
+                infosp = randomPassageDirection(grid, h_passages, v_passages);
+            }while(infosp[0] == -1);
             if(infosp[0] == 0){
                 h_passages[infosp[1]][infosp[2]] = 0;
             }else if(infosp[0] == 1){
                 v_passages[infosp[1]][infosp[2]] = 0;
             }
+            if(infosp[0] == 0){
+                int x1 = infosp[1];
+                int y1 = infosp[2];
+                int x2 = infosp[1];
+                int y2 = infosp[2]+1;
+                mergeWays(grid,x1,y1,x2,y2);
+            }else if(infosp[0] == 1){
+                int x1 = infosp[1];
+                int y1 = infosp[2];
+                int x2 = infosp[1]+1;
+                int y2 = infosp[2];
+                mergeWays(grid,x1,y1,x2,y2);
+            }
         }
-
         return new int[][][]{h_passages,v_passages};
     }
     private static int[] randomPassageDirection(int[][] grid, int h_passages[][], int v_passages[][]){
         if(Math.random() < 0.5) //mur horizontaux
             return randomPassage(grid,h_passages,true);
+
         else //mur verticaux
             return randomPassage(grid,v_passages,false);
     }
@@ -116,18 +132,22 @@ public class Utils {
         else
             infos[0] = 1;
 
-        int a, b;
+        int a, b, cooldown = -1;
         do {
-            int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * (Parameters.FLOOR_SIZE - 1)));
+            cooldown +=1;
 
             if (h) {
-                a = random / Parameters.FLOOR_SIZE;
-                b = random % Parameters.FLOOR_SIZE - 1;
+                a = (int) (Math.random() * Parameters.FLOOR_SIZE);
+                b = (int) (Math.random() * Parameters.FLOOR_SIZE - 1);
             } else {
-                a = random / Parameters.FLOOR_SIZE - 1;
-                b = random % Parameters.FLOOR_SIZE;
+                a = (int) (Math.random() * Parameters.FLOOR_SIZE - 1);
+                b = (int) (Math.random() * Parameters.FLOOR_SIZE);
             }
-        }while(isRemovablePassage(grid,passages,a,b,h));
+        }while(!isRemovablePassage(grid,passages,a,b,h) && cooldown >= 100);
+
+        if(cooldown >= 100){
+            return new int[]{-1,-1,-1};
+        }
 
         if(h)
             return new int[]{0,a,b};
@@ -136,7 +156,7 @@ public class Utils {
     }
     private static boolean isRemovablePassage(int[][] grid, int[][] passages, int x, int y, boolean h){
         if(h){
-            if(grid[x][y] == grid[x][y+1])
+            if(grid[x][y] == grid[x][y+1] )
                 return false;
             else
                 return true;
@@ -145,6 +165,15 @@ public class Utils {
                 return false;
             else
                 return true;
+        }
+    }
+    private static void mergeWays(int[][] grid, int x1, int y1, int x2, int y2){
+        int a = grid[x1][y1];
+        int b = grid[x2][y2];
+
+        for(int i = 0; i < Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE; i++){
+            if(grid[i/Parameters.FLOOR_SIZE][i%Parameters.FLOOR_SIZE] == b)
+                grid[i/Parameters.FLOOR_SIZE][i%Parameters.FLOOR_SIZE] = a;
         }
     }
     private static boolean isMazeFinish(int[][] grid){
