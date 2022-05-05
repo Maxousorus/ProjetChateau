@@ -101,8 +101,7 @@ public class Utils {
             }
         }
 
-        int[][][] allpassages = {h_passages,v_passages};
-        return allpassages;
+        return new int[][][]{h_passages,v_passages};
     }
     private static int[] randomPassageDirection(int[][] grid, int h_passages[][], int v_passages[][]){
         if(Math.random() < 0.5) //mur horizontaux
