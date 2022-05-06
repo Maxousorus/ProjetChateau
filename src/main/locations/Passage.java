@@ -58,7 +58,7 @@ public class Passage {
                     result.add("    ");
                     result.add("▓▓▓▓");
                 } else {
-                    result.add("▓▓▓▓▓");
+                    result.add("▓▓▓▓");
                     result.add("    ");
                     result.add("▓▓▓▓");
                 }

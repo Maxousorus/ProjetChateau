@@ -7,8 +7,8 @@ package main.utils;
 public class Parameters {
 
     //This parameter need to be superior or equals to 2 ( >= 3 is better to play)
-    public static final int FLOOR_SIZE = 5;
-    //Size of a room in the map
+    public static final int FLOOR_SIZE = 3;
+    //Size of a room in the map (need to be <3 but 10 is recommended)
     public static final int ROOM_SIZE = 10;
     public static final int ROOM_HEIGHT = (int)(ROOM_SIZE * 0.6);
     //Chance to passage is locked (between 0 and 1 includes)
