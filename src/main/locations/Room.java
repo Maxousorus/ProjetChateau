@@ -2,7 +2,6 @@ package main.locations;
 
 import static java.lang.Math.random;
 import main.interfaces.CanBeInRoom;
-import main.interfaces.VisibleInMap;
 import main.utils.Generate;
 import main.utils.Parameters;
 
@@ -12,7 +11,7 @@ import java.util.ArrayList;
  * Room class
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
-public class Room implements VisibleInMap {
+public class Room {
 
     private CanBeInRoom roomEvent;
     private boolean visited;
@@ -110,7 +109,7 @@ public class Room implements VisibleInMap {
      * This method return a list of each line of the visible room like appears in the map.
      * @return a list of each line of the visible room
      */
-    @Override
+
     public ArrayList<String> toStringList(){
         ArrayList<String> roomstring = new ArrayList<>();
         if(!isVisited()){
@@ -127,9 +126,9 @@ public class Room implements VisibleInMap {
             String l1 = "";
             for(int i = 0; i < Parameters.ROOM_SIZE-3;i++)
                 l1 += " ";
-            roomstring.add("_  " + l1);
-            roomstring.add(" |_" + l1);
-            roomstring.add("  |" + l1);
+            roomstring.add("┐  " + l1);
+            roomstring.add("└─┐" + l1);
+            roomstring.add("  └" + l1);
             for(int i = 0; i < Parameters.ROOM_HEIGHT-3; i++){
                 String line = "";
                 for(int j = 0; j < Parameters.ROOM_SIZE;j++)
@@ -150,9 +149,9 @@ public class Room implements VisibleInMap {
             for(int i = 0; i < Parameters.ROOM_SIZE-3;i++)
                 l1 += " ";
 
-            roomstring.add(l1 + "_  ");
-            roomstring.add(l1 + " |_");
-            roomstring.add(l1 + "  |");
+            roomstring.add(l1 + "┐  ");
+            roomstring.add(l1 + "└─┐");
+            roomstring.add(l1 + "  └");
             return roomstring;
         }
         for(int i = 0; i < Parameters.ROOM_HEIGHT; i++){

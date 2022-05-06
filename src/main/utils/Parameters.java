@@ -10,7 +10,6 @@ public class Parameters {
     public static final int FLOOR_SIZE = 5;
     //Size of a room in the map
     public static final int ROOM_SIZE = 10;
-
     public static final int ROOM_HEIGHT = (int)(ROOM_SIZE * 0.6);
     //Chance to passage is locked (between 0 and 1 includes)
     public static final double CHANCE_OF_LOCKED_PASSAGE = 0.2;

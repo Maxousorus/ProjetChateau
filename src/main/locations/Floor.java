@@ -42,11 +42,20 @@ public class Floor {
         this.horizontal_passages = horizontal_passages;
     }
 
+    public Passage[][] getHorizontal_passages() {
+        return horizontal_passages;
+    }
+
+
     /**
      * This method is used to get the vertical passages list of the floor.
      * @param vertical_passages vertical passages list of the floor
      */
     public void setVertical_passage(Passage[][] vertical_passages) {
         this.vertical_passages = vertical_passages;
+    }
+
+    public Passage[][] getVertical_passages() {
+        return vertical_passages;
     }
 }
