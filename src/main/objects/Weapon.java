@@ -4,6 +4,7 @@ import main.utils.Utils;
 
 /**
  * Weapon class
+ *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Weapon extends Item {
@@ -16,6 +17,6 @@ public class Weapon extends Item {
      */
     public Weapon() {
         super();
-        this.damage = Utils.randomInt(1,500);
+        this.damage = Utils.randomInt(1, 500);
     }
 }

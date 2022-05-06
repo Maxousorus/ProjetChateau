@@ -2,6 +2,7 @@ package main.locations;
 
 /**
  * Castle class
+ *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Castle {
@@ -11,6 +12,7 @@ public class Castle {
 
     /**
      * Constructor of the class Castle
+     *
      * @param nbFloors number of floors
      */
 
@@ -24,6 +26,7 @@ public class Castle {
 
     /**
      * Getter of the list of floors
+     *
      * @return the list of floors
      */
     public Floor[] getFloors() {

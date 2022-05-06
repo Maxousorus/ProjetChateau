@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Passage class represents a passage between two rooms.
+ *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Passage {
@@ -28,7 +29,7 @@ public class Passage {
      * Constructor of the Passage class.
      * Instanciate a random new Passage.
      */
-    public Passage(){
+    public Passage() {
         challenge_type = (int) (Math.random() * 3);
         if (challenge_type == MONSTER) {
             this.monster = new Entity();
@@ -46,6 +47,7 @@ public class Passage {
 
     /**
      * This method return a list of each line of the visible passage like appear in the map.
+     *
      * @return a list of each line of the visible passage.
      */
     public ArrayList<String> toStringList(boolean horizontal) {
@@ -77,16 +79,16 @@ public class Passage {
                 return result;
             }
         } else { //Print vertical passage
-            if(this.visited) {
-                if(Parameters.ROOM_SIZE % 2 == 0) { //IDE find an error but it's not an error
+            if (this.visited) {
+                if (Parameters.ROOM_SIZE % 2 == 0) { //IDE find an error but it's not an error
                     result.add("▓  ▓");
                     result.add("▓  ▓");
-                }else {
+                } else {
                     result.add("▓ ▓");
                     result.add("▓ ▓");
                 }
             } else {
-                if(Parameters.ROOM_SIZE % 2 == 0) { //IDE find an error but it's not an error
+                if (Parameters.ROOM_SIZE % 2 == 0) { //IDE find an error but it's not an error
                     result.add("▓▓▓▓");
                     result.add("▓▓▓▓");
                 } else {

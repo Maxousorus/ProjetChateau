@@ -1,4 +1,5 @@
 package main.game;
+
 import main.entities.*;
 
 public class Fight {
@@ -11,14 +12,14 @@ public class Fight {
         this.entity = entity;
     }
 
-    public Entity fight(){
+    public Entity fight() {
         int pvPlayer;
         int pvEntity;
         do {
             pvPlayer = player.getPv() - entity.getDamage();
             pvEntity = entity.getPv() - player.getDamage();
-        }while(pvEntity <= 0 || pvPlayer <=0);
-        if (pvEntity <= 0){
+        } while (pvEntity <= 0 || pvPlayer <= 0);
+        if (pvEntity <= 0) {
             return entity;
         }
         return player;

@@ -2,6 +2,7 @@ package main.utils;
 
 /**
  * Class that contains the parameters of the program
+ *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Parameters {
@@ -10,7 +11,7 @@ public class Parameters {
     public static final int FLOOR_SIZE = 3;
     //Size of a room in the map (need to be <3 but 10 is recommended)
     public static final int ROOM_SIZE = 10;
-    public static final int ROOM_HEIGHT = (int)(ROOM_SIZE * 0.6);
+    public static final int ROOM_HEIGHT = (int) (ROOM_SIZE * 0.6);
     //Chance to passage is locked (between 0 and 1 includes)
     public static final double CHANCE_OF_LOCKED_PASSAGE = 0.2;
     //The sum of the next three parameters need to be inferior or equals to 1

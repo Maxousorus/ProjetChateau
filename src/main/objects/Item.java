@@ -5,18 +5,13 @@ import main.utils.Utils;
 
 /**
  * Item class
+ *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Item implements CanBeInRoom {
 
     private String name;
-    private String [] tabName = {
-            "GodJonas",
-            "Tigrou",
-            "Dumbo",
-            "Grizzly",
-            "Poulpi",
-            "Chèvre"};
+    private String[] tabName = {"GodJonas", "Tigrou", "Dumbo", "Grizzly", "Poulpi", "Chèvre"};
 
 
     /**
@@ -24,6 +19,6 @@ public class Item implements CanBeInRoom {
      * Instantiate a random new item
      */
     public Item() {
-        this.name = tabName[Utils.randomInt(1,6)];
+        this.name = tabName[Utils.randomInt(1, 6)];
     }
 }

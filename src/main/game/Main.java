@@ -8,6 +8,7 @@ public class Main {
 
     /**
      * The main method.
+     *
      * @param args
      */
 

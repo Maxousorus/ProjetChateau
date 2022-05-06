@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * This class represents a map.
+ *
  * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias
  */
 public class Map {
@@ -19,6 +20,7 @@ public class Map {
 
     /**
      * Constructor of the class Map.
+     *
      * @param castle the castle
      */
 
@@ -28,17 +30,18 @@ public class Map {
 
     /**
      * This method returns the string of the updownwall.
+     *
      * @return the string of the updownwall
      */
     private String updownwall() {
         String room = "";
-        for(int i = 0; i < Parameters.ROOM_SIZE; i++) {
+        for (int i = 0; i < Parameters.ROOM_SIZE; i++) {
             room += "▓";
         }
         String updownwall = sidewall;
         for (int i = 0; i < Parameters.FLOOR_SIZE; i++) {
             updownwall += room;
-            if (i < Parameters.FLOOR_SIZE - 1){
+            if (i < Parameters.FLOOR_SIZE - 1) {
                 updownwall += aroundPassage;
             }
         }
@@ -57,37 +60,36 @@ public class Map {
 
     /**
      * This method print the map of a floor on console.
+     *
      * @param floor the floor to show
      * @see Floor
      */
-    public void show (Floor floor) {
+    public void show(Floor floor) {
         Room[][] rooms = floor.getRooms();
         System.out.println(updownwall());
 
-        for(int row = 0; row < Parameters.FLOOR_SIZE; row++) {
-            for(int nbline = 0; nbline < Parameters.ROOM_HEIGHT; nbline++) {
+        for (int row = 0; row < Parameters.FLOOR_SIZE; row++) {
+            for (int nbline = 0; nbline < Parameters.ROOM_HEIGHT; nbline++) {
                 String line = "";
                 line += sidewall;
-                for(int col = 0; col < Parameters.FLOOR_SIZE; col++) {
+                for (int col = 0; col < Parameters.FLOOR_SIZE; col++) {
                     line += rooms[row][col].toStringList().get(nbline);
-                    if(col < Parameters.FLOOR_SIZE - 1){
+                    if (col < Parameters.FLOOR_SIZE - 1) {
                         Passage[][] h_passages = floor.getHorizontal_passages();
-                        if(h_passages[row][col] != null) {
+                        if (h_passages[row][col] != null) {
                             ArrayList<String> passage = floor.getHorizontal_passages()[row][col].toStringList(true);
                             if (Parameters.ROOM_HEIGHT % 2 == 1) {
                                 if (nbline >= (Parameters.ROOM_HEIGHT / 2) - 1 && nbline <= (Parameters.ROOM_HEIGHT / 2) + 1) {
                                     line += passage.get(nbline - ((Parameters.ROOM_HEIGHT / 2) - 1));
-                                }
-                                else line += "▓▓▓▓";
+                                } else line += "▓▓▓▓";
                             } else if (Parameters.ROOM_HEIGHT % 2 == 0) {
                                 if (nbline >= (Parameters.ROOM_HEIGHT / 2) - 2 && nbline <= (Parameters.ROOM_HEIGHT / 2) + 1) {
                                     line += passage.get(nbline - ((Parameters.ROOM_HEIGHT / 2) - 2));
-                                }
-                                else line += "▓▓▓▓";
+                                } else line += "▓▓▓▓";
                             } else {
                                 line += "▓▓▓▓";
                             }
-                        }else {
+                        } else {
                             line += aroundPassage;
                         }
                     }
@@ -95,7 +97,7 @@ public class Map {
                 line += sidewall;
                 System.out.println(line);
             }
-            if(row < Parameters.FLOOR_SIZE - 1) {
+            if (row < Parameters.FLOOR_SIZE - 1) {
                 for (int i = 0; i < 2; i++) {
                     String line = sidewall;
                     Passage[][] v_passages = floor.getVertical_passages();
@@ -123,14 +125,13 @@ public class Map {
                                 line += nextToPassage;
                             }
                         }
-                        if(col < Parameters.FLOOR_SIZE - 1) {
+                        if (col < Parameters.FLOOR_SIZE - 1) {
                             line += "▓▓▓▓";
-                        }else
-                            line += sidewall;
+                        } else line += sidewall;
                     }
                     System.out.println(line);
                 }
-            } else  {
+            } else {
                 System.out.println(updownwall());
             }
         }

@@ -4,14 +4,15 @@ import main.utils.Parameters;
 
 /**
  * Floor class
+ *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Floor {
 
     private int floorSize = Parameters.FLOOR_SIZE;
     private Room[][] rooms = new Room[floorSize][floorSize];
-    private Passage[][] horizontal_passages = new Passage[floorSize][floorSize-1];
-    private Passage[][] vertical_passages = new Passage[floorSize-1][floorSize];
+    private Passage[][] horizontal_passages = new Passage[floorSize][floorSize - 1];
+    private Passage[][] vertical_passages = new Passage[floorSize - 1][floorSize];
 
     /**
      * Constructor of the Floor class
@@ -28,6 +29,7 @@ public class Floor {
 
     /**
      * This method is used to get the rooms list of the floor.
+     *
      * @return rooms list of the floor
      */
     public Room[][] getRooms() {
@@ -36,11 +38,13 @@ public class Floor {
 
     /**
      * This method is used to set the horizontal passages list of the floor.
+     *
      * @param horizontal_passages horizontal passages list of the floor
      */
     public void setHorizontal_passage(Passage[][] horizontal_passages) {
         this.horizontal_passages = horizontal_passages;
     }
+
 
     public Passage[][] getHorizontal_passages() {
         return horizontal_passages;
@@ -49,6 +53,7 @@ public class Floor {
 
     /**
      * This method is used to get the vertical passages list of the floor.
+     *
      * @param vertical_passages vertical passages list of the floor
      */
     public void setVertical_passage(Passage[][] vertical_passages) {

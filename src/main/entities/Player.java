@@ -5,9 +5,10 @@ import main.objects.*;
 
 /**
  * Player class
+ *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
-public class Player extends Entity{
+public class Player extends Entity {
 
     private Weapon weapon;
     //private Room room;

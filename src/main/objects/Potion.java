@@ -4,6 +4,7 @@ import main.utils.Utils;
 
 /**
  * Potion class
+ *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Potion extends Item {
@@ -15,6 +16,6 @@ public class Potion extends Item {
      */
     public Potion() {
         super();
-        this.pv = Utils.randomInt(0,500);
+        this.pv = Utils.randomInt(0, 500);
     }
 }
