@@ -1,5 +1,6 @@
 package main.entities;
 
+import main.locations.Castle;
 import main.locations.Room;
 import main.objects.*;
 
@@ -11,19 +12,42 @@ import main.objects.*;
 public class Player extends Entity {
 
     private Weapon weapon;
-    //private Room room;
+    private Room room;
 
     /**
      * Player constructor
-     * Instanciate a random new player
+     * Instanciate new player
      */
-    public Player(Weapon weapon /*Room room*/) {
-        super();
-        this.weapon = weapon;
-        //this.room = room;
-    }
 
     public Player() {
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public void spawn(Castle castle) {
+        Room[][] rooms  = castle.getFloors()[0].getRooms();
+        for(int x = 0; x < rooms.length; x++) {
+            for(int y = 0; y < rooms[x].length; y++) {
+                if(rooms[x][y].isSpawn()) {
+                    this.room = rooms[x][y];
+                    return;
+                }
+            }
+        }
 
     }
 }

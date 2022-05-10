@@ -35,15 +35,6 @@ public class Generate {
     }
 
     /**
-     * This method is used to generate a random monster.
-     *
-     * @return The monster.
-     */
-    public static Monster monster() {
-        return new Monster();
-    }
-
-    /**
      * This method is used to generate a random Challenge.
      *
      * @return The challenge.

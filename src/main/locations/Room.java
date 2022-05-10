@@ -2,6 +2,7 @@ package main.locations;
 
 import static java.lang.Math.random;
 
+import main.entities.Monster;
 import main.interfaces.CanBeInRoom;
 import main.utils.Generate;
 import main.utils.Parameters;
@@ -33,11 +34,11 @@ public class Room {
         } else if (random() < Parameters.CHANCE_OF_CHALLENGE_IN_ROOM) {
             this.roomEvent = Generate.challenge();
         } else if (random() < Parameters.CHANCE_OF_MONSTER_IN_ROOM) {
-            this.roomEvent = Generate.monster();
+            this.roomEvent = new Monster();
         } else {
             this.roomEvent = null;
         }
-        this.visited = true; // TODO true juste pour le test enlever à la fin des tests
+        this.visited = false;
         this.upstairs = false;
         this.downstairs = false;
         this.spawn = false;
@@ -59,6 +60,7 @@ public class Room {
      */
     public void setSpawn() {
         this.spawn = true;
+        this.roomEvent = null;
     }
 
     /**
@@ -75,6 +77,7 @@ public class Room {
      */
     public void setUpStairs() {
         this.upstairs = true;
+        this.roomEvent = null;
     }
 
     /**
@@ -92,6 +95,7 @@ public class Room {
 
     public void setDownStairs() {
         this.downstairs = true;
+        this.roomEvent = null;
     }
 
     /**
@@ -110,6 +114,16 @@ public class Room {
      */
     public void setExit(boolean exit) {
         this.exit = exit;
+        this.roomEvent = null;
+    }
+
+    /**
+     * This method returns if the room is an exit
+     *
+     * @return true if the room is an exit, false otherwise
+     */
+    public boolean isExit() {
+        return exit;
     }
 
     /**

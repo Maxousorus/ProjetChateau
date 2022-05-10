@@ -19,7 +19,7 @@ public class Passage {
     private Trap trap;
     private boolean locked;
 
-    private boolean visited = true;
+    private boolean visited = false;
 
     private static final int MONSTER = 0;
     private static final int SAGE = 1;
