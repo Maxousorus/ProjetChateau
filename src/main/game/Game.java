@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Game {
     /**
      * This method run the game.
-     * @throws IOException
+     * @throws IOException if the file is not found.
      */
     public void run() throws IOException {
 
@@ -54,19 +54,17 @@ public class Game {
                 int[] thisRoomCoords = player.getRoom().getRoomCoordinates(); // Get the room coordinates
                 if (player.getRoom().isUpStairs()) { // If the room has an up stairs
                     Menu descendre = new Menu("Voulez-vous descendre d'un étage ?", new String[]{"Oui", "Non"}); // Generate the menu
-                    switch(descendre.choose()) { // Choose the option
-                        case 0 -> { // If the player choose to go down
-                            int nextFloor = player.getRoom().getFloor().getFloorNumber() -1 ; // Get the previous floor
-                            player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
-                        }
+                    // Choose the option
+                    if (descendre.choose() == 0) {// If the player choose to go down
+                        int nextFloor = player.getRoom().getFloor().getFloorNumber() - 1; // Get the previous floor
+                        player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
                     }
                 }else if (player.getRoom().isDownStairs()) { // If the room has a down stairs
                     Menu monter = new Menu("Voulez-vous Monter d'un étage ?", new String[]{"Oui", "Non"}); // Generate the menu
-                    switch(monter.choose()) { // Choose the option
-                        case 0 -> { // If the player choose to go up
-                            int nextFloor = player.getRoom().getFloor().getFloorNumber() + 1; // Get the next floor
-                            player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
-                        }
+                    // Choose the option
+                    if (monter.choose() == 0) {// If the player choose to go up
+                        int nextFloor = player.getRoom().getFloor().getFloorNumber() + 1; // Get the next floor
+                        player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
                     }
                 }
                 player.getRoom().setVisited(); // Set the room as visited
@@ -77,49 +75,48 @@ public class Game {
                 map.show(player.getRoom().getFloor().getFloorNumber(),player); // Show the map
             }
             Menu bouger = new Menu("Voulez-vous bouger ?", new String[]{"Oui", "Non"}); // Generate the menu
-            switch(bouger.choose()) { // Choose the option
-                case 0 -> { // If the player choose to move
-                    Passage[] passages = player.getRoom().getFloor().getPassageOfRoom(player.getRoom());
-                    ArrayList<String> directions = new ArrayList<>(); // Generate the list of directions
-                    if(passages[0] != null) { // If the room has a passage to the west
-                        directions.add("Ouest");
-                    }else {
-                        directions.add("Pas de passage");
-                    }
-                    if(passages[1] != null) { // If the room has a passage to the east
-                        directions.add("Est"); // Add the direction to the list
-                    }else {
-                        directions.add("Pas de passage");
-                    }
-                    if(passages[2] != null) { // If the room has a passage to the north
-                        directions.add("Nord"); // Add the direction to the list
-                    }else {
-                        directions.add("Pas de passage");
-                    }
-                    if(passages[3] != null) { // If the room has a passage to the south
-                        directions.add("Sud"); // Add the direction to the list
-                    }else {
-                        directions.add("Pas de passage");
-                    }
-                    String[] directionsArray = directions.toArray(new String[directions.size()]); // Convert the list to an array
-                    Menu choix = new Menu("Ou voulez-vous aller ?", directionsArray); // Generate the menu
-                    int direction;
-                    do{ // Choose the direction
-                        direction = choix.choose();
-                    } while(passages[direction] == null); // While the passage is null
-                    int[] thisRoomCoords = player.getRoom().getRoomCoordinates();
-                    if(direction == 0){ // If the direction is west
-                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1]-1]); // Set the player room
-                    };
-                    if(direction == 1){ // If the direction is east
-                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1]+1]); // Set the player room
-                    }
-                    if(direction == 2){ // If the direction is north
-                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]-1][thisRoomCoords[1]]); // Set the player room
-                    }
-                    if(direction == 3){ // If the direction is south
-                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]+1][thisRoomCoords[1]]); // Set the player room
-                    }
+            // Choose the option
+            if (bouger.choose() == 0) {// If the player choose to move
+                Passage[] passages = player.getRoom().getFloor().getPassageOfRoom(player.getRoom());
+                ArrayList<String> directions = new ArrayList<>(); // Generate the list of directions
+                if (passages[0] != null) { // If the room has a passage to the west
+                    directions.add("Ouest");
+                } else {
+                    directions.add("Pas de passage");
+                }
+                if (passages[1] != null) { // If the room has a passage to the east
+                    directions.add("Est"); // Add the direction to the list
+                } else {
+                    directions.add("Pas de passage");
+                }
+                if (passages[2] != null) { // If the room has a passage to the north
+                    directions.add("Nord"); // Add the direction to the list
+                } else {
+                    directions.add("Pas de passage");
+                }
+                if (passages[3] != null) { // If the room has a passage to the south
+                    directions.add("Sud"); // Add the direction to the list
+                } else {
+                    directions.add("Pas de passage");
+                }
+                String[] directionsArray = directions.toArray(new String[0]); // Convert the list to an array
+                Menu choix = new Menu("Ou voulez-vous aller ?", directionsArray); // Generate the menu
+                int direction;
+                do { // Choose the direction
+                    direction = choix.choose();
+                } while (passages[direction] == null); // While the passage is null
+                int[] thisRoomCoords = player.getRoom().getRoomCoordinates();
+                if (direction == 0) { // If the direction is west
+                    player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1] - 1]); // Set the player room
+                }
+                if (direction == 1) { // If the direction is east
+                    player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1] + 1]); // Set the player room
+                }
+                if (direction == 2) { // If the direction is north
+                    player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0] - 1][thisRoomCoords[1]]); // Set the player room
+                }
+                if (direction == 3) { // If the direction is south
+                    player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0] + 1][thisRoomCoords[1]]); // Set the player room
                 }
             }
             player.getRoom().setVisited(); // Set the room as visited

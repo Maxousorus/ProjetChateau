@@ -24,7 +24,7 @@ public class Room {
     private boolean spawn;
     private boolean exit;
 
-    private Floor floor;
+    private final Floor floor;
 
     /**
      * Constructor of the Room class
@@ -59,7 +59,7 @@ public class Room {
 
     /**
      * This method set a room event in the room.
-     * @param roomEvent
+     * @param roomEvent the room event to set
      */
     public void setRoomEvent(CanBeInRoom roomEvent) {
         this.roomEvent = roomEvent;

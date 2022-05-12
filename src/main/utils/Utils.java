@@ -14,7 +14,7 @@ public class Utils {
     /**
      * This method set the player spawn in the groundfloor of the castle.
      *
-     * @param castle
+     * @param castle the castle where the player will be spawn.
      * @see Castle
      */
     public static void setCastleSpawn(Castle castle) {
@@ -30,15 +30,15 @@ public class Utils {
      * This method set stairs in the castle.
      * One downstairs and one upstairs per floor.
      *
-     * @param castle
+     * @param castle the castle where the stairs will be set.
      * @see Castle
      */
     public static void setCastleStairs(Castle castle) {
         Floor[] floors = castle.getFloors(); //get floors of the castle
         for (int floor = 0; floor < castle.getFloors().length - 1; floor++) { //for each floor
 
-            int x = 0;
-            int y = 0;
+            int x;
+            int y;
             do { //choose a random room
                 int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE));
                 x = random / Parameters.FLOOR_SIZE;
@@ -53,7 +53,7 @@ public class Utils {
     /**
      * This method set the exit of the castle at the last floor.
      *
-     * @param castle
+     * @param castle the castle where the exit will be set.
      * @see Castle
      */
     public static void setCastleExit(Castle castle) {
@@ -61,8 +61,8 @@ public class Utils {
         int lastStageNumber = floors.length - 1;
         Floor lastStage = floors[castle.getFloors().length - 1]; //last floor
 
-        int x = 0;
-        int y = 0;
+        int x;
+        int y;
         do { //choose a random room
             int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE));
             x = random / Parameters.FLOOR_SIZE;
@@ -75,7 +75,7 @@ public class Utils {
     /**
      * This method set the passages in the castle like a maze (kruskal algorithm).
      *
-     * @param castle
+     * @param castle the castle where the passages will be set.
      * @see Castle
      */
     public static void setCastlePassages(Castle castle) {
@@ -130,7 +130,7 @@ public class Utils {
         while (!isMazeFinish(grid)) {
             int[] infosp; //info of the passage
             do {
-                infosp = randomPassageDirection(grid, h_passages, v_passages); //get a random passage
+                infosp = randomPassageDirection(grid); //get a random passage
             } while (infosp[0] == -1);
             if (infosp[0] == 0) { //if the passage is horizontal
                 h_passages[infosp[1]][infosp[2]] = 0; //open the passage
@@ -158,35 +158,26 @@ public class Utils {
      * This method choose a random direction (horizontal or vertical) of the futur remove passage.
      *
      * @param grid       the grid of the maze (Room with index).
-     * @param h_passages the horizontal passages of the maze.
-     * @param v_passages the vertical passages of the maze.
      * @return the direction of the passage and the position of the passage.
      */
-    private static int[] randomPassageDirection(int[][] grid, int h_passages[][], int v_passages[][]) {
+    private static int[] randomPassageDirection(int[][] grid) {
         if (Math.random() < 0.5) //mur horizontaux
-            return randomPassage(grid, h_passages, true); //choose a random horizontal passage
+            return randomPassage(grid, true); //choose a random horizontal passage
 
         else //mur verticaux
-            return randomPassage(grid, v_passages, false); //choose a random vertical passage
+            return randomPassage(grid, false); //choose a random vertical passage
     }
 
     /**
      * This method choose a random passage.
      *
      * @param grid     the grid of the maze (Room with index).
-     * @param passages horizontal or vertical passages of the maze.
      * @param h        true if the passages are horizontal, false if they are vertical.
      * @return the direction of the passage and the position of the passage.
      */
-    private static int[] randomPassage(int[][] grid, int[][] passages, boolean h) {
-        int[] infos = new int[3]; //0 = h(0) ou v(1), 1 = x, 2 = y
-        if (h) infos[0] = 0;
-        else infos[0] = 1;
-
-        int a, b, cooldown = -1;
+    private static int[] randomPassage(int[][] grid, boolean h) {
+        int a, b;
         do { //choose a random passage
-            cooldown += 1;
-
             if (h) {
                 a = (int) (Math.random() * Parameters.FLOOR_SIZE);
                 b = (int) (Math.random() * Parameters.FLOOR_SIZE - 1);
@@ -194,11 +185,7 @@ public class Utils {
                 a = (int) (Math.random() * Parameters.FLOOR_SIZE - 1);
                 b = (int) (Math.random() * Parameters.FLOOR_SIZE);
             }
-        } while (!isRemovablePassage(grid, passages, a, b, h) && cooldown >= 100); //while the passage is not removable
-
-        if (cooldown >= 100) { //return uncorrect passage TODO make an exception for this
-            return new int[]{-1, -1, -1};
-        }
+        } while (!isRemovablePassage(grid, a, b, h)); //while the passage is not removable
 
         if (h) return new int[]{0, a, b}; //return the horizontal passage
         else return new int[]{1, a, b}; //return the vertical passage
@@ -208,19 +195,16 @@ public class Utils {
      * This method check if the passage is removable.
      *
      * @param grid     the grid of the maze (Room with index).
-     * @param passages horizontal or vertical passages of the maze.
      * @param x        the x position of the passage.
      * @param y        the y position of the passage.
      * @param h        true if the passages are horizontal, false if they are vertical.
      * @return true if the passage is removable, false otherwise.
      */
-    private static boolean isRemovablePassage(int[][] grid, int[][] passages, int x, int y, boolean h) {
+    private static boolean isRemovablePassage(int[][] grid, int x, int y, boolean h) {
         if (h) { //horizontal passage
-            if (grid[x][y] == grid[x][y + 1]) return false; //if two cells have same index the passage is not removable
-            else return true;
+            return grid[x][y] != grid[x][y + 1]; //if two cells have same index the passage is not removable
         } else { //vertical passage
-            if (grid[x][y] == grid[x + 1][y]) return false; //if two cells have same index the passage is not removable
-            else return true;
+            return grid[x][y] != grid[x + 1][y]; //if two cells have same index the passage is not removable
         }
     }
 

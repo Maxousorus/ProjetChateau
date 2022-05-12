@@ -1,13 +1,11 @@
 package main.utils;
 
-import static java.lang.Math.random;
-
 import main.challenges.Challenge;
 import main.challenges.Sage;
 import main.challenges.Trap;
-import main.entities.Monster;
-import main.locations.*;
-import main.objects.*;
+import main.locations.Castle;
+
+import static java.lang.Math.random;
 
 /**
  * This class is used to generate random objects and monsters.

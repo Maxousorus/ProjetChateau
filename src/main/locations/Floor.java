@@ -9,11 +9,11 @@ import main.utils.Parameters;
  */
 public class Floor {
 
-    private int floorSize = Parameters.FLOOR_SIZE;
-    private Room[][] rooms = new Room[floorSize][floorSize];
+    private final int floorSize = Parameters.FLOOR_SIZE;
+    private final Room[][] rooms = new Room[floorSize][floorSize];
     private Passage[][] horizontal_passages = new Passage[floorSize][floorSize - 1];
     private Passage[][] vertical_passages = new Passage[floorSize - 1][floorSize];
-    private int floorNumber;
+    private final int floorNumber;
 
     /**
      * Constructor of the Floor class
@@ -82,7 +82,7 @@ public class Floor {
 
     /**
      * This method is used to get the coordinates of a room in the floor.
-     * @param room
+     * @param room room to get coordinates
      * @return coordinates of the room
      */
     public int[] getRoomCoordinates(Room room) {
@@ -103,7 +103,7 @@ public class Floor {
 
     /**
      * This method is used to get Passages connected to a room.
-     * @param room
+     * @param room room to get passages
      * @return Passages connected to a room.
      */
     public Passage[] getPassageOfRoom(Room room) {

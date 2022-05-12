@@ -11,15 +11,15 @@ import java.io.IOException;
  */
 public class Menu {
 
-    private String[] options; //The choices of the menu
+    private final String[] options; //The choices of the menu
     private int selected = 0; //The selected choice of the user
-    private String title; //The title of the menu or the question
+    private final String title; //The title of the menu or the question
 
     /**
      * Constructor of the class Menu.
      *
-     * @param title
-     * @param options
+     * @param title the title of the menu or the question.
+     * @param options the choices of the menu.
      */
     public Menu(String title, String[] options) {
         this.title = title;
@@ -51,7 +51,7 @@ public class Menu {
      * Get the choice of the user.
      *
      * @return the index in options of the choice.
-     * @throws IOException
+     * @throws IOException if the user doesn't enter a valid keyboard.
      */
     public int choose() throws IOException {
         while (true) { //While the user doesn't choose an option

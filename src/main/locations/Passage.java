@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Passage {
 
-    private int challenge_type; //Monster or Sage or Trap
+    private final int challenge_type; //Monster or Sage or Trap
     private Entity monster;
     private Sage sage;
     private Trap trap;

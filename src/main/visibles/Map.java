@@ -13,11 +13,11 @@ import java.util.ArrayList;
  */
 public class Map {
 
-    private Castle castle; // The castle of the map.
+    private final Castle castle; // The castle of the map.
 
-    private String sidewall = "▓▓"; //Wall on side (left and right) of the map.
+    private final String sidewall = "▓▓"; //Wall on side (left and right) of the map.
 
-    private String aroundPassage = "▓▓▓▓"; //Wall around the passage and between rooms
+    private final String aroundPassage = "▓▓▓▓"; //Wall around the passage and between rooms
 
     /**
      * Constructor of the class Map.
@@ -108,23 +108,21 @@ public class Map {
                                 line += "▓"; //If there is no passage between the room and the next, put a wall
                             }
                         } else { //If there is a passage between the room and the next
+                            String nextToPassage = "";//Add the line of the passage after the middle of the passage
+//Add the line of the passage
+//Add the line of the passage before the middle of the passage
                             if (Parameters.ROOM_SIZE % 2 == 1) { //If the number of lines of the passage is not pair
-                                String nextToPassage = "";
                                 for (int j = 0; j < (Parameters.ROOM_SIZE / 2) - 1; j++) { //For each line of the passage before the middle of the passage
                                     nextToPassage += "▓"; //Put a wall
                                 }
-                                line += nextToPassage; //Add the line of the passage before the middle of the passage
-                                line += v_passages[row][col].toStringList(false).get(i); //Add the line of the passage
-                                line += nextToPassage; //Add the line of the passage after the middle of the passage
                             } else {
-                                String nextToPassage = "";
                                 for (int j = 0; j < (Parameters.ROOM_SIZE / 2) - 2; j++) { //For each line of the passage before the middle of the passage
                                     nextToPassage += "▓"; //Put a wall
                                 }
-                                line += nextToPassage; //Add the line of the passage before the middle of the passage
-                                line += v_passages[row][col].toStringList(false).get(i); //Add the line of the passage
-                                line += nextToPassage; //Add the line of the passage after the middle of the passage
                             }
+                            line += nextToPassage; //Add the line of the passage before the middle of the passage
+                            line += v_passages[row][col].toStringList(false).get(i); //Add the line of the passage
+                            line += nextToPassage; //Add the line of the passage after the middle of the passage
                         }
                         if (col < Parameters.FLOOR_SIZE - 1) { //If it's not the last room of the column
                             line += "▓▓▓▓"; //Put a wall between the room and the next

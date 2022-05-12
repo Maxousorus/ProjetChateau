@@ -7,8 +7,8 @@ package main.locations;
  */
 public class Castle {
 
-    private int nbFloors;
-    private Floor[] floors;
+    private final int nbFloors;
+    private final Floor[] floors;
 
     /**
      * Constructor of the class Castle
