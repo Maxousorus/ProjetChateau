@@ -57,6 +57,10 @@ public class Room {
         return roomEvent;
     }
 
+    /**
+     * This method set a room event in the room.
+     * @param roomEvent
+     */
     public void setRoomEvent(CanBeInRoom roomEvent) {
         this.roomEvent = roomEvent;
     }
@@ -71,6 +75,9 @@ public class Room {
         return this.visited;
     }
 
+    /**
+     * This method set the room as visited.
+     */
     public void setVisited() {
         this.visited = true;
     }
@@ -147,11 +154,9 @@ public class Room {
     }
 
     /**
-     * This method return a list of each line of the visible room like appears in the map.
-     *
-     * @return a list of each line of the visible room
+     * This method returns coordinates of the room (x,y)
+     * @return coordinates of the room (x,y)
      */
-
     public int[] getRoomCoordinates() {
         for(int x = 0 ; x < floor.getRooms().length ; x++) {
             for(int y = 0 ; y < floor.getRooms()[x].length ; y++) {
@@ -163,6 +168,11 @@ public class Room {
         return new int[] {-1,-1};
     }
 
+    /**
+     * This method return a list of each line of the visible room like appears in the map.
+     *
+     * @return a list of each line of the visible room
+     */
     public ArrayList<String> toStringList(Player player) {
         ArrayList<String> roomstring = new ArrayList<>();
         if (!isVisited()) {

@@ -14,7 +14,14 @@ import main.visibles.Menu;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Method to manage the game.
+ */
 public class Game {
+    /**
+     * This method run the game.
+     * @throws IOException
+     */
     public void run() throws IOException {
 
         Castle castle = Generate.castle(Parameters.FLOOR_SIZE);

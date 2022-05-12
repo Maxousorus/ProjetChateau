@@ -1,10 +1,14 @@
 package main.visibles;
 
 import main.utils.RawConsoleInput;
-import main.utils.Utils;
 
 import java.io.IOException;
 
+/**
+ * This class permits to display a menu and to get the choice of the user.
+ *
+ * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias
+ */
 public class Menu {
 
     private String[] options;
@@ -12,11 +16,20 @@ public class Menu {
 
     private String title;
 
+    /**
+     * Constructor of the class Menu.
+     *
+     * @param title
+     * @param options
+     */
     public Menu(String title, String[] options) {
         this.title = title;
         this.options = options;
     }
 
+    /**
+     * Display the menu.
+     */
     private void show() {
         String line = "";
         for (int i = 0; i < title.length(); i++) {
@@ -35,6 +48,12 @@ public class Menu {
         }
     }
 
+    /**
+     * Get the choice of the user.
+     *
+     * @return the index in options of the choice.
+     * @throws IOException
+     */
     public int choose() throws IOException {
         while (true) {
             show();

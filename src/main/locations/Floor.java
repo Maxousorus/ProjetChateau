@@ -29,6 +29,10 @@ public class Floor {
         this.floorNumber = floorNumber;
     }
 
+    /**
+     * This method is used to get the floor number.
+     * @return floor number
+     */
     public int getFloorNumber() {
         return floorNumber;
     }
@@ -51,14 +55,16 @@ public class Floor {
         this.horizontal_passages = horizontal_passages;
     }
 
-
+    /**
+     * This method is used to get horizontal passages between rooms.
+     * @return horizontal passages list of the floor
+     */
     public Passage[][] getHorizontal_passages() {
         return horizontal_passages;
     }
 
-
     /**
-     * This method is used to get the vertical passages list of the floor.
+     * This method is used to set the vertical passages list of the floor.
      *
      * @param vertical_passages vertical passages list of the floor
      */
@@ -66,10 +72,19 @@ public class Floor {
         this.vertical_passages = vertical_passages;
     }
 
+    /**
+     * This method is used to get the vertical passages list of the floor.
+     * @return vertical passages list of the floor
+     */
     public Passage[][] getVertical_passages() {
         return vertical_passages;
     }
 
+    /**
+     * This method is used to get the coordinates of a room in the floor.
+     * @param room
+     * @return coordinates of the room
+     */
     public int[] getRoomCoordinates(Room room) {
         int[] coordinates = new int[2];
         for (int i = 0; i < floorSize; i++) {
@@ -86,6 +101,11 @@ public class Floor {
         return coordinates;
     }
 
+    /**
+     * This method is used to get Passages connected to a room.
+     * @param room
+     * @return Passages connected to a room.
+     */
     public Passage[] getPassageOfRoom(Room room) {
         int roomX = getRoomCoordinates(room)[0];
         int roomY = getRoomCoordinates(room)[1];

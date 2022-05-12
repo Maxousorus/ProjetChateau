@@ -41,6 +41,9 @@ public class Passage {
         this.locked = Math.random() < Parameters.CHANCE_OF_LOCKED_PASSAGE;
     }
 
+    /**
+     * This method set the passage as visited.
+     */
     public void setVisited() {
         this.visited = true;
     }
