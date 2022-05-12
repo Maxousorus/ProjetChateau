@@ -20,7 +20,7 @@ public class Castle {
         this.nbFloors = nbFloors;
         this.floors = new Floor[nbFloors];
         for (int i = 0; i < nbFloors; i++) {
-            this.floors[i] = new Floor();
+            this.floors[i] = new Floor(i);
         }
     }
 

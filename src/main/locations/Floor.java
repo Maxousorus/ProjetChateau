@@ -13,18 +13,24 @@ public class Floor {
     private Room[][] rooms = new Room[floorSize][floorSize];
     private Passage[][] horizontal_passages = new Passage[floorSize][floorSize - 1];
     private Passage[][] vertical_passages = new Passage[floorSize - 1][floorSize];
+    private int floorNumber;
 
     /**
      * Constructor of the Floor class
      * Instantiate all the rooms and passages of the floor.
      */
 
-    public Floor() {
+    public Floor(int floorNumber) {
         for (int i = 0; i < floorSize; i++) {
             for (int j = 0; j < floorSize; j++) {
-                rooms[i][j] = new Room();
+                rooms[i][j] = new Room(this);
             }
         }
+        this.floorNumber = floorNumber;
+    }
+
+    public int getFloorNumber() {
+        return floorNumber;
     }
 
     /**
@@ -62,5 +68,40 @@ public class Floor {
 
     public Passage[][] getVertical_passages() {
         return vertical_passages;
+    }
+
+    public int[] getRoomCoordinates(Room room) {
+        int[] coordinates = new int[2];
+        for (int i = 0; i < floorSize; i++) {
+            for (int j = 0; j < floorSize; j++) {
+                if (rooms[i][j] == room) {
+                    coordinates[0] = i;
+                    coordinates[1] = j;
+                    return coordinates;
+                }
+            }
+        }
+        coordinates[0] = -1;
+        coordinates[1] = -1;
+        return coordinates;
+    }
+
+    public Passage[] getPassageOfRoom(Room room) {
+        int roomX = getRoomCoordinates(room)[0];
+        int roomY = getRoomCoordinates(room)[1];
+        Passage[] passages = new Passage[4];
+        if (roomY > 0) {
+            passages[0] = horizontal_passages[roomX][roomY-1]; //ouest
+        }
+        if (roomY < floorSize - 1) {
+            passages[1] = horizontal_passages[roomX][roomY]; //est
+        }
+        if (roomX > 0) {
+            passages[2] = vertical_passages[roomX-1][roomY]; //nord
+        }
+        if (roomX < floorSize - 1) {
+            passages[3] = vertical_passages[roomX][roomY]; //sud
+        }
+        return passages;
     }
 }

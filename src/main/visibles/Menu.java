@@ -1,6 +1,7 @@
 package main.visibles;
 
 import main.utils.RawConsoleInput;
+import main.utils.Utils;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ public class Menu {
         this.options = options;
     }
 
-    public void show() {
+    private void show() {
         String line = "";
         for (int i = 0; i < title.length(); i++) {
             line += "═";
@@ -37,11 +38,19 @@ public class Menu {
     public int choose() throws IOException {
         while (true) {
             show();
-            if(RawConsoleInput.read(true) == 10) {
+            int choice = RawConsoleInput.read(true);
+            if(choice == 10 || choice == 13) { // enter
                 return selected;
             }
-            if(RawConsoleInput.read(true) == 65) {
-
+            if(choice == 57424 || choice == 57425) { // up
+                selected = (selected + 1) % options.length;
+            }
+            if(choice == 57416 || choice == 57417) { // down
+                if(selected == 0) {
+                    selected = options.length - 1;
+                }else {
+                    selected--;
+                }
             }
         }
     }

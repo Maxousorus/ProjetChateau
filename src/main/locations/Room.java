@@ -23,12 +23,14 @@ public class Room {
     private boolean spawn;
     private boolean exit;
 
+    private Floor floor;
+
     /**
      * Constructor of the Room class
      * Instanciates a random new Room
      */
 
-    public Room() {
+    public Room(Floor floor) {
         if (random() < Parameters.CHANCE_OF_ITEM_IN_ROOM) {
             //this.roomEvent = Generate.item();
         } else if (random() < Parameters.CHANCE_OF_CHALLENGE_IN_ROOM) {
@@ -43,6 +45,19 @@ public class Room {
         this.downstairs = false;
         this.spawn = false;
         this.exit = false;
+        this.floor = floor;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public CanBeInRoom getRoomEvent() {
+        return roomEvent;
+    }
+
+    public void setRoomEvent(CanBeInRoom roomEvent) {
+        this.roomEvent = roomEvent;
     }
 
     /**
@@ -53,6 +68,10 @@ public class Room {
 
     public boolean isVisited() {
         return this.visited;
+    }
+
+    public void setVisited() {
+        this.visited = true;
     }
 
     /**
@@ -132,13 +151,24 @@ public class Room {
      * @return a list of each line of the visible room
      */
 
+    public int[] getRoomCoordinates() {
+        for(int x = 0 ; x < floor.getRooms().length ; x++) {
+            for(int y = 0 ; y < floor.getRooms()[x].length ; y++) {
+                if(floor.getRooms()[x][y] == this) {
+                    return new int[] {x,y};
+                }
+            }
+        }
+        return new int[] {-1,-1};
+    }
+
     public ArrayList<String> toStringList() {
         ArrayList<String> roomstring = new ArrayList<>();
         if (!isVisited()) {
             for (int i = 0; i < Parameters.ROOM_SIZE; i++) {
                 String line = "";
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
-                    line += "#";
+                    line += "▓";
                 }
                 roomstring.add(line);
             }

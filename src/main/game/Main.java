@@ -1,5 +1,6 @@
 package main.game;
 
+import com.sun.jna.LastErrorException;
 import main.locations.Castle;
 import main.utils.Generate;
 import main.utils.RawConsoleInput;
@@ -17,8 +18,8 @@ public class Main {
      */
 
     public static void main(String[] args) throws IOException {
-        while (true) {
-            System.out.println(RawConsoleInput.read(true));
-        }
+         Game game = new Game();
+         game.run();
+
     }
 }
