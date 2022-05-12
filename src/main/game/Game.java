@@ -29,7 +29,7 @@ public class Game {
         }
 
         while (!player.getRoom().isExit()){
-            map.show(player.getRoom().getFloor().getFloorNumber());
+            map.show(player.getRoom().getFloor().getFloorNumber(),player);
             player.showStats();
             if(player.getRoom().getRoomEvent() != null){
                 if(player.getRoom().getRoomEvent() instanceof Challenge){
@@ -67,7 +67,7 @@ public class Game {
                     if(passage != null)
                         passage.setVisited();
                 }
-                map.show(player.getRoom().getFloor().getFloorNumber());
+                map.show(player.getRoom().getFloor().getFloorNumber(),player);
             }
             Menu bouger = new Menu("Voulez-vous bouger ?", new String[]{"Oui", "Non"});
             switch(bouger.choose()) {
@@ -122,5 +122,7 @@ public class Game {
             }
 
         }
+        player.getRoom().setVisited();
+        map.show(player.getRoom().getFloor().getFloorNumber(),player);
     }
 }

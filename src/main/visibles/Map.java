@@ -1,5 +1,6 @@
 package main.visibles;
 
+import main.entities.Player;
 import main.locations.*;
 import main.utils.Parameters;
 
@@ -54,8 +55,8 @@ public class Map {
      *
      * @param floor the index of the floor to show
      */
-    public void show(int floor) {
-        show(castle.getFloors()[floor]);
+    public void show(int floor, Player player) {
+        show(castle.getFloors()[floor],player);
     }
 
     /**
@@ -64,7 +65,7 @@ public class Map {
      * @param floor the floor to show
      * @see Floor
      */
-    public void show(Floor floor) {
+    public void show(Floor floor, Player player) {
         Room[][] rooms = floor.getRooms();
         System.out.println(updownwall());
 
@@ -73,7 +74,7 @@ public class Map {
                 String line = "";
                 line += sidewall;
                 for (int col = 0; col < Parameters.FLOOR_SIZE; col++) {
-                    line += rooms[row][col].toStringList().get(nbline);
+                    line += rooms[row][col].toStringList(player).get(nbline);
                     if (col < Parameters.FLOOR_SIZE - 1) {
                         Passage[][] h_passages = floor.getHorizontal_passages();
                         if (h_passages[row][col] != null) {

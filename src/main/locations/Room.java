@@ -3,6 +3,7 @@ package main.locations;
 import static java.lang.Math.random;
 
 import main.entities.Monster;
+import main.entities.Player;
 import main.interfaces.CanBeInRoom;
 import main.utils.Generate;
 import main.utils.Parameters;
@@ -162,7 +163,7 @@ public class Room {
         return new int[] {-1,-1};
     }
 
-    public ArrayList<String> toStringList() {
+    public ArrayList<String> toStringList(Player player) {
         ArrayList<String> roomstring = new ArrayList<>();
         if (!isVisited()) {
             for (int i = 0; i < Parameters.ROOM_SIZE; i++) {
@@ -174,13 +175,24 @@ public class Room {
             }
             return roomstring;
         }
+
+        Room playerRoom = player.getRoom();
+        int[] playerCoordinates = playerRoom.getRoomCoordinates();
+        boolean isPlayerInRoom = playerRoom == this;
+
         if (downstairs) {
             String l1 = "";
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
-            roomstring.add("┐  " + l1);
-            roomstring.add("└─┐" + l1);
-            roomstring.add("  └" + l1);
+            if(isPlayerInRoom) {
+                roomstring.add("\033[32m┐  \033[0m" + l1);
+                roomstring.add("\033[32m└─┐\033[0m" + l1);
+                roomstring.add("\033[32m  └\033[0m" + l1);
+            } else {
+                roomstring.add("┐  " + l1);
+                roomstring.add("└─┐" + l1);
+                roomstring.add("  └" + l1);
+            }
             for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
                 String line = "";
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++)
@@ -200,16 +212,68 @@ public class Room {
             String l1 = "";
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
-
-            roomstring.add(l1 + "┐  ");
-            roomstring.add(l1 + "└─┐");
-            roomstring.add(l1 + "  └");
+            if(isPlayerInRoom) {
+                roomstring.add(l1 + "\033[32m┐  \033[0m");
+                roomstring.add(l1 + "\033[32m└─┐\033[0m");
+                roomstring.add(l1 + "\033[32m  └\033[0m");
+            }else {
+                roomstring.add(l1 + "┐  ");
+                roomstring.add(l1 + "└─┐");
+                roomstring.add(l1 + "  └");
+            }
+            return roomstring;
+        }
+        if (spawn) {
+            for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
+                String line = "";
+                for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
+                    line += " ";
+                }
+                roomstring.add(line);
+            }
+            String l1 = "";
+            for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
+                l1 += " ";
+            if(isPlayerInRoom) {
+                roomstring.add(l1 + "\033[32m╔══\033[0m");
+                roomstring.add(l1 + "\033[32m╠═ \033[0m");
+                roomstring.add(l1 + "\033[32m╚══\033[0m");
+            }else {
+                roomstring.add(l1 + "╔══");
+                roomstring.add(l1 + "╠═ ");
+                roomstring.add(l1 + "╚══");
+            }
+            return roomstring;
+        }
+        if (exit) {
+            for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
+                String line = "";
+                for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
+                    line += " ";
+                }
+                roomstring.add(line);
+            }
+            String l1 = "";
+            for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
+                l1 += " ";
+            if(isPlayerInRoom) {
+                roomstring.add(l1 + "\033[32m╔═╗\033[0m");
+                roomstring.add(l1 + "\033[32m╚═╗\033[0m");
+                roomstring.add(l1 + "\033[32m╚═╝\033[0m");
+            }else {
+                roomstring.add(l1 + "╔═╗");
+                roomstring.add(l1 + "╚═╗");
+                roomstring.add(l1 + "╚═╝");
+            }
             return roomstring;
         }
         for (int i = 0; i < Parameters.ROOM_HEIGHT; i++) {
             String line = "";
             for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
-                line += " ";
+                if(isPlayerInRoom && i == Parameters.ROOM_HEIGHT/2 && j == Parameters.ROOM_SIZE/2)
+                    line += "\033[32mX\033[0m";
+                else
+                    line += " ";
             }
             roomstring.add(line);
         }
