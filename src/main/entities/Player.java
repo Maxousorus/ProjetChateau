@@ -48,6 +48,10 @@ public class Player extends Entity {
                 }
             }
         }
+    }
 
+    public void showStats() {
+        System.out.println("Information about your character :");
+        System.out.println("HP: " + this.getPv() + " - DMG: " + this.getDamage());
     }
 }
