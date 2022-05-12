@@ -24,112 +24,112 @@ public class Game {
      */
     public void run() throws IOException {
 
-        Castle castle = Generate.castle(Parameters.FLOOR_SIZE);
-        Map map = new Map(castle);
-        Player player = new Player();
+        Castle castle = Generate.castle(Parameters.FLOOR_SIZE); // Generate the castle
+        Map map = new Map(castle); // Generate the map
+        Player player = new Player(); // Generate the player
 
-        player.spawn(castle);
-        player.getRoom().setVisited();
-        for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) {
+        player.spawn(castle); // Spawn the player in the castle
+        player.getRoom().setVisited(); // Set the room as visited
+        for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) { // Set the passages as visited
             if(passage != null)
                 passage.setVisited();
         }
 
-        while (!player.getRoom().isExit()){
-            map.show(player.getRoom().getFloor().getFloorNumber(),player);
-            player.showStats();
+        while (!player.getRoom().isExit()){ // While the player is not in the exit
+            map.show(player.getRoom().getFloor().getFloorNumber(),player); // Show the map
+            player.showStats(); // Show the player stats
             if(player.getRoom().getRoomEvent() != null){
-                if(player.getRoom().getRoomEvent() instanceof Challenge){
+                if(player.getRoom().getRoomEvent() instanceof Challenge){ // If the room has a challenge
                     //TODO action si challenge dans la salle
                 }
-                if(player.getRoom().getRoomEvent() instanceof Item){
+                if(player.getRoom().getRoomEvent() instanceof Item){ // If the room has an item
                     //TODO action si item dans la salle
                 }
-                if(player.getRoom().getRoomEvent() instanceof Monster){
-
+                if(player.getRoom().getRoomEvent() instanceof Monster){ // If the room has a monster
+                    //TODO action si monstre dans la salle
                 }
-                player.getRoom().setRoomEvent(null);
+                player.getRoom().setRoomEvent(null); // Remove the room event
             }
-            if(player.getRoom().isUpStairs() || player.getRoom().isDownStairs()) {
-                int[] thisRoomCoords = player.getRoom().getRoomCoordinates();
-                if (player.getRoom().isUpStairs()) {
-                    Menu descendre = new Menu("Voulez-vous descendre d'un étage ?", new String[]{"Oui", "Non"});
-                    switch(descendre.choose()) {
-                        case 0 -> {
-                            int nextFloor = player.getRoom().getFloor().getFloorNumber() -1 ;
-                            player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]);
+            if(player.getRoom().isUpStairs() || player.getRoom().isDownStairs()) { // If the room has stairs
+                int[] thisRoomCoords = player.getRoom().getRoomCoordinates(); // Get the room coordinates
+                if (player.getRoom().isUpStairs()) { // If the room has an up stairs
+                    Menu descendre = new Menu("Voulez-vous descendre d'un étage ?", new String[]{"Oui", "Non"}); // Generate the menu
+                    switch(descendre.choose()) { // Choose the option
+                        case 0 -> { // If the player choose to go down
+                            int nextFloor = player.getRoom().getFloor().getFloorNumber() -1 ; // Get the previous floor
+                            player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
                         }
                     }
-                }else if (player.getRoom().isDownStairs()) {
-                    Menu monter = new Menu("Voulez-vous Monter d'un étage ?", new String[]{"Oui", "Non"});
-                    switch(monter.choose()) {
-                        case 0 -> {
-                            int nextFloor = player.getRoom().getFloor().getFloorNumber() + 1;
-                            player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]);
+                }else if (player.getRoom().isDownStairs()) { // If the room has a down stairs
+                    Menu monter = new Menu("Voulez-vous Monter d'un étage ?", new String[]{"Oui", "Non"}); // Generate the menu
+                    switch(monter.choose()) { // Choose the option
+                        case 0 -> { // If the player choose to go up
+                            int nextFloor = player.getRoom().getFloor().getFloorNumber() + 1; // Get the next floor
+                            player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
                         }
                     }
                 }
-                player.getRoom().setVisited();
-                for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) {
+                player.getRoom().setVisited(); // Set the room as visited
+                for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) { // Set the passages as visited
                     if(passage != null)
                         passage.setVisited();
                 }
-                map.show(player.getRoom().getFloor().getFloorNumber(),player);
+                map.show(player.getRoom().getFloor().getFloorNumber(),player); // Show the map
             }
-            Menu bouger = new Menu("Voulez-vous bouger ?", new String[]{"Oui", "Non"});
-            switch(bouger.choose()) {
-                case 0 -> {
+            Menu bouger = new Menu("Voulez-vous bouger ?", new String[]{"Oui", "Non"}); // Generate the menu
+            switch(bouger.choose()) { // Choose the option
+                case 0 -> { // If the player choose to move
                     Passage[] passages = player.getRoom().getFloor().getPassageOfRoom(player.getRoom());
-                    ArrayList<String> directions = new ArrayList<>();
-                    if(passages[0] != null) {
+                    ArrayList<String> directions = new ArrayList<>(); // Generate the list of directions
+                    if(passages[0] != null) { // If the room has a passage to the west
                         directions.add("Ouest");
                     }else {
                         directions.add("Pas de passage");
                     }
-                    if(passages[1] != null) {
-                        directions.add("Est");
+                    if(passages[1] != null) { // If the room has a passage to the east
+                        directions.add("Est"); // Add the direction to the list
                     }else {
                         directions.add("Pas de passage");
                     }
-                    if(passages[2] != null) {
-                        directions.add("Nord");
+                    if(passages[2] != null) { // If the room has a passage to the north
+                        directions.add("Nord"); // Add the direction to the list
                     }else {
                         directions.add("Pas de passage");
                     }
-                    if(passages[3] != null) {
-                        directions.add("Sud");
+                    if(passages[3] != null) { // If the room has a passage to the south
+                        directions.add("Sud"); // Add the direction to the list
                     }else {
                         directions.add("Pas de passage");
                     }
-                    String[] directionsArray = directions.toArray(new String[directions.size()]);
-                    Menu choix = new Menu("Ou voulez-vous aller ?", directionsArray);
+                    String[] directionsArray = directions.toArray(new String[directions.size()]); // Convert the list to an array
+                    Menu choix = new Menu("Ou voulez-vous aller ?", directionsArray); // Generate the menu
                     int direction;
-                    do{
+                    do{ // Choose the direction
                         direction = choix.choose();
-                    } while(passages[direction] == null);
+                    } while(passages[direction] == null); // While the passage is null
                     int[] thisRoomCoords = player.getRoom().getRoomCoordinates();
-                    if(direction == 0){
-                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1]-1]);
+                    if(direction == 0){ // If the direction is west
+                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1]-1]); // Set the player room
                     };
-                    if(direction == 1){
-                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1]+1]);
+                    if(direction == 1){ // If the direction is east
+                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1]+1]); // Set the player room
                     }
-                    if(direction == 2){
-                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]-1][thisRoomCoords[1]]);
+                    if(direction == 2){ // If the direction is north
+                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]-1][thisRoomCoords[1]]); // Set the player room
                     }
-                    if(direction == 3){
-                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]+1][thisRoomCoords[1]]);
+                    if(direction == 3){ // If the direction is south
+                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]+1][thisRoomCoords[1]]); // Set the player room
                     }
                 }
             }
-            player.getRoom().setVisited();
-            for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) {
+            player.getRoom().setVisited(); // Set the room as visited
+            for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) { // For each passage of the room
                 if(passage != null)
-                    passage.setVisited();
+                    passage.setVisited(); // Set the passage as visited
             }
 
         }
-        player.getRoom().setVisited();
-        map.show(player.getRoom().getFloor().getFloorNumber(),player);
+        player.getRoom().setVisited(); // Set the room as visited
+        map.show(player.getRoom().getFloor().getFloorNumber(),player); // Show the map
     }
 }

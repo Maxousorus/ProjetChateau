@@ -18,12 +18,12 @@ public class Utils {
      * @see Castle
      */
     public static void setCastleSpawn(Castle castle) {
-        Floor stage0 = castle.getFloors()[0];
+        Floor stage0 = castle.getFloors()[0]; //groundfloor
         int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE));
-        Room[][] rooms = stage0.getRooms();
+        Room[][] rooms = stage0.getRooms(); //rooms of the groundfloor
         int x = random / Parameters.FLOOR_SIZE;
         int y = random % Parameters.FLOOR_SIZE;
-        rooms[x][y].setSpawn();
+        rooms[x][y].setSpawn(); //Set the spawn at the random room of the groundfloor
     }
 
     /**
@@ -34,19 +34,19 @@ public class Utils {
      * @see Castle
      */
     public static void setCastleStairs(Castle castle) {
-        Floor[] floors = castle.getFloors();
-        for (int floor = 0; floor < castle.getFloors().length - 1; floor++) {
+        Floor[] floors = castle.getFloors(); //get floors of the castle
+        for (int floor = 0; floor < castle.getFloors().length - 1; floor++) { //for each floor
 
             int x = 0;
             int y = 0;
-            do {
+            do { //choose a random room
                 int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE));
                 x = random / Parameters.FLOOR_SIZE;
                 y = random % Parameters.FLOOR_SIZE;
-            } while (floors[floor].getRooms()[x][y].isSpawn() || floors[floor].getRooms()[x][y].isUpStairs());
+            } while (floors[floor].getRooms()[x][y].isSpawn() || floors[floor].getRooms()[x][y].isUpStairs()); //while the room is the spawn or the upstairs
 
-            floors[floor].getRooms()[x][y].setDownStairs();
-            floors[floor + 1].getRooms()[x][y].setUpStairs();
+            floors[floor].getRooms()[x][y].setDownStairs(); //set the downstairs
+            floors[floor + 1].getRooms()[x][y].setUpStairs(); //set the upstairs to the room above
         }
     }
 
@@ -57,19 +57,19 @@ public class Utils {
      * @see Castle
      */
     public static void setCastleExit(Castle castle) {
-        Floor[] floors = castle.getFloors();
-        int dernieretage = floors.length - 1;
-        Floor laststage = floors[castle.getFloors().length - 1];
+        Floor[] floors = castle.getFloors(); //get floors of the castle
+        int lastStageNumber = floors.length - 1;
+        Floor lastStage = floors[castle.getFloors().length - 1]; //last floor
 
         int x = 0;
         int y = 0;
-        do {
+        do { //choose a random room
             int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE));
             x = random / Parameters.FLOOR_SIZE;
             y = random % Parameters.FLOOR_SIZE;
-        } while (floors[dernieretage].getRooms()[x][y].isSpawn() || floors[dernieretage].getRooms()[x][y].isUpStairs());
+        } while (floors[lastStageNumber].getRooms()[x][y].isSpawn() || floors[lastStageNumber].getRooms()[x][y].isUpStairs()); //while the room is the spawn or the upstairs
 
-        laststage.getRooms()[x][y].setExit(true);
+        lastStage.getRooms()[x][y].setExit(true); //set the exit at the random room of the last floor
     }
 
     /**
@@ -79,24 +79,24 @@ public class Utils {
      * @see Castle
      */
     public static void setCastlePassages(Castle castle) {
-        Floor[] floors = castle.getFloors();
-        for (Floor floor : floors) {
+        Floor[] floors = castle.getFloors(); //get floors of the castle
+        for (Floor floor : floors) { //for each floor
             Passage[][] h_passages = new Passage[Parameters.FLOOR_SIZE][Parameters.FLOOR_SIZE - 1];
             Passage[][] v_passages = new Passage[Parameters.FLOOR_SIZE - 1][Parameters.FLOOR_SIZE];
-            int[][][] passages = generateMaze();
-            for (int i = 0; i < 2; i++) {
-                for (int x = 0; x < passages[i].length; x++) {
+            int[][][] passages = generateMaze(); //generate a maze
+            for (int i = 0; i < 2; i++) { //for each passage kind
+                for (int x = 0; x < passages[i].length; x++) { //for each passage
                     for (int y = 0; y < passages[i][x].length; y++) {
-                        if (passages[i][x][y] == 0) {
+                        if (passages[i][x][y] == 0) { //if the passage is not a wall
                             if (i == 0) {
-                                h_passages[x][y] = new Passage();
+                                h_passages[x][y] = new Passage(); //create a passage
                             } else v_passages[x][y] = new Passage();
                         }
                     }
                 }
             }
-            floor.setHorizontal_passage(h_passages);
-            floor.setVertical_passage(v_passages);
+            floor.setHorizontal_passage(h_passages); //set the horizontal passages
+            floor.setVertical_passage(v_passages); //set the vertical passages
         }
     }
 
@@ -107,51 +107,51 @@ public class Utils {
      */
     private static int[][][] generateMaze() {
         int FS = Parameters.FLOOR_SIZE;
-        int[][] grid = new int[FS][FS];
-        int[][] h_passages = new int[FS][FS - 1];
-        int[][] v_passages = new int[FS - 1][FS];
+        int[][] grid = new int[FS][FS]; //grid of the maze
+        int[][] h_passages = new int[FS][FS - 1]; //horizontal passages
+        int[][] v_passages = new int[FS - 1][FS]; //vertical passages
 
-        //Numérotation de chaque case de la grille
+        //Number each cell in the grid
         for (int i = 0; i < FS * FS; i++) {
             grid[i / FS][i % FS] = i;
         }
 
-        //Bloquer tout les murs (mettre à 1) horizontaux
+        //Close all horizontal passages in the grid
         for (int i = 0; i < FS * FS; i++) {
             if ((i + 1) % FS != 0) h_passages[i / FS][i % FS] = 1;
         }
 
-        //Bloquer tout les murs (mettre à 1) verticaux
+        //Close all vertical passages in the grid
         for (int i = 0; i < FS * FS; i++) {
             if (i / FS != FS - 1) v_passages[i / FS][i % FS] = 1;
         }
 
-        //Boucle tant que le labyrinthe n'est pas terminé.
+        //While the maze is not finished
         while (!isMazeFinish(grid)) {
-            int[] infosp;
+            int[] infosp; //info of the passage
             do {
-                infosp = randomPassageDirection(grid, h_passages, v_passages);
+                infosp = randomPassageDirection(grid, h_passages, v_passages); //get a random passage
             } while (infosp[0] == -1);
-            if (infosp[0] == 0) {
-                h_passages[infosp[1]][infosp[2]] = 0;
-            } else if (infosp[0] == 1) {
-                v_passages[infosp[1]][infosp[2]] = 0;
+            if (infosp[0] == 0) { //if the passage is horizontal
+                h_passages[infosp[1]][infosp[2]] = 0; //open the passage
+            } else if (infosp[0] == 1) { //if the passage is vertical
+                v_passages[infosp[1]][infosp[2]] = 0; //open the passage
             }
-            if (infosp[0] == 0) {
+            if (infosp[0] == 0) { //if the passage is horizontal
                 int x1 = infosp[1];
                 int y1 = infosp[2];
                 int x2 = infosp[1];
                 int y2 = infosp[2] + 1;
-                mergeWays(grid, x1, y1, x2, y2);
+                mergeWays(grid, x1, y1, x2, y2); //merge the two cells or groups of cells
             } else if (infosp[0] == 1) {
                 int x1 = infosp[1];
                 int y1 = infosp[2];
                 int x2 = infosp[1] + 1;
                 int y2 = infosp[2];
-                mergeWays(grid, x1, y1, x2, y2);
+                mergeWays(grid, x1, y1, x2, y2); //merge the two cells or groups of cells
             }
         }
-        return new int[][][]{h_passages, v_passages};
+        return new int[][][]{h_passages, v_passages}; //return the horizontal and vertical passages
     }
 
     /**
@@ -164,10 +164,10 @@ public class Utils {
      */
     private static int[] randomPassageDirection(int[][] grid, int h_passages[][], int v_passages[][]) {
         if (Math.random() < 0.5) //mur horizontaux
-            return randomPassage(grid, h_passages, true);
+            return randomPassage(grid, h_passages, true); //choose a random horizontal passage
 
         else //mur verticaux
-            return randomPassage(grid, v_passages, false);
+            return randomPassage(grid, v_passages, false); //choose a random vertical passage
     }
 
     /**
@@ -184,7 +184,7 @@ public class Utils {
         else infos[0] = 1;
 
         int a, b, cooldown = -1;
-        do {
+        do { //choose a random passage
             cooldown += 1;
 
             if (h) {
@@ -194,14 +194,14 @@ public class Utils {
                 a = (int) (Math.random() * Parameters.FLOOR_SIZE - 1);
                 b = (int) (Math.random() * Parameters.FLOOR_SIZE);
             }
-        } while (!isRemovablePassage(grid, passages, a, b, h) && cooldown >= 100);
+        } while (!isRemovablePassage(grid, passages, a, b, h) && cooldown >= 100); //while the passage is not removable
 
-        if (cooldown >= 100) {
+        if (cooldown >= 100) { //return uncorrect passage TODO make an exception for this
             return new int[]{-1, -1, -1};
         }
 
-        if (h) return new int[]{0, a, b};
-        else return new int[]{1, a, b};
+        if (h) return new int[]{0, a, b}; //return the horizontal passage
+        else return new int[]{1, a, b}; //return the vertical passage
     }
 
     /**
@@ -215,11 +215,11 @@ public class Utils {
      * @return true if the passage is removable, false otherwise.
      */
     private static boolean isRemovablePassage(int[][] grid, int[][] passages, int x, int y, boolean h) {
-        if (h) {
-            if (grid[x][y] == grid[x][y + 1]) return false;
+        if (h) { //horizontal passage
+            if (grid[x][y] == grid[x][y + 1]) return false; //if two cells have same index the passage is not removable
             else return true;
-        } else {
-            if (grid[x][y] == grid[x + 1][y]) return false;
+        } else { //vertical passage
+            if (grid[x][y] == grid[x + 1][y]) return false; //if two cells have same index the passage is not removable
             else return true;
         }
     }
@@ -235,12 +235,12 @@ public class Utils {
      * @param y2   the y position of the second room to merge.
      */
     private static void mergeWays(int[][] grid, int x1, int y1, int x2, int y2) {
-        int a = grid[x1][y1];
-        int b = grid[x2][y2];
+        int a = grid[x1][y1]; //the index of the first cell
+        int b = grid[x2][y2]; //the index of the second cell
 
-        for (int i = 0; i < Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE; i++) {
-            if (grid[i / Parameters.FLOOR_SIZE][i % Parameters.FLOOR_SIZE] == b)
-                grid[i / Parameters.FLOOR_SIZE][i % Parameters.FLOOR_SIZE] = a;
+        for (int i = 0; i < Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE; i++) { //for each cell
+            if (grid[i / Parameters.FLOOR_SIZE][i % Parameters.FLOOR_SIZE] == b) //if the cell has the index of the second cell
+                grid[i / Parameters.FLOOR_SIZE][i % Parameters.FLOOR_SIZE] = a; //change the index of the cell to the index of the first cell
         }
     }
 
@@ -254,11 +254,11 @@ public class Utils {
     private static boolean isMazeFinish(int[][] grid) {
         //Si toutes les grilles ont le même numéro retourne TRUE
         int FS = Parameters.FLOOR_SIZE;
-        int verif = grid[0][0];
-        for (int i = 0; i < FS * FS; i++) {
-            if (grid[i / FS][i % FS] != verif) return false;
+        int verif = grid[0][0]; //the index of the first cell
+        for (int i = 0; i < FS * FS; i++) { //for each cell
+            if (grid[i / FS][i % FS] != verif) return false; //if the cell has not the same index return false
         }
-        return true;
+        return true; //if all cells have the same index return true
     }
 
     /**
@@ -269,7 +269,7 @@ public class Utils {
      * @return the random integer.
      */
     public static int randomInt(int min, int max) {
-        //Formule mathématique qui retourne un chiffre aléatoire entre deux bornes passer en parametres
+        //Mathematical formula to return a random integer between two bounds passed as parameters.
         return (int) (min + (Math.random() * (max - min)));
     }
 

@@ -24,12 +24,11 @@ public class Generate {
      * @return The castle.
      */
     public static Castle castle(int nbFloors) {
-        Castle castle = new Castle(nbFloors);
-        Floor[] floors = castle.getFloors();
-        Utils.setCastleSpawn(castle);
-        Utils.setCastleStairs(castle);
-        Utils.setCastleExit(castle);
-        Utils.setCastlePassages(castle);
+        Castle castle = new Castle(nbFloors); // Create the castle
+        Utils.setCastleSpawn(castle); // Set the castle spawn
+        Utils.setCastleStairs(castle); // Set the castle stairs
+        Utils.setCastleExit(castle); // Set the castle exit
+        Utils.setCastlePassages(castle); // Set the castle passages using Maze Algorithm
 
         return castle;
     }

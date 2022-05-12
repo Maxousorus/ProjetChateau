@@ -67,7 +67,6 @@ public class Passage {
                     result.add("    ");
                     result.add("▓▓▓▓");
                 }
-                return result;
             } else {
                 if (Parameters.ROOM_HEIGHT % 2 == 0) { //IDE find an error but it's not an error
                     result.add("▓▓▓▓");
@@ -79,7 +78,6 @@ public class Passage {
                     result.add("▓▓▓▓");
                     result.add("▓▓▓▓");
                 }
-                return result;
             }
         } else { //Print vertical passage
             if (this.visited) {
@@ -99,7 +97,7 @@ public class Passage {
                     result.add("▓▓▓");
                 }
             }
-            return result;
         }
+        return result;
     }
 }

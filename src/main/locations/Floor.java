@@ -86,19 +86,19 @@ public class Floor {
      * @return coordinates of the room
      */
     public int[] getRoomCoordinates(Room room) {
-        int[] coordinates = new int[2];
+        int[] coordinates = new int[2]; // x, y
         for (int i = 0; i < floorSize; i++) {
             for (int j = 0; j < floorSize; j++) {
-                if (rooms[i][j] == room) {
+                if (rooms[i][j] == room) { // if the room is found
                     coordinates[0] = i;
                     coordinates[1] = j;
-                    return coordinates;
+                    return coordinates; // return the coordinates
                 }
             }
         }
         coordinates[0] = -1;
         coordinates[1] = -1;
-        return coordinates;
+        return coordinates; // return -1 if the room is not found
     }
 
     /**
@@ -107,21 +107,21 @@ public class Floor {
      * @return Passages connected to a room.
      */
     public Passage[] getPassageOfRoom(Room room) {
-        int roomX = getRoomCoordinates(room)[0];
-        int roomY = getRoomCoordinates(room)[1];
+        int roomX = getRoomCoordinates(room)[0]; // get the x coordinate of the room
+        int roomY = getRoomCoordinates(room)[1]; // get the y coordinate of the room
         Passage[] passages = new Passage[4];
-        if (roomY > 0) {
-            passages[0] = horizontal_passages[roomX][roomY-1]; //ouest
+        if (roomY > 0) { // if the room is not on the left border
+            passages[0] = horizontal_passages[roomX][roomY-1]; // get the horizontal passage to the left
         }
-        if (roomY < floorSize - 1) {
-            passages[1] = horizontal_passages[roomX][roomY]; //est
+        if (roomY < floorSize - 1) { // if the room is not on the right border
+            passages[1] = horizontal_passages[roomX][roomY]; // get the horizontal passage to the right
         }
-        if (roomX > 0) {
-            passages[2] = vertical_passages[roomX-1][roomY]; //nord
+        if (roomX > 0) { // if the room is not on the top border
+            passages[2] = vertical_passages[roomX-1][roomY]; // get the vertical passage above
         }
-        if (roomX < floorSize - 1) {
-            passages[3] = vertical_passages[roomX][roomY]; //sud
+        if (roomX < floorSize - 1) { // if the room is not on the bottom border
+            passages[3] = vertical_passages[roomX][roomY]; // get the vertical passage below
         }
-        return passages;
+        return passages; // return the passages
     }
 }

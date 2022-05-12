@@ -86,7 +86,7 @@ public class Room {
      * This method set the room as spawn
      */
     public void setSpawn() {
-        this.spawn = true;
+        this.spawn = true; //Spawn is a room with no event
         this.roomEvent = null;
     }
 
@@ -103,7 +103,7 @@ public class Room {
      * This method set room as a room with upstairs
      */
     public void setUpStairs() {
-        this.upstairs = true;
+        this.upstairs = true; //Upstairs is a room with no event
         this.roomEvent = null;
     }
 
@@ -121,7 +121,7 @@ public class Room {
      */
 
     public void setDownStairs() {
-        this.downstairs = true;
+        this.downstairs = true; //Downstairs is a room with no event
         this.roomEvent = null;
     }
 
@@ -140,7 +140,7 @@ public class Room {
      * @param exit true if the room is an exit, false otherwise
      */
     public void setExit(boolean exit) {
-        this.exit = exit;
+        this.exit = exit; //Exit is a room with no event
         this.roomEvent = null;
     }
 
@@ -158,14 +158,14 @@ public class Room {
      * @return coordinates of the room (x,y)
      */
     public int[] getRoomCoordinates() {
-        for(int x = 0 ; x < floor.getRooms().length ; x++) {
+        for(int x = 0 ; x < floor.getRooms().length ; x++) { //For each room
             for(int y = 0 ; y < floor.getRooms()[x].length ; y++) {
-                if(floor.getRooms()[x][y] == this) {
-                    return new int[] {x,y};
+                if(floor.getRooms()[x][y] == this) { //If the room is the one we are looking for
+                    return new int[] {x,y}; //Return the coordinates
                 }
             }
         }
-        return new int[] {-1,-1};
+        return new int[] {-1,-1}; //If the room is not found, return (-1,-1)
     }
 
     /**
@@ -174,32 +174,31 @@ public class Room {
      * @return a list of each line of the visible room
      */
     public ArrayList<String> toStringList(Player player) {
-        ArrayList<String> roomstring = new ArrayList<>();
-        if (!isVisited()) {
+        ArrayList<String> roomstring = new ArrayList<>(); //Create a list of strings
+        if (!isVisited()) { //If the room is not visited
             for (int i = 0; i < Parameters.ROOM_SIZE; i++) {
-                String line = "";
-                for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
-                    line += "▓";
+                String line = ""; //Create a line
+                for (int j = 0; j < Parameters.ROOM_SIZE; j++) { //For each character in the line
+                    line += "▓"; //Add a wall
                 }
-                roomstring.add(line);
+                roomstring.add(line); //Add the line to the list
             }
-            return roomstring;
+            return roomstring; //Return the list
         }
 
         Room playerRoom = player.getRoom();
-        int[] playerCoordinates = playerRoom.getRoomCoordinates();
         boolean isPlayerInRoom = playerRoom == this;
 
-        if (downstairs) {
-            String l1 = "";
+        if (downstairs) { //If the room is a room with downstairs
+            String l1 = ""; //Create a line
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
-            if(isPlayerInRoom) {
-                roomstring.add("\033[32m┐  \033[0m" + l1);
+            if(isPlayerInRoom) { //If the player is in the room
+                roomstring.add("\033[32m┐  \033[0m" + l1); //Make stairs green
                 roomstring.add("\033[32m└─┐\033[0m" + l1);
                 roomstring.add("\033[32m  └\033[0m" + l1);
-            } else {
-                roomstring.add("┐  " + l1);
+            } else { //If the player is not in the room
+                roomstring.add("┐  " + l1); //Make stairs normal
                 roomstring.add("└─┐" + l1);
                 roomstring.add("  └" + l1);
             }
@@ -209,9 +208,9 @@ public class Room {
                     line += " ";
                 roomstring.add(line);
             }
-            return roomstring;
+            return roomstring; //Return the list
         }
-        if (upstairs) {
+        if (upstairs) { //If the room is a room with upstairs
             for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
                 String line = "";
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
@@ -222,18 +221,18 @@ public class Room {
             String l1 = "";
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
-            if(isPlayerInRoom) {
-                roomstring.add(l1 + "\033[32m┐  \033[0m");
+            if(isPlayerInRoom) { //If the player is in the room
+                roomstring.add(l1 + "\033[32m┐  \033[0m"); //Make stairs green
                 roomstring.add(l1 + "\033[32m└─┐\033[0m");
                 roomstring.add(l1 + "\033[32m  └\033[0m");
-            }else {
-                roomstring.add(l1 + "┐  ");
+            }else { //If the player is not in the room
+                roomstring.add(l1 + "┐  "); //Make stairs normal
                 roomstring.add(l1 + "└─┐");
                 roomstring.add(l1 + "  └");
             }
-            return roomstring;
+            return roomstring; //Return the list
         }
-        if (spawn) {
+        if (spawn) { //If the room is a room with spawn
             for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
                 String line = "";
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
@@ -244,18 +243,18 @@ public class Room {
             String l1 = "";
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
-            if(isPlayerInRoom) {
-                roomstring.add(l1 + "\033[32m╔══\033[0m");
+            if(isPlayerInRoom) { //If the player is in the room
+                roomstring.add(l1 + "\033[32m╔══\033[0m"); //Make enter green
                 roomstring.add(l1 + "\033[32m╠═ \033[0m");
                 roomstring.add(l1 + "\033[32m╚══\033[0m");
-            }else {
-                roomstring.add(l1 + "╔══");
+            }else { //If the player is not in the room
+                roomstring.add(l1 + "╔══"); //Make enter normal
                 roomstring.add(l1 + "╠═ ");
                 roomstring.add(l1 + "╚══");
             }
-            return roomstring;
+            return roomstring; //Return the list
         }
-        if (exit) {
+        if (exit) { //If the room is a room with exit
             for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
                 String line = "";
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
@@ -266,27 +265,28 @@ public class Room {
             String l1 = "";
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
-            if(isPlayerInRoom) {
-                roomstring.add(l1 + "\033[32m╔═╗\033[0m");
+            if(isPlayerInRoom) { //If the player is in the room
+                roomstring.add(l1 + "\033[32m╔═╗\033[0m"); //Make exit green
                 roomstring.add(l1 + "\033[32m╚═╗\033[0m");
                 roomstring.add(l1 + "\033[32m╚═╝\033[0m");
-            }else {
-                roomstring.add(l1 + "╔═╗");
+            }else { //If the player is not in the room
+                roomstring.add(l1 + "╔═╗"); //Make exit normal
                 roomstring.add(l1 + "╚═╗");
                 roomstring.add(l1 + "╚═╝");
             }
-            return roomstring;
+            return roomstring; //Return the list
         }
+        //If the room is not a room with stairs, spawn or exit
         for (int i = 0; i < Parameters.ROOM_HEIGHT; i++) {
             String line = "";
             for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
-                if(isPlayerInRoom && i == Parameters.ROOM_HEIGHT/2 && j == Parameters.ROOM_SIZE/2)
-                    line += "\033[32mX\033[0m";
-                else
-                    line += " ";
+                if(isPlayerInRoom && i == Parameters.ROOM_HEIGHT/2 && j == Parameters.ROOM_SIZE/2) //If the player is in the room
+                    line += "\033[32mX\033[0m"; //Make the player in the room green
+                else //If the player is not in the room
+                    line += " "; //Don't make the player in the room
             }
             roomstring.add(line);
         }
-        return roomstring;
+        return roomstring; //Return the list
     }
 }

@@ -11,10 +11,9 @@ import java.io.IOException;
  */
 public class Menu {
 
-    private String[] options;
-    private int selected = 0;
-
-    private String title;
+    private String[] options; //The choices of the menu
+    private int selected = 0; //The selected choice of the user
+    private String title; //The title of the menu or the question
 
     /**
      * Constructor of the class Menu.
@@ -31,19 +30,19 @@ public class Menu {
      * Display the menu.
      */
     private void show() {
-        String line = "";
+        String line = ""; //The line to display
         for (int i = 0; i < title.length(); i++) {
             line += "═";
         }
         System.out.println("╔══" + line + "══╗");
-        System.out.println("║  " + title +"  ║");
+        System.out.println("║  " + title +"  ║"); //Put the title in a frame
         System.out.println("╚══" + line + "══╝");
 
-        for (int i = 0; i < options.length; i++) {
+        for (int i = 0; i < options.length; i++) { //For each options
             if (i == selected) {
-                System.out.println("\u001b[107;30m" + options[i] + "\u001b[0m");
+                System.out.println("\u001b[107;30m" + options[i] + "\u001b[0m"); //Print the selected option in inverted
             } else {
-                System.out.println(options[i]);
+                System.out.println(options[i]); //Print the other options
             }
         }
     }
@@ -55,16 +54,16 @@ public class Menu {
      * @throws IOException
      */
     public int choose() throws IOException {
-        while (true) {
-            show();
-            int choice = RawConsoleInput.read(true);
-            if(choice == 10 || choice == 13) { // enter
+        while (true) { //While the user doesn't choose an option
+            show(); //Display the menu
+            int choice = RawConsoleInput.read(true); //Get the keyboard input
+            if(choice == 10 || choice == 13) { // If input is enter
                 return selected;
             }
-            if(choice == 57424 || choice == 57425) { // up
+            if(choice == 57424 || choice == 57425) { //If input is up
                 selected = (selected + 1) % options.length;
             }
-            if(choice == 57416 || choice == 57417) { // down
+            if(choice == 57416 || choice == 57417) { //If input is down
                 if(selected == 0) {
                     selected = options.length - 1;
                 }else {
