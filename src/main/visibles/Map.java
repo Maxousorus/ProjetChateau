@@ -15,6 +15,8 @@ public class Map {
 
     private final Castle castle; // The castle of the map.
 
+    private final Player player; // The player of the map.
+
     private final String sidewall = "▓▓"; //Wall on side (left and right) of the map.
 
     private final String aroundPassage = "▓▓▓▓"; //Wall around the passage and between rooms
@@ -25,8 +27,13 @@ public class Map {
      * @param castle the castle
      */
 
-    public Map(Castle castle) {
+    public Map(Castle castle, Player player) {
         this.castle = castle;
+        this.player = player;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     /**
@@ -49,25 +56,14 @@ public class Map {
         updownwall += sidewall;
         return updownwall;
     }
-
-    /**
-     * This method print the map of a floor on console.
-     *
-     * @param floor the index of the floor to show
-     */
-    public void show(int floor, Player player) {
-        show(castle.getFloors()[floor],player); //Show the floor
+    public void show() {
+        System.out.println(toString());
     }
 
-    /**
-     * This method print the map of a floor on console.
-     *
-     * @param floor the floor to show
-     * @see Floor
-     */
-    public void show(Floor floor, Player player) {
+    public String toString() {
+        Floor floor = player.getRoom().getFloor();
         Room[][] rooms = floor.getRooms();
-        System.out.println(updownwall()); //Print the top wall
+        String map = updownwall() + "\n";//Add the top wall
 
         for (int row = 0; row < Parameters.FLOOR_SIZE; row++) { //For each row of rooms
             for (int nbline = 0; nbline < Parameters.ROOM_HEIGHT; nbline++) { //for each line of the row of rooms
@@ -96,7 +92,7 @@ public class Map {
                     }
                 }
                 line += sidewall; //Put sidewall on the right of the line
-                System.out.println(line); //Print the line
+                map += line + "\n"; //Add the line
             }
             if (row < Parameters.FLOOR_SIZE - 1) { //If it's not the last row of the floor
                 for (int i = 0; i < 2; i++) { //For each line of the passage between the row of rooms and the next
@@ -109,8 +105,6 @@ public class Map {
                             }
                         } else { //If there is a passage between the room and the next
                             String nextToPassage = "";//Add the line of the passage after the middle of the passage
-//Add the line of the passage
-//Add the line of the passage before the middle of the passage
                             if (Parameters.ROOM_SIZE % 2 == 1) { //If the number of lines of the passage is not pair
                                 for (int j = 0; j < (Parameters.ROOM_SIZE / 2) - 1; j++) { //For each line of the passage before the middle of the passage
                                     nextToPassage += "▓"; //Put a wall
@@ -128,11 +122,12 @@ public class Map {
                             line += "▓▓▓▓"; //Put a wall between the room and the next
                         } else line += sidewall; //Put sidewall on the right of the line
                     }
-                    System.out.println(line); //Print the line
+                    map += line + "\n"; //Add the line
                 }
             } else {
-                System.out.println(updownwall()); //Print the line of the floor
+                map += updownwall(); //Add the last line of the floor
             }
         }
+    return map;
     }
 }

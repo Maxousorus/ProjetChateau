@@ -1,6 +1,7 @@
 package main.visibles;
 
 import main.utils.RawConsoleInput;
+import main.utils.Utils;
 
 import java.io.IOException;
 
@@ -15,6 +16,14 @@ public class Menu {
     private int selected = 0; //The selected choice of the user
     private final String title; //The title of the menu or the question
 
+    private Map map;
+
+    public Menu(String title, String[] options,Map map) {
+        this.title = title;
+        this.options = options;
+        this.map = map;
+    }
+
     /**
      * Constructor of the class Menu.
      *
@@ -22,8 +31,7 @@ public class Menu {
      * @param options the choices of the menu.
      */
     public Menu(String title, String[] options) {
-        this.title = title;
-        this.options = options;
+        this(title, options, null);
     }
 
     /**
@@ -55,6 +63,11 @@ public class Menu {
      */
     public int choose() throws IOException {
         while (true) { //While the user doesn't choose an option
+            if(map != null) {
+                Utils.clearConsole();
+                map.show();
+                map.getPlayer().showStats();
+            }
             show(); //Display the menu
             int choice = RawConsoleInput.read(true); //Get the keyboard input
             if(choice == 10 || choice == 13) { // If input is enter

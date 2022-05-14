@@ -25,8 +25,8 @@ public class Game {
     public void run() throws IOException {
 
         Castle castle = Generate.castle(Parameters.FLOOR_SIZE); // Generate the castle
-        Map map = new Map(castle); // Generate the map
         Player player = new Player(); // Generate the player
+        Map map = new Map(castle, player); // Generate the map
 
         player.spawn(castle); // Spawn the player in the castle
         player.getRoom().setVisited(); // Set the room as visited
@@ -35,9 +35,10 @@ public class Game {
                 passage.setVisited();
         }
 
-        while (!player.getRoom().isExit()){ // While the player is not in the exit
-            map.show(player.getRoom().getFloor().getFloorNumber(),player); // Show the map
+        while (true){ // While the game is running (player can stop this loop if he go to the exit and choose to quit)
+            map.show(); // Show the map
             player.showStats(); // Show the player stats
+
             if(player.getRoom().getRoomEvent() != null){
                 if(player.getRoom().getRoomEvent() instanceof Challenge){ // If the room has a challenge
                     //TODO action si challenge dans la salle
@@ -50,17 +51,18 @@ public class Game {
                 }
                 player.getRoom().setRoomEvent(null); // Remove the room event
             }
+
             if(player.getRoom().isUpStairs() || player.getRoom().isDownStairs()) { // If the room has stairs
                 int[] thisRoomCoords = player.getRoom().getRoomCoordinates(); // Get the room coordinates
                 if (player.getRoom().isUpStairs()) { // If the room has an up stairs
-                    Menu descendre = new Menu("Voulez-vous descendre d'un étage ?", new String[]{"Oui", "Non"}); // Generate the menu
+                    Menu descendre = new Menu("Voulez-vous descendre d'un étage ?", new String[]{"Oui", "Non"},map); // Generate the menu
                     // Choose the option
                     if (descendre.choose() == 0) {// If the player choose to go down
                         int nextFloor = player.getRoom().getFloor().getFloorNumber() - 1; // Get the previous floor
                         player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
                     }
                 }else if (player.getRoom().isDownStairs()) { // If the room has a down stairs
-                    Menu monter = new Menu("Voulez-vous Monter d'un étage ?", new String[]{"Oui", "Non"}); // Generate the menu
+                    Menu monter = new Menu("Voulez-vous Monter d'un étage ?", new String[]{"Oui", "Non"},map); // Generate the menu
                     // Choose the option
                     if (monter.choose() == 0) {// If the player choose to go up
                         int nextFloor = player.getRoom().getFloor().getFloorNumber() + 1; // Get the next floor
@@ -72,9 +74,19 @@ public class Game {
                     if(passage != null)
                         passage.setVisited();
                 }
-                map.show(player.getRoom().getFloor().getFloorNumber(),player); // Show the map
+                map.show(); // Show the map
             }
-            Menu bouger = new Menu("Voulez-vous bouger ?", new String[]{"Oui", "Non"}); // Generate the menu
+
+            if(player.getRoom().isExit()) { // If the room is the exit
+                Menu quitter = new Menu("Voulez-vous sortir du chateau ?", new String[]{"Oui", "Non"}, map); // Generate the menu
+                quitter.choose(); // Choose the option
+                if (quitter.choose() == 0) { // If the player choose to quit
+                    System.out.println("Vous avez quitté le chateau");
+                    break;
+                }
+            }
+
+            Menu bouger = new Menu("Voulez-vous bouger ?", new String[]{"Oui", "Non"}, map); // Generate the menu
             // Choose the option
             if (bouger.choose() == 0) {// If the player choose to move
                 Passage[] passages = player.getRoom().getFloor().getPassageOfRoom(player.getRoom());
@@ -100,7 +112,7 @@ public class Game {
                     directions.add("Pas de passage");
                 }
                 String[] directionsArray = directions.toArray(new String[0]); // Convert the list to an array
-                Menu choix = new Menu("Ou voulez-vous aller ?", directionsArray); // Generate the menu
+                Menu choix = new Menu("Ou voulez-vous aller ?", directionsArray,map); // Generate the menu
                 int direction;
                 do { // Choose the direction
                     direction = choix.choose();
@@ -127,6 +139,6 @@ public class Game {
 
         }
         player.getRoom().setVisited(); // Set the room as visited
-        map.show(player.getRoom().getFloor().getFloorNumber(),player); // Show the map
+        map.show(); // Show the map
     }
 }
