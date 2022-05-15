@@ -1,4 +1,9 @@
 package main.challenges;
+import main.entities.*;
+import main.utils.Utils;
+import main.visibles.Menu;
+
+import java.io.IOException;
 
 /**
  * Sage class.
@@ -27,5 +32,24 @@ public class Sage extends Challenge {
         super();
         this.question = question;
         this.answer = answer;
+    }
+
+    public String[] getQuestion() {
+        return question;
+    }
+
+    public String[] getAnswer(){
+        return answer;
+    }
+
+    public int questionSage() throws IOException {
+        int random = Utils.randomInt(0,question.length);
+        int reponse;
+        Menu choixanswer = new Menu(question[random], answer);
+        reponse = choixanswer.choose();
+        if(random == reponse){
+            return 1;
+        }
+        return -1;
     }
 }

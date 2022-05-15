@@ -8,4 +8,10 @@ package main.challenges;
 public class Trap extends Challenge {
 
     private int damage;
+
+    public Trap() {
+        super();
+        this.damage = damage;
+    }
+
 }
