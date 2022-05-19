@@ -15,7 +15,6 @@ public class Castle {
      *
      * @param nbFloors number of floors
      */
-
     public Castle(int nbFloors) {
         this.nbFloors = nbFloors;
         this.floors = new Floor[nbFloors];

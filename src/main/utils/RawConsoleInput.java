@@ -19,9 +19,9 @@ import com.sun.jna.ptr.IntByReference;
 /**
  * RawConsoleInput is a class to read a character from the console without
  * any echo or special character handling.
- * 
+ * <p>
  * Source: https://www.source-code.biz/snippets/java/RawConsoleInput/
- * 
+ *
  * @author Christian d'Heureuse
  */
 public class RawConsoleInput {
@@ -37,15 +37,9 @@ public class RawConsoleInput {
      * Reads a character from the console without echo.
      * System.exit(0) is called if the user presses the Ctrl+C key.
      *
-     * @param wait
-     *             <code>true</code> to wait until an input character is available,
-     *             <code>false</code> to return immediately if no character is
-     *             available.
-     * @return
-     *         -2 if <code>wait</code> is <code>false</code> and no character is
-     *         available.
-     *         -1 on EOF.
-     *         Otherwise an Unicode character code within the range 0 to 0xFFFF.
+     * @param wait <code>true</code> to wait until an input character is available,             <code>false</code> to return immediately if no character is             available.
+     * @return -2 if <code>wait</code> is <code>false</code> and no character is         available.         -1 on EOF.         Otherwise an Unicode character code within the range 0 to 0xFFFF.
+     * @throws IOException the io exception
      */
     public static int read(boolean wait) throws IOException {
         int key;
@@ -70,6 +64,8 @@ public class RawConsoleInput {
      * <p>
      * On Unix this method switches the console back to echo mode.
      * read() leaves the console in non-echo mode.
+     *
+     * @throws IOException the io exception
      */
     public static void resetConsoleMode() throws IOException {
         if (isWindows) {
@@ -191,27 +187,80 @@ public class RawConsoleInput {
     }
 
     private static interface Msvcrt extends Library {
+        /**
+         * Kbhit int.
+         *
+         * @return the int
+         */
         int _kbhit();
 
+        /**
+         * Getwch int.
+         *
+         * @return the int
+         */
         int _getwch();
 
+        /**
+         * Gets .
+         *
+         * @return the
+         */
         int getwchar();
     }
 
     private static class Kernel32Defs {
+        /**
+         * The Std input handle.
+         */
         static final int STD_INPUT_HANDLE = -10;
+        /**
+         * The Invalid handle value.
+         */
         static final long INVALID_HANDLE_VALUE = (Native.POINTER_SIZE == 8) ? -1 : 0xFFFFFFFFL;
+        /**
+         * The Enable processed input.
+         */
         static final int ENABLE_PROCESSED_INPUT = 0x0001;
+        /**
+         * The Enable line input.
+         */
         static final int ENABLE_LINE_INPUT = 0x0002;
+        /**
+         * The Enable echo input.
+         */
         static final int ENABLE_ECHO_INPUT = 0x0004;
+        /**
+         * The Enable window input.
+         */
         static final int ENABLE_WINDOW_INPUT = 0x0008;
     }
 
     private static interface Kernel32 extends Library {
+        /**
+         * Get console mode int.
+         *
+         * @param hConsoleHandle the h console handle
+         * @param lpMode         the lp mode
+         * @return the int
+         */
         int GetConsoleMode(Pointer hConsoleHandle, IntByReference lpMode);
 
+        /**
+         * Set console mode int.
+         *
+         * @param hConsoleHandle the h console handle
+         * @param dwMode         the dw mode
+         * @return the int
+         */
         int SetConsoleMode(Pointer hConsoleHandle, int dwMode);
 
+        /**
+         * Get std handle pointer.
+         *
+         * @param nStdHandle the n std handle
+         * @return the pointer
+         */
         Pointer GetStdHandle(int nStdHandle);
     }
 
@@ -334,12 +383,33 @@ public class RawConsoleInput {
         consoleModeAltered = false;
     }
 
+    /**
+     * The type Termios.
+     */
     protected static class Termios extends Structure { // termios.h
+        /**
+         * The C iflag.
+         */
         public int c_iflag;
+        /**
+         * The C oflag.
+         */
         public int c_oflag;
+        /**
+         * The C cflag.
+         */
         public int c_cflag;
+        /**
+         * The C lflag.
+         */
         public int c_lflag;
+        /**
+         * The C line.
+         */
         public byte c_line;
+        /**
+         * The Filler.
+         */
         public byte[] filler = new byte[64]; // actual length is platform dependent
 
         @Override
@@ -347,9 +417,17 @@ public class RawConsoleInput {
             return Arrays.asList("c_iflag", "c_oflag", "c_cflag", "c_lflag", "c_line", "filler");
         }
 
+        /**
+         * Instantiates a new Termios.
+         */
         Termios() {
         }
 
+        /**
+         * Instantiates a new Termios.
+         *
+         * @param t the t
+         */
         Termios(Termios t) {
             c_iflag = t.c_iflag;
             c_oflag = t.c_oflag;
@@ -361,21 +439,59 @@ public class RawConsoleInput {
     }
 
     private static class LibcDefs {
-        // termios.h
+        /**
+         * The constant ISIG.
+         */
+// termios.h
         static final int ISIG = 0000001;
+        /**
+         * The Icanon.
+         */
         static final int ICANON = 0000002;
+        /**
+         * The Echo.
+         */
         static final int ECHO = 0000010;
+        /**
+         * The Echonl.
+         */
         static final int ECHONL = 0000100;
+        /**
+         * The Tcsanow.
+         */
         static final int TCSANOW = 0;
     }
 
     private static interface Libc extends Library {
-        // termios.h
+        /**
+         * Tcgetattr int.
+         *
+         * @param fd      the fd
+         * @param termios the termios
+         * @return the int
+         * @throws LastErrorException the last error exception
+         */
+// termios.h
         int tcgetattr(int fd, Termios termios) throws LastErrorException;
 
+        /**
+         * Tcsetattr int.
+         *
+         * @param fd      the fd
+         * @param opt     the opt
+         * @param termios the termios
+         * @return the int
+         * @throws LastErrorException the last error exception
+         */
         int tcsetattr(int fd, int opt, Termios termios) throws LastErrorException;
 
-        // unistd.h
+        /**
+         * Isatty int.
+         *
+         * @param fd the fd
+         * @return the int
+         */
+// unistd.h
         int isatty(int fd);
     }
 }

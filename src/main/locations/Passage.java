@@ -33,6 +33,7 @@ public class Passage {
 
     /**
      * This method return the event of the passage.
+     *
      * @return the event of the passage.
      * @see CanBeInPassage
      */
@@ -42,7 +43,8 @@ public class Passage {
 
     /**
      * This method return the event of the passage.
-     * @param event
+     *
+     * @param event the event
      * @see CanBeInPassage
      */
     public void setEvent(CanBeInPassage event) {
@@ -59,6 +61,7 @@ public class Passage {
     /**
      * This method return a list of each line of the visible passage like appear in the map.
      *
+     * @param horizontal the horizontal
      * @return a list of each line of the visible passage.
      */
     public ArrayList<String> toStringList(boolean horizontal) {

@@ -25,8 +25,9 @@ public class Room {
     /**
      * Constructor of the Room class.
      * Instantiates a random new Room.
+     *
+     * @param floor the floor
      */
-
     public Room(Floor floor) {
         if (Math.random() < Parameters.CHANCE_OF_ITEM_IN_ROOM) {
             this.roomEvent = Generate.item();
@@ -45,6 +46,7 @@ public class Room {
 
     /**
      * This method returns the floor of the room.
+     *
      * @return the floor of the room.
      * @see Floor
      */
@@ -54,6 +56,7 @@ public class Room {
 
     /**
      * This method returns the event of the room.
+     *
      * @return the event of the room.
      * @see CanBeInRoom
      */
@@ -63,8 +66,8 @@ public class Room {
 
     /**
      * This method set a room event in the room.
-     * @param roomEvent the room event to set.
      *
+     * @param roomEvent the room event to set.
      * @see CanBeInRoom
      */
     public void setRoomEvent(CanBeInRoom roomEvent) {
@@ -76,7 +79,6 @@ public class Room {
      *
      * @return true if the room has been visited, false otherwise.
      */
-
     public boolean isVisited() {
         return this.visited;
     }
@@ -125,7 +127,6 @@ public class Room {
     /**
      * This method set the room as a room with downstairs.
      */
-
     public void setDownStairs() {
         this.downstairs = true; //Downstairs is a room with no event
         this.roomEvent = null;
@@ -161,6 +162,7 @@ public class Room {
 
     /**
      * This method returns coordinates of the room (x,y).
+     *
      * @return coordinates of the room (x,y).
      */
     public int[] getRoomCoordinates() {
@@ -176,9 +178,10 @@ public class Room {
 
     /**
      * This method return a list of each line of the visible room like appears in the map.
+     *
      * @param player the player.
-     * @see Player
      * @return a list of each line of the visible room.
+     * @see Player
      */
     public ArrayList<String> toStringList(Player player) {
         ArrayList<String> roomstring = new ArrayList<>(); //Create a list of strings

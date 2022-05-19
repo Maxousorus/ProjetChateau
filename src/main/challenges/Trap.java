@@ -9,6 +9,9 @@ public class Trap extends Challenge {
 
     private int damage;
 
+    /**
+     * Instantiates a new Trap.
+     */
     public Trap() {
         super();
         this.damage = damage;

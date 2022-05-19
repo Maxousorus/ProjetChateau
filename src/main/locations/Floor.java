@@ -18,8 +18,9 @@ public class Floor {
     /**
      * Constructor of the Floor class.
      * Instantiate all the rooms and passages of the floor.
+     *
+     * @param floorNumber the floor number
      */
-
     public Floor(int floorNumber) {
         for (int i = 0; i < floorSize; i++) {
             for (int j = 0; j < floorSize; j++) {
@@ -31,6 +32,7 @@ public class Floor {
 
     /**
      * This method is used to get the floor number.
+     *
      * @return floor number.
      */
     public int getFloorNumber() {
@@ -59,6 +61,7 @@ public class Floor {
 
     /**
      * This method is used to get horizontal passages between rooms.
+     *
      * @return horizontal passages list of the floor.
      * @see Passage
      */
@@ -78,6 +81,7 @@ public class Floor {
 
     /**
      * This method is used to get the vertical passages list of the floor.
+     *
      * @return vertical passages list of the floor.
      * @see Passage
      */
@@ -87,6 +91,7 @@ public class Floor {
 
     /**
      * This method is used to get the coordinates of a room in the floor.
+     *
      * @param room room to get coordinates.
      * @return coordinates of the room.
      * @see Room
@@ -109,9 +114,10 @@ public class Floor {
 
     /**
      * This method is used to get Passages connected to a room.
+     *
      * @param room room to get passages.
      * @return Passages connected to a room.
-     * @see Passage,Room
+     * @see , PassageRoom
      */
     public Passage[] getPassageOfRoom(Room room) {
         int roomX = getRoomCoordinates(room)[0]; // get the x coordinate of the room

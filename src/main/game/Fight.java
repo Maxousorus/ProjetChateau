@@ -5,16 +5,29 @@ import main.visibles.Menu;
 import java.io.IOException;
 
 
+/**
+ * The type Fight.
+ */
 public class Fight {
 
     private Player player;
     private Entity entity;
 
+    /**
+     * Instantiates a new Fight.
+     *
+     * @param player the player
+     * @param entity the entity
+     * @throws IOException the io exception
+     */
     public Fight(Player player, Entity entity) throws IOException {
         this.player = player;
         this.entity = entity;
     }
 
+    /**
+     * Attack player.
+     */
     public void attackPlayer(){
         System.out.println("J'attaque !");
         System.out.println("L'attaque provoque " + player.getDamage() + "dégats !");
@@ -22,6 +35,9 @@ public class Fight {
         System.out.println("Le monstre a " + entity.getPv() + "points de vie");
     }
 
+    /**
+     * Attack monster.
+     */
     public void attackMonster(){
         System.out.println("Le monstre attaque !");
         System.out.println("L'attaque provoque " + entity.getDamage() + "dégats !");
@@ -29,6 +45,12 @@ public class Fight {
         System.out.println("Il te reste " + player.getPv() + "points de vie");
     }
 
+    /**
+     * Fight round int.
+     *
+     * @return the int
+     * @throws IOException the io exception
+     */
     public int fightRound() throws IOException {
         Menu choixattack = new Menu("Voulez vous attaquer ou fuir ?", new String[]{ "Attaquer", " Fuir"});
         int choix;

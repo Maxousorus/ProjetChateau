@@ -28,20 +28,39 @@ public class Sage extends Challenge {
             "Pain au chocolat"
     };
 
+    /**
+     * Instantiates a new Sage.
+     */
     public Sage(){
         super();
         this.question = question;
         this.answer = answer;
     }
 
+    /**
+     * Get question string [ ].
+     *
+     * @return the string [ ]
+     */
     public String[] getQuestion() {
         return question;
     }
 
+    /**
+     * Get answer string [ ].
+     *
+     * @return the string [ ]
+     */
     public String[] getAnswer(){
         return answer;
     }
 
+    /**
+     * Question sage int.
+     *
+     * @return the int
+     * @throws IOException the io exception
+     */
     public int questionSage() throws IOException {
         int random = Utils.randomInt(0,question.length);
         int reponse;

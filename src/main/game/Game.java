@@ -21,12 +21,22 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    /**
+     * The Castle.
+     */
     Castle castle = Generate.castle(Parameters.FLOOR_SIZE); // Generate the castle
+    /**
+     * The Player.
+     */
     Player player = new Player(); // Generate the player
+    /**
+     * The Map.
+     */
     Map map = new Map(player); // Generate the map
 
     /**
      * This method run the game.
+     *
      * @throws IOException if the file is not found.
      */
     public void run() throws IOException {

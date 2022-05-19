@@ -20,10 +20,9 @@ public class Menu {
     /**
      * Constructor of the class Menu.
      *
-     * @param title the title of the menu or the question.
+     * @param title   the title of the menu or the question.
      * @param options the choices of the menu.
-     * @param map the map of the floor.
-     *
+     * @param map     the map of the floor.
      * @see Map
      */
     public Menu(String title, String[] options,Map map) {
@@ -35,7 +34,7 @@ public class Menu {
     /**
      * Constructor of the class Menu.
      *
-     * @param title the title of the menu or the question.
+     * @param title   the title of the menu or the question.
      * @param options the choices of the menu.
      */
     public Menu(String title, String[] options) {

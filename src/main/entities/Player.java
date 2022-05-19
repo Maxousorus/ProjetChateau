@@ -27,6 +27,7 @@ public class Player extends Entity {
 
     /**
      * This method permits to get the player's weapon
+     *
      * @return the player's weapon
      */
     public Weapon getWeapon() {
@@ -35,6 +36,7 @@ public class Player extends Entity {
 
     /**
      * This method permits to set the player's weapon
+     *
      * @param weapon the player's weapon
      */
     public void setWeapon(Weapon weapon) {
@@ -43,6 +45,7 @@ public class Player extends Entity {
 
     /**
      * This method permits to get the player's room
+     *
      * @return the player's room
      */
     public Room getRoom() {
@@ -51,6 +54,7 @@ public class Player extends Entity {
 
     /**
      * This method permits to set the player's room
+     *
      * @param room the player's room
      */
     public void setRoom(Room room) {
@@ -59,6 +63,7 @@ public class Player extends Entity {
 
     /**
      * This method permits to place the player at the enter of the castle.
+     *
      * @param castle the castle
      */
     public void spawn(Castle castle) {

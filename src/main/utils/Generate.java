@@ -24,7 +24,7 @@ public class Generate {
      *
      * @param nbFloors The number of floors of the castle.
      * @return The castle.
-     * @see Castle,Utils
+     * @see , CastleUtils
      */
     public static Castle castle(int nbFloors) {
         Castle castle = new Castle(nbFloors); // Create the castle
