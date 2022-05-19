@@ -8,7 +8,7 @@ import main.utils.Utils;
  *
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
-public class Item implements CanBeInRoom {
+public abstract class Item implements CanBeInRoom {
 
     private String name;
     private String[] tabName = {"GodJonas", "Tigrou", "Dumbo", "Grizzly", "Poulpi", "Chèvre"};

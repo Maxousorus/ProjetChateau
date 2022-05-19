@@ -3,7 +3,7 @@ package main.entities;
 import main.interfaces.CanBeInRoom;
 import main.utils.Utils;
 
-public class Entity implements CanBeInRoom {
+public abstract class Entity implements CanBeInRoom {
 
     private int damage;
     private int pv;
