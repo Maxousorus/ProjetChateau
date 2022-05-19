@@ -3,14 +3,18 @@ package main.utils;
 import main.challenges.Challenge;
 import main.challenges.Sage;
 import main.challenges.Trap;
+import main.entities.Monster;
 import main.locations.Castle;
+import main.objects.Item;
+import main.objects.Potion;
+import main.objects.Weapon;
 
 import static java.lang.Math.random;
 
 /**
  * This class is used to generate random objects and monsters.
  *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
  */
 public class Generate {
 
@@ -20,6 +24,7 @@ public class Generate {
      *
      * @param nbFloors The number of floors of the castle.
      * @return The castle.
+     * @see Castle,Utils
      */
     public static Castle castle(int nbFloors) {
         Castle castle = new Castle(nbFloors); // Create the castle
@@ -35,18 +40,35 @@ public class Generate {
      * This method is used to generate a random Challenge.
      *
      * @return The challenge.
+     * @see Challenge
      */
     public static Challenge challenge() {
-        if (random() > 0.5) {
-            return new Sage();
+        if (random() < Parameters.CHANCE_OF_CHALLENGE_IS_TRAP) {
+            return new Trap();
         }
-        return new Trap();
+        return new Sage();
     }
 
-    /*public static Item item() {
-        if(random()> 0.5) {
-            return new Potion();
+    /**
+     * This method is used to generate a random Item.
+     *
+     * @return The item.
+     * @see Item
+     */
+    public static Item item() {
+        if(random() < Parameters.CHANCE_OF_ITEM_IS_WEAPON) {
+            return new Weapon();
         }
-        return new Item();
-    }*/
+        return new Potion();
+    }
+
+    /**
+     * This method is used to generate a random Monster.
+     *
+     * @return The monster.
+     * @see Monster
+     */
+    public static Monster monster() {
+        return new Monster();
+    }
 }
