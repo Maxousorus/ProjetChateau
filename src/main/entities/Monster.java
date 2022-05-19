@@ -11,6 +11,6 @@ public class Monster extends Entity {
      * Instantiates a random new Monster
      */
     public Monster() {
-        // super();
+        super();
     }
 }

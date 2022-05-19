@@ -6,9 +6,9 @@ import main.locations.Passage;
 import main.locations.Room;
 
 /**
- * Utility class for various methods
+ * Utility class for various methods.
  *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
  */
 public class Utils {
     /**
@@ -258,7 +258,7 @@ public class Utils {
     }
 
     /**
-     * This method permite to clear the console.
+     * This method permit to clear the console.
      */
     public static void clearConsole() {
         System.out.print("\033[H\033[2J");

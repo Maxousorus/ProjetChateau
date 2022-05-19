@@ -9,11 +9,9 @@ import java.util.ArrayList;
 /**
  * This class represents a map.
  *
- * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias
+ * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias.
  */
 public class Map {
-
-    private final Castle castle; // The castle of the map.
 
     private final Player player; // The player of the map.
 
@@ -24,22 +22,36 @@ public class Map {
     /**
      * Constructor of the class Map.
      *
-     * @param castle the castle
+     * @param player the player.
+     * @see Player
      */
 
-    public Map(Castle castle, Player player) {
-        this.castle = castle;
+    public Map(Player player) {
         this.player = player;
     }
 
+    /**
+     * This method returns the player of the map.
+     * @return the player of the map.
+     *
+     * @see Player
+     */
     public Player getPlayer() {
         return player;
     }
 
     /**
+     * This method returns the current floor of the map.
+     * @return the floor number of the map.
+     */
+    public int getFloor() {
+        return player.getRoom().getFloor().getFloorNumber();
+    }
+
+    /**
      * This method returns the string of the updownwall.
      *
-     * @return the string of the updownwall
+     * @return the string of the updownwall.
      */
     private String updownwall() { //Wall on top and bottom of the map.
         String room = "";
@@ -56,10 +68,19 @@ public class Map {
         updownwall += sidewall;
         return updownwall;
     }
+
+    /**
+     * This method print the map.
+     */
     public void show() {
-        System.out.println(toString());
+        System.out.println(this); //Print the map.
     }
 
+    /**
+     * This method returns the string of the map.
+     * @return the string of the map.
+     */
+    @Override
     public String toString() {
         Floor floor = player.getRoom().getFloor();
         Room[][] rooms = floor.getRooms();

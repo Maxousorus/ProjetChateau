@@ -8,16 +8,24 @@ import java.io.IOException;
 /**
  * This class permits to display a menu and to get the choice of the user.
  *
- * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias
+ * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias.
  */
 public class Menu {
 
     private final String[] options; //The choices of the menu
     private int selected = 0; //The selected choice of the user
     private final String title; //The title of the menu or the question
+    private final Map map; //The map of the game
 
-    private Map map;
-
+    /**
+     * Constructor of the class Menu.
+     *
+     * @param title the title of the menu or the question.
+     * @param options the choices of the menu.
+     * @param map the map of the floor.
+     *
+     * @see Map
+     */
     public Menu(String title, String[] options,Map map) {
         this.title = title;
         this.options = options;
@@ -63,24 +71,25 @@ public class Menu {
      */
     public int choose() throws IOException {
         while (true) { //While the user doesn't choose an option
+            Utils.clearConsole();
             if(map != null) {
-                Utils.clearConsole();
+                System.out.println("Map of the floor n°" + map.getFloor() + " :");
                 map.show();
                 map.getPlayer().showStats();
             }
             show(); //Display the menu
             int choice = RawConsoleInput.read(true); //Get the keyboard input
             if(choice == 10 || choice == 13) { // If input is enter
-                return selected;
+                return selected; //Return the selected option
             }
             if(choice == 57424 || choice == 57425) { //If input is up
-                selected = (selected + 1) % options.length;
+                selected = (selected + 1) % options.length; //Change the selected option
             }
             if(choice == 57416 || choice == 57417) { //If input is down
                 if(selected == 0) {
-                    selected = options.length - 1;
+                    selected = options.length - 1; //Change the selected option
                 }else {
-                    selected--;
+                    selected--; //Change the selected option
                 }
             }
         }
