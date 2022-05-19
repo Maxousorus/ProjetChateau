@@ -1,15 +1,17 @@
 package main.game;
 
-import main.challenges.Challenge;
-import main.entities.Monster;
+import main.challenges.Sage;
+import main.challenges.Trap;
 import main.entities.Player;
+import main.interfaces.CanBeInPassage;
 import main.locations.Castle;
 import main.locations.Passage;
-import main.objects.Item;
+
 import main.utils.Generate;
 import main.utils.Parameters;
 import main.visibles.Map;
 import main.visibles.Menu;
+import main.visibles.Notification;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,15 +20,16 @@ import java.util.ArrayList;
  * Method to manage the game.
  */
 public class Game {
+
+    Castle castle = Generate.castle(Parameters.FLOOR_SIZE); // Generate the castle
+    Player player = new Player(); // Generate the player
+    Map map = new Map(player); // Generate the map
+
     /**
      * This method run the game.
      * @throws IOException if the file is not found.
      */
     public void run() throws IOException {
-
-        Castle castle = Generate.castle(Parameters.FLOOR_SIZE); // Generate the castle
-        Player player = new Player(); // Generate the player
-        Map map = new Map(castle, player); // Generate the map
 
         player.spawn(castle); // Spawn the player in the castle
         player.getRoom().setVisited(); // Set the room as visited
@@ -35,19 +38,23 @@ public class Game {
                 passage.setVisited();
         }
 
-        while (true){ // While the game is running (player can stop this loop if he go to the exit and choose to quit)
-            map.show(); // Show the map
+        while (true){ // While the game is running (player can stop this loop if he goes to the exit and choose to quit)
             player.showStats(); // Show the player stats
 
             if(player.getRoom().getRoomEvent() != null){
-                if(player.getRoom().getRoomEvent() instanceof Challenge){ // If the room has a challenge
-                    //TODO action si challenge dans la salle
-                }
-                if(player.getRoom().getRoomEvent() instanceof Item){ // If the room has an item
-                    //TODO action si item dans la salle
-                }
-                if(player.getRoom().getRoomEvent() instanceof Monster){ // If the room has a monster
-                    //TODO action si monstre dans la salle
+                switch (player.getRoom().getRoomEvent().getClass().getSimpleName()){
+                    case "Weapon" -> {
+                        new Notification("You have encountered a Weapon!", map).choose();
+                        //TODO faire le code
+                    }
+                    case "Potion" -> {
+                        new Notification("You have encountered a Potion!", map).choose();
+                        //TODO faire le code
+                    }
+                    case "Monster" -> {
+                        new Notification("You have encountered a Monster!", map).choose();
+                        //TODO faire le code
+                    }
                 }
                 player.getRoom().setRoomEvent(null); // Remove the room event
             }
@@ -74,7 +81,6 @@ public class Game {
                     if(passage != null)
                         passage.setVisited();
                 }
-                map.show(); // Show the map
             }
 
             if(player.getRoom().isExit()) { // If the room is the exit
@@ -119,16 +125,24 @@ public class Game {
                 } while (passages[direction] == null); // While the passage is null
                 int[] thisRoomCoords = player.getRoom().getRoomCoordinates();
                 if (direction == 0) { // If the direction is west
-                    player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1] - 1]); // Set the player room
+                    if(eventPassage(passages[direction])) { //Do the event of the passage
+                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1] - 1]); // Set the player room
+                    }
                 }
                 if (direction == 1) { // If the direction is east
-                    player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1] + 1]); // Set the player room
+                    if(eventPassage(passages[direction])) { //Do the event of the passage
+                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1] + 1]); // Set the player room
+                    }
                 }
                 if (direction == 2) { // If the direction is north
-                    player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0] - 1][thisRoomCoords[1]]); // Set the player room
+                    if (eventPassage(passages[direction])) { //Do the event of the passage
+                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0] - 1][thisRoomCoords[1]]); // Set the player room
+                    }
                 }
                 if (direction == 3) { // If the direction is south
-                    player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0] + 1][thisRoomCoords[1]]); // Set the player room
+                    if (eventPassage(passages[direction])) { //Do the event of the passage
+                        player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0] + 1][thisRoomCoords[1]]); // Set the player room
+                    }
                 }
             }
             player.getRoom().setVisited(); // Set the room as visited
@@ -139,6 +153,30 @@ public class Game {
 
         }
         player.getRoom().setVisited(); // Set the room as visited
-        map.show(); // Show the map
+    }
+
+    /**
+     * Do the event of the passage if it has one
+     * @return true if the player access to the next room, false otherwise
+     */
+    private boolean eventPassage(Passage passage) throws IOException {
+        CanBeInPassage event = passage.getEvent(); // Get the event of the passage
+        boolean passageAccess = false;
+        if(event == null) { // If the passage has no event
+            passageAccess = true; // Player can access to the next room
+        }else {
+            if(event instanceof Trap) { // If the event is a trap
+                new Notification("You have encountered a Trap !",map).choose(); //TODO faire le code
+                return true;
+            }else if(event instanceof Sage) { // If the event is a sage
+                new Notification("You have encountered a Sage !",map).choose(); //TODO faire le code
+                return true;
+            }
+        }
+
+        if(passageAccess) { // If the player can access to the next room
+            passage.setEvent(null); // The event is removed in the passage
+        }
+        return passageAccess;
     }
 }
