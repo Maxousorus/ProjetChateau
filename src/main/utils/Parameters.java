@@ -3,7 +3,7 @@ package main.utils;
 /**
  * Class that contains the parameters of the program
  *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
  */
 public class Parameters {
 
@@ -14,11 +14,16 @@ public class Parameters {
     public static final int ROOM_HEIGHT = (int) (ROOM_SIZE * 0.6);
     //Chance to passage is locked (between 0 and 1 includes)
     public static final double CHANCE_OF_LOCKED_PASSAGE = 0.2;
-    //The sum of the next three parameters need to be inferior or equals to 1
+    //The sum of the next two parameters need to be inferior or equals to 1
     public static final double CHANCE_OF_ITEM_IN_ROOM = 0.3;
     public static final double CHANCE_OF_MONSTER_IN_ROOM = 0.2;
-    public static final double CHANCE_OF_CHALLENGE_IN_ROOM = 0.2;
 
-    //Chance for a challenge to be a trap (the chance for a challenge to be a sage is 1 - *theNextParam*)
+    //Chance for a challenge to be in the passage
+    public static final double CHANCE_OF_CHALLENGE_IN_PASSAGE = 0.5;
+
+    //Chance for a challenge to be a trap (the chance for a challenge to be a sage is 1 - 'theNextParam')
     public static final double CHANCE_OF_CHALLENGE_IS_TRAP = 0.5;
+
+    //Chance for a item to be a Weapon (the chance for an item to be a potion is 1 - 'theNextParam')
+    public static final double CHANCE_OF_ITEM_IS_WEAPON = 0.5;
 }

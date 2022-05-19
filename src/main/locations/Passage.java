@@ -1,7 +1,7 @@
 package main.locations;
 
-import main.entities.*;
 import main.challenges.*;
+import main.interfaces.CanBeInPassage;
 import main.utils.*;
 
 import java.util.ArrayList;
@@ -12,33 +12,41 @@ import java.util.ArrayList;
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Passage {
-
-    private final int challenge_type; //Monster or Sage or Trap
-    private Entity monster;
-    private Sage sage;
-    private Trap trap;
+    private CanBeInPassage event;
     private boolean locked;
-
     private boolean visited = false;
-
-    private static final int MONSTER = 0;
-    private static final int SAGE = 1;
-    private static final int TRAP = 2;
 
     /**
      * Constructor of the Passage class.
      * Instanciate a random new Passage.
      */
     public Passage() {
-        challenge_type = (int) (Math.random() * 3);
-        if (challenge_type == MONSTER) {
-            this.monster = new Entity();
-        } else if (challenge_type == SAGE) {
-            this.sage = new Sage();
-        } else if (challenge_type == TRAP) {
-            this.trap = new Trap();
+        if(Math.random() < Parameters.CHANCE_OF_CHALLENGE_IN_PASSAGE) {
+            if (Math.random() < Parameters.CHANCE_OF_CHALLENGE_IS_TRAP) {
+                this.event = new Trap();
+            } else {
+                this.event = new Sage();
+            }
         }
         this.locked = Math.random() < Parameters.CHANCE_OF_LOCKED_PASSAGE;
+    }
+
+    /**
+     * This method return the event of the passage.
+     * @return the event of the passage.
+     * @see CanBeInPassage
+     */
+    public CanBeInPassage getEvent() {
+        return event;
+    }
+
+    /**
+     * This method return the event of the passage.
+     * @param event
+     * @see CanBeInPassage
+     */
+    public void setEvent(CanBeInPassage event) {
+        this.event = event;
     }
 
     /**
