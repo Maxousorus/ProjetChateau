@@ -47,11 +47,11 @@ public class Menu {
     private void show() {
         String line = ""; //The line to display
         for (int i = 0; i < title.length(); i++) {
-            line += "═";
+            line += "\u2550";
         }
-        System.out.println("╔══" + line + "══╗");
-        System.out.println("║  " + title +"  ║"); //Put the title in a frame
-        System.out.println("╚══" + line + "══╝");
+        System.out.println("\u2554\u2550\u2550" + line + "\u2550\u2550\u2557");
+        System.out.println("\u2551  " + title +"  \u2551"); //Put the title in a frame
+        System.out.println("╚\u2550\u2550" + line + "\u2550\u2550╝");
 
         for (int i = 0; i < options.length; i++) { //For each options
             if (i == selected) {
