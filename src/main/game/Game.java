@@ -96,7 +96,7 @@ public class Game {
             if(player.getRoom().isExit()) { // If the room is the exit
                 Menu quitter = new Menu("Voulez-vous sortir du chateau ?", new String[]{"Oui", "Non"}, map); // Generate the menu
                 if (quitter.choose() == 0) { // If the player choose to quit
-                    System.out.println("Vous avez quitté le chateau");
+                    new Notification("Vous avez quitté le chateau !", map).choose(); // Display the notification
                     break;
                 }
             }
@@ -175,11 +175,11 @@ public class Game {
             passageAccess = true; // Player can access to the next room
         }else {
             if(event instanceof Trap) { // If the event is a trap
-                new Notification("You have encountered a Trap !",map).choose(); //TODO faire le code
-                return true;
+                new Notification("You have encountered a Trap !",map).choose();
+                //TODO faire le code
             }else if(event instanceof Sage) { // If the event is a sage
-                new Notification("You have encountered a Sage !",map).choose(); //TODO faire le code
-                return true;
+                new Notification("You have encountered a Sage !",map).choose();
+                //TODO faire le code
             }
         }
 

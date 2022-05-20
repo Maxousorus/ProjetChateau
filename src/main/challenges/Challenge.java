@@ -1,10 +1,6 @@
 package main.challenges;
 
 import main.interfaces.CanBeInPassage;
-import main.interfaces.CanBeInRoom;
-import main.utils.Parameters;
-
-import java.lang.reflect.Parameter;
 
 /**
  * Challenge class.

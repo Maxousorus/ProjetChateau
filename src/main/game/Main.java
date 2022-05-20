@@ -1,12 +1,5 @@
 package main.game;
 
-import com.sun.jna.LastErrorException;
-import main.locations.Castle;
-import main.utils.Generate;
-import main.utils.RawConsoleInput;
-import main.visibles.Map;
-import main.visibles.Menu;
-
 import java.io.IOException;
 
 /**
@@ -22,6 +15,9 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
          Game game = new Game();
+
+         //TODO Menu principale (lancer le jeu, paramètres, credits, quitter)
+
          game.run();
     }
 }

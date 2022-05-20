@@ -1,5 +1,5 @@
 package main.challenges;
-import main.entities.*;
+
 import main.utils.Utils;
 import main.visibles.Menu;
 
