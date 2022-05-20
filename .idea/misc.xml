@@ -2,6 +2,9 @@
 <project version="4">
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../../../../../Bureau" />
+    <option name="OPTION_SCOPE" value="package" />
+    <option name="OTHER_OPTIONS" value="-encoding utd8" />
+    <option name="LOCALE" value="en_US.UTF-8" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
