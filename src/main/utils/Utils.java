@@ -261,6 +261,6 @@ public class Utils {
      * This method permit to clear the console.
      */
     public static void clearConsole() {
-        System.out.println("\033[2J");
+        System.out.println("\033[1J");
     }
 }
