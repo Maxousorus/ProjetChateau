@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Main {
 
     /**
-     * The main method who run th.
+     * The main method who run the Game.
      *
      * @param args the input arguments
      * @throws IOException the io exception

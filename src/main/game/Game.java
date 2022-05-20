@@ -95,7 +95,6 @@ public class Game {
 
             if(player.getRoom().isExit()) { // If the room is the exit
                 Menu quitter = new Menu("Voulez-vous sortir du chateau ?", new String[]{"Oui", "Non"}, map); // Generate the menu
-                quitter.choose(); // Choose the option
                 if (quitter.choose() == 0) { // If the player choose to quit
                     System.out.println("Vous avez quitté le chateau");
                     break;
