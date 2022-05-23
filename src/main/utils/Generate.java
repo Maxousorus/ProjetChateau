@@ -41,7 +41,7 @@ public class Generate {
      */
     public static Item item(int floorNumber) {
         if(random() < Parameters.CHANCE_OF_ITEM_IS_WEAPON) {
-            return new Weapon(  );
+            return new Weapon( floorNumber );
         }
         return new Potion( floorNumber );
     }

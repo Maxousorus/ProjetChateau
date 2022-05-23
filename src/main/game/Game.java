@@ -80,14 +80,14 @@ public class Game {
             if(player.getRoom().isUpStairs() || player.getRoom().isDownStairs()) { // If the room has stairs
                 int[] thisRoomCoords = player.getRoom().getRoomCoordinates(); // Get the room coordinates
                 if (player.getRoom().isUpStairs()) { // If the room has an up stairs
-                    Menu descendre = new Menu("Voulez-vous descendre d'un étage ?", new String[]{"Oui", "Non"},map); // Generate the menu
+                    Menu descendre = new Menu("Do you want to go at the next floor ?", new String[]{"Yes", "No"},map); // Generate the menu
                     // Choose the option
                     if (descendre.choose() == 0) {// If the player choose to go down
                         int nextFloor = player.getRoom().getFloor().getFloorNumber() - 1; // Get the previous floor
                         player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
                     }
                 }else if (player.getRoom().isDownStairs()) { // If the room has a down stairs
-                    Menu monter = new Menu("Voulez-vous Monter d'un étage ?", new String[]{"Oui", "Non"},map); // Generate the menu
+                    Menu monter = new Menu("Do you want to go at the next floor ?", new String[]{"Yes", "No"},map); // Generate the menu
                     // Choose the option
                     if (monter.choose() == 0) {// If the player choose to go up
                         int nextFloor = player.getRoom().getFloor().getFloorNumber() + 1; // Get the next floor
@@ -102,40 +102,40 @@ public class Game {
             }
 
             if(player.getRoom().isExit()) { // If the room is the exit
-                Menu quitter = new Menu("Voulez-vous sortir du chateau ?", new String[]{"Oui", "Non"}, map); // Generate the menu
+                Menu quitter = new Menu("Do you want to go out of the castle ?", new String[]{"Yes", "No"}, map); // Generate the menu
                 if (quitter.choose() == 0) { // If the player choose to quit
-                    new Notification("Vous avez quitté le chateau !", map).choose(); // Display the notification
+                    new Notification("You are out of the castle !", map).choose(); // Display the notification
                     break;
                 }
             }
 
-            Menu bouger = new Menu("Voulez-vous bouger ?", new String[]{"Oui", "Non"}, map); // Generate the menu
+            Menu bouger = new Menu("Do you want to move ?", new String[]{"Yes", "No"}, map); // Generate the menu
             // Choose the option
             if (bouger.choose() == 0) {// If the player choose to move
                 Passage[] passages = player.getRoom().getFloor().getPassageOfRoom(player.getRoom());
                 ArrayList<String> directions = new ArrayList<>(); // Generate the list of directions
                 if (passages[0] != null) { // If the room has a passage to the west
-                    directions.add("Ouest");
+                    directions.add("West");
                 } else {
-                    directions.add("Pas de passage");
+                    directions.add("No Passage");
                 }
                 if (passages[1] != null) { // If the room has a passage to the east
-                    directions.add("Est"); // Add the direction to the list
+                    directions.add("East"); // Add the direction to the list
                 } else {
-                    directions.add("Pas de passage");
+                    directions.add("No Passage");
                 }
                 if (passages[2] != null) { // If the room has a passage to the north
-                    directions.add("Nord"); // Add the direction to the list
+                    directions.add("North"); // Add the direction to the list
                 } else {
-                    directions.add("Pas de passage");
+                    directions.add("No Passage");
                 }
                 if (passages[3] != null) { // If the room has a passage to the south
-                    directions.add("Sud"); // Add the direction to the list
+                    directions.add("South"); // Add the direction to the list
                 } else {
-                    directions.add("Pas de passage");
+                    directions.add("No Passage");
                 }
                 String[] directionsArray = directions.toArray(new String[0]); // Convert the list to an array
-                Menu choix = new Menu("Ou voulez-vous aller ?", directionsArray,map); // Generate the menu
+                Menu choix = new Menu("Where do you want to go", directionsArray,map); // Generate the menu
                 int direction;
                 do { // Choose the direction
                     direction = choix.choose();
