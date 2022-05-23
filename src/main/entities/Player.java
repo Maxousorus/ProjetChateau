@@ -21,7 +21,7 @@ public class Player extends Entity {
      */
     public Player() {
         super();
-        this.setNom("Player");
+        this.setName("Player");
         this.setPv(Parameters.PLAYER_MAX_HP);
         this.setDamage(Parameters.PLAYER_HAND_DAMAGE);
     }

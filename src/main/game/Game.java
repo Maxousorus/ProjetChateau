@@ -2,6 +2,7 @@ package main.game;
 
 import main.challenges.Sage;
 import main.challenges.Trap;
+import main.entities.Entity;
 import main.entities.Player;
 import main.interfaces.CanBeInPassage;
 import main.interfaces.CanBeInRoom;
@@ -70,7 +71,7 @@ public class Game {
                         new Notification("You have found a Potion, You received " + ((Potion)event).getPv() + "hp.", map).choose();
                     }
                     case "Monster" -> {
-                        new Notification("You have encountered a Monster!", map).choose();
+                        new Notification("You have encountered a Monster, it's a " + ((Entity)event).getName(), map).choose();
                         //TODO faire le code
                     }
                 }

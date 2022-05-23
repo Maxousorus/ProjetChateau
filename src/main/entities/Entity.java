@@ -10,28 +10,51 @@ public abstract class Entity implements CanBeInRoom {
 
     private int damage;
     private int pv;
-    private String nom;
+    private int numberFloor;
+    private String name;
 
     private String[] tabName = {
             "Witch",
-            "Ogre",
             "Slime",
             "Baby Dragon",
-            "",
+            "Troll",
             "Goat"};
 
 
     /**
      * Instantiates a new Entity.
      */
-    public Entity() {
-        this.damage = Utils.randomInt(1, 50);
-        this.pv = Utils.randomInt(50,100);
-        this.nom = tabName[Utils.randomInt(1,6)];
+    public Entity(int numberFloor) {
+        this.damage = damageEntity(numberFloor);
+        this.pv = pvEntity(numberFloor);
+        this.name = tabName[Utils.randomInt(0,tabName.length-1)];
+        this.numberFloor = numberFloor;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    private int damageEntity (int numberFloor){
+        numberFloor +=1;
+        if(numberFloor <= 10){
+            damage = Utils.randomInt(2,5 + (2 * numberFloor));
+        }
+        else{
+            damage = Utils.randomInt(10,30);
+        }
+        return damage;
+    }
+
+    private int pvEntity (int numberFloor){
+        numberFloor +=1;
+        if(numberFloor <= 10){
+            pv = Utils.randomInt(20, 8 * numberFloor);
+        }
+        else{
+            pv = Utils.randomInt(60,90);
+        }
+        return pv;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -39,8 +62,8 @@ public abstract class Entity implements CanBeInRoom {
      *
      * @return the nom
      */
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
     /**
