@@ -68,6 +68,7 @@ public class Game {
                     }
                     case "Potion" -> {
                         player.setPv(player.getPv() + ((Potion)event).getPv());
+                        if(player.getPv() > Parameters.PLAYER_MAX_HP) player.setPv(Parameters.PLAYER_MAX_HP);
                         new Notification("You have found a Potion, You received " + ((Potion)event).getPv() + "hp.", map).choose();
                     }
                     case "Monster" -> {

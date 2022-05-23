@@ -5,6 +5,8 @@ import main.locations.Room;
 import main.objects.*;
 import main.utils.Parameters;
 
+import java.sql.SQLOutput;
+
 /**
  * Player class
  *
@@ -85,6 +87,10 @@ public class Player extends Entity {
      */
     public void showStats() {
         System.out.println("Information about your character :");
-        System.out.println("HP: " + this.getPv() + " - DMG: " + this.getDamage());
+        if(this.getWeapon() == null) {
+            System.out.println("HP: " + this.getPv() + " - DMG: " + this.getDamage());
+        } else {
+            System.out.println("HP: " + this.getPv() + " - Weapon: " + this.getWeapon().getName() + " - DMG: " + this.getWeapon().getDamage());
+        }
     }
 }
