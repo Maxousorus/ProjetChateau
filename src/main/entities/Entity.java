@@ -30,6 +30,10 @@ public abstract class Entity implements CanBeInRoom {
         this.nom = tabName[Utils.randomInt(1,6)];
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     /**
      * Gets nom.
      *
