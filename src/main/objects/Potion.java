@@ -9,14 +9,16 @@ import main.utils.Utils;
  */
 public class Potion extends Item {
     private int pv;
+    private int numberFloor;
 
     /**
      * Constructor for the Potion class
      * Instantiate a random new Potion
      */
-    public Potion() {
+    public Potion(int numberFloor) {
         super();
-        this.pv = Utils.randomInt(0, 500);
+        this.pv = healPotion(numberFloor);
+        this.numberFloor = numberFloor;
     }
 
     private int healPotion (int numberFloor){

@@ -4,9 +4,11 @@ import main.challenges.Sage;
 import main.challenges.Trap;
 import main.entities.Player;
 import main.interfaces.CanBeInPassage;
+import main.interfaces.CanBeInRoom;
 import main.locations.Castle;
 import main.locations.Passage;
 
+import main.objects.Potion;
 import main.utils.Generate;
 import main.utils.Parameters;
 import main.visibles.Map;
@@ -52,14 +54,16 @@ public class Game {
             player.showStats(); // Show the player stats
 
             if(player.getRoom().getRoomEvent() != null){
-                switch (player.getRoom().getRoomEvent().getClass().getSimpleName()){
+                CanBeInRoom event = player.getRoom().getRoomEvent();
+                switch (event.getClass().getSimpleName()){
                     case "Weapon" -> {
                         new Notification("You have encountered a Weapon!", map).choose();
                         //TODO faire le code
                     }
                     case "Potion" -> {
-                        new Notification("You have encountered a Potion!", map).choose();
-                        //TODO faire le code
+                        player.setPv(player.getPv() + ((Potion)event).getPv());
+                        new Notification("You have found a Potion, You received " + ((Potion)event).getPv() + "hp.", map).choose();
+
                     }
                     case "Monster" -> {
                         new Notification("You have encountered a Monster!", map).choose();
