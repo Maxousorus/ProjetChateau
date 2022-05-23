@@ -31,4 +31,24 @@ public class Castle {
     public Floor[] getFloors() {
         return floors;
     }
+
+    public Floor getFloorOfPassage(Passage passage) {
+        for (int i = 0; i < nbFloors; i++) {
+            for (int j = 0; j < floors[i].getHorizontal_passages().length; j++) {
+                for (int k = 0; k < floors[i].getHorizontal_passages()[j].length; k++) {
+                    if (floors[i].getHorizontal_passages()[j][k] == passage) {
+                        return floors[i];
+                    }
+                }
+            }
+            for (int j = 0; j < floors[i].getVertical_passages().length; j++) {
+                for (int k = 0; k < floors[i].getVertical_passages()[j].length; k++) {
+                    if (floors[i].getVertical_passages()[j][k] == passage) {
+                        return floors[i];
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }
