@@ -12,29 +12,51 @@ import java.io.IOException;
  */
 public class Sage extends Challenge {
 
-    private String[] question = {
-            "Combien font 5*9 ?",
-            "Je te donne 15 euros, je t'en prends 3, ensuite tu payes les impots, combien te reste-t-il ?",
-            "Dans quelle équipe joue BENZEMA ?",
-            "Quelle est la meilleur note de josias ?",
-            "Pain au chocolat ou chocolatine ?"
+    private final String[] possible_names = {
+            "Merlin l'Enchanteur",
+            "TicTac",
+            "Canard Boiteux",
+            "Forms",
+            "Couecouette",
+            "Krystofer"
 
     };
-    private String[] answer = {
-            "45",
-            "0",
-            "Real Madrid",
-            "9",
-            "Pain au chocolat"
+
+    private final String[] possible_questions= {
+            "Combien font 5*9 ?",
+            "Quel est le gagnant de la coupe du monde de football en 2018 ?",
+            "Dans quelle équipe joue BENZEMA ?",
+            "Quelle est la meilleur note de josias ?",
+            "Pain au chocolat ou chocolatine ?",
+            "En quelle année le nouveau bâtiment du CNAM est censé ouvrir ?"
+
     };
+    private final String[][] possible_answers = {
+            {"45", "54", "71", "69"},
+            {"France", "Belgique", "Croatie", "Allemagne"},
+            {"Real Madrid", "Paris-Saint-Germain" , "L'Olympique de Marseille", "FC Barcelone"},
+            {"9"},
+            {"Pain au chocolat", "Chocolatine"},
+            {"2022", "2021", "2024", "1415 AV-JC"}
+    };
+
+    private String name;
+    private String question;
+    private String[] answers;
+    private String goodAnswer;
+
+
 
     /**
      * Instantiates a new Sage.
      */
     public Sage(){
         super();
-        this.question = question;
-        this.answer = answer;
+        this.name = possible_names[Utils.randomInt(0,possible_names.length-1)];
+        int random = Utils.randomInt(0,possible_questions.length-1);
+        this.question = possible_questions[random];
+        this.answers = possible_answers[random];
+        this.goodAnswer = answers[0];
     }
 
     /**
@@ -42,7 +64,7 @@ public class Sage extends Challenge {
      *
      * @return the string [ ]
      */
-    public String[] getQuestion() {
+    public String getQuestion() {
         return question;
     }
 
@@ -51,8 +73,8 @@ public class Sage extends Challenge {
      *
      * @return the string [ ]
      */
-    public String[] getAnswer(){
-        return answer;
+    public String[] getAnswers(){
+        return answers;
     }
 
     /**
@@ -61,10 +83,11 @@ public class Sage extends Challenge {
      * @return the int
      * @throws IOException the io exception
      */
+
     public int questionSage() throws IOException {
         int random = Utils.randomInt(0,question.length);
         int reponse;
-        Menu choixanswer = new Menu(question[random], answer);
+        Menu choixanswer = new Menu(question, answer);
         reponse = choixanswer.choose();
         if(random == reponse){
             return 1;

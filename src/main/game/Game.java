@@ -186,6 +186,6 @@ public class Game {
         if(passageAccess) { // If the player can access to the next room
             passage.setEvent(null); // The event is removed in the passage
         }
-        return passageAccess;
+        return true;
     }
 }
