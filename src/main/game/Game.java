@@ -9,6 +9,7 @@ import main.locations.Castle;
 import main.locations.Passage;
 
 import main.objects.Potion;
+import main.objects.Weapon;
 import main.utils.Generate;
 import main.utils.Parameters;
 import main.visibles.Map;
@@ -57,13 +58,16 @@ public class Game {
                 CanBeInRoom event = player.getRoom().getRoomEvent();
                 switch (event.getClass().getSimpleName()){
                     case "Weapon" -> {
-                        new Notification("You have encountered a Weapon!", map).choose();
-                        //TODO faire le code
+                        new Notification("You have found a Weapon, it's a " + ((Weapon)event).getName() +
+                                "it deal " + ((Weapon)event).getDamage(), map).choose();
+                        Menu weapon = new Menu("Do you want to take it ?", new String[]{"Yes", "No"}, map);
+                        if(weapon.choose() == 0){
+                            player.setWeapon((Weapon)event);
+                        }
                     }
                     case "Potion" -> {
                         player.setPv(player.getPv() + ((Potion)event).getPv());
                         new Notification("You have found a Potion, You received " + ((Potion)event).getPv() + "hp.", map).choose();
-
                     }
                     case "Monster" -> {
                         new Notification("You have encountered a Monster!", map).choose();
