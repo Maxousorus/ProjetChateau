@@ -1,8 +1,5 @@
 package main.utils;
 
-import main.challenges.Challenge;
-import main.challenges.Sage;
-import main.challenges.Trap;
 import main.entities.Monster;
 import main.locations.Castle;
 import main.objects.Item;
@@ -37,29 +34,16 @@ public class Generate {
     }
 
     /**
-     * This method is used to generate a random Challenge.
-     *
-     * @return The challenge.
-     * @see Challenge
-     */
-    public static Challenge challenge() {
-        if (random() < Parameters.CHANCE_OF_CHALLENGE_IS_TRAP) {
-            return new Trap();
-        }
-        return new Sage();
-    }
-
-    /**
      * This method is used to generate a random Item.
      *
      * @return The item.
      * @see Item
      */
-    public static Item item() {
+    public static Item item(int floorNumber) {
         if(random() < Parameters.CHANCE_OF_ITEM_IS_WEAPON) {
-            return new Weapon();
+            return new Weapon( floorNumber );
         }
-        return new Potion();
+        return new Potion( floorNumber );
     }
 
     /**
@@ -68,7 +52,7 @@ public class Generate {
      * @return The monster.
      * @see Monster
      */
-    public static Monster monster() {
-        return new Monster();
+    public static Monster monster(int floorNumber) {
+        return new Monster( floorNumber );
     }
 }

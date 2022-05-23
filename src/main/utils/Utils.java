@@ -89,8 +89,8 @@ public class Utils {
                     for (int y = 0; y < passages[i][x].length; y++) {
                         if (passages[i][x][y] == 0) { //if the passage is not a wall
                             if (i == 0) {
-                                h_passages[x][y] = new Passage(); //create a passage
-                            } else v_passages[x][y] = new Passage();
+                                h_passages[x][y] = new Passage(castle); //create a passage
+                            } else v_passages[x][y] = new Passage(castle);
                         }
                     }
                 }
