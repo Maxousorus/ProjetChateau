@@ -182,18 +182,24 @@ public class Game {
         if(event == null) { // If the passage has no event
             passageAccess = true; // Player can access to the next room
         }else {
-            if(event instanceof Trap) { // If the event is a trap
-                player.setPv(player.getPv() - ((Trap) event).getDamage());
-                new Notification("You have encountered a Trap, You received " + ((Trap) event).getDamage() + "damages.",map).choose();
-            }else if(event instanceof Sage) { // If the event is a sage
+            if(event instanceof Trap trap) { // If the event is a trap
+                player.setPv(player.getPv() - (trap.getDamage());
+                new Notification("You have encountered a Trap, You received " + trap.getDamage() + "damages.",map).choose();
+                passageAccess = true;
+            }else if(event instanceof Sage sage) { // If the event is a sage
                 new Notification("You have encountered a Sage !",map).choose();
-                //TODO faire le code
+                if(sage.questionSage() == 1) { // If the player have the good answer
+                    new Notification("You have answered correctly !",map).choose();
+                    passageAccess = true;
+                } else {
+                    new Notification("You have answered incorrectly !",map).choose();
+                }
             }
         }
 
         if(passageAccess) { // If the player can access to the next room
             passage.setEvent(null); // The event is removed in the passage
         }
-        return true;
+        return passageAccess;
     }
 }
