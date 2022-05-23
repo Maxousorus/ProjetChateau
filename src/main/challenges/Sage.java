@@ -85,13 +85,29 @@ public class Sage extends Challenge {
      */
 
     public int questionSage() throws IOException {
-        int random = Utils.randomInt(0,question.length);
         int reponse;
-        Menu choixanswer = new Menu(question, answer);
+        String[] mixedAnswers = mixAnswers(answers);
+        int index_goodAnswer = -1;
+        for(int i = 0; i < mixedAnswers.length; i++){
+            if(mixedAnswers[i].equals(goodAnswer)){
+                index_goodAnswer = i;
+            }
+        }
+        Menu choixanswer = new Menu(question, answers);
         reponse = choixanswer.choose();
-        if(random == reponse){
+        if(reponse == index_goodAnswer){
             return 1;
         }
         return -1;
+    }
+
+    private String[] mixAnswers(String[] answers){
+        String[] mixedAnswers = new String[answers.length];
+        for(int i = 0; i < answers.length; i++){
+            int random = Utils.randomInt(0,answers.length-1);
+            mixedAnswers[i] = answers[random];
+            answers[random] = answers[i];
+        }
+        return mixedAnswers;
     }
 }
