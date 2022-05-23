@@ -22,6 +22,7 @@ public class Trap extends Challenge {
     }
 
     private int damageTrap(int numberFloor){
+        numberFloor +=1;
         if(numberFloor <= 10){
             damage = Utils.randomInt(1,3*numberFloor);
         }

@@ -13,12 +13,12 @@ public abstract class Entity implements CanBeInRoom {
     private String nom;
 
     private String[] tabName = {
-            "GodJonas",
-            "Tigrou",
-            "Dumbo",
-            "Grizzly",
-            "Poulpi",
-            "Chèvre"};
+            "Witch",
+            "Ogre",
+            "Slime",
+            "Baby Dragon",
+            "",
+            "Goat"};
 
 
     /**

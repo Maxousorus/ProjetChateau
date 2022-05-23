@@ -59,7 +59,7 @@ public class Game {
                 switch (event.getClass().getSimpleName()){
                     case "Weapon" -> {
                         new Notification("You have found a Weapon, it's a " + ((Weapon)event).getName() +
-                                "it deal " + ((Weapon)event).getDamage(), map).choose();
+                                " it deal " + ((Weapon)event).getDamage() + " damage", map).choose();
                         Menu weapon = new Menu("Do you want to take it ?", new String[]{"Yes", "No"}, map);
                         if(weapon.choose() == 0){
                             player.setWeapon((Weapon)event);

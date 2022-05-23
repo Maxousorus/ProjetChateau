@@ -22,6 +22,7 @@ public class Potion extends Item {
     }
 
     private int healPotion (int numberFloor){
+        numberFloor +=1;
         if(numberFloor <= 10){
             pv = Utils.randomInt(1,4*numberFloor);
         }

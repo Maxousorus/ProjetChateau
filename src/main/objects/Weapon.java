@@ -29,6 +29,7 @@ public class Weapon extends Item {
     }
 
     public int getWeapon (int numberFloor){
+        numberFloor +=1;
         if(numberFloor <= 10){
             damage = Utils.randomInt(5,5 + (3 * numberFloor));
         }
