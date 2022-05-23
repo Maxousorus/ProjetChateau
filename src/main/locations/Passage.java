@@ -18,12 +18,12 @@ public class Passage {
 
     /**
      * Constructor of the Passage class.
-     * Instanciate a random new Passage.
+     * Instantiate a random new Passage.
      */
-    public Passage() {
+    public Passage(Floor floor) {
         if(Math.random() < Parameters.CHANCE_OF_CHALLENGE_IN_PASSAGE) {
             if (Math.random() < Parameters.CHANCE_OF_CHALLENGE_IS_TRAP) {
-                this.event = new Trap();
+                this.event = new Trap(floor.getFloorNumber());
             } else {
                 this.event = new Sage();
             }

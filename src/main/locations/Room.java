@@ -30,9 +30,9 @@ public class Room {
      */
     public Room(Floor floor) {
         if (Math.random() < Parameters.CHANCE_OF_ITEM_IN_ROOM) {
-            this.roomEvent = Generate.item();
+            this.roomEvent = Generate.item(floor.getFloorNumber());
         }  else if (Math.random() < Parameters.CHANCE_OF_MONSTER_IN_ROOM) {
-            this.roomEvent = Generate.monster();
+            this.roomEvent = Generate.monster(floor.getFloorNumber());
         } else {
             this.roomEvent = null;
         }

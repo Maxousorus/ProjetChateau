@@ -3,6 +3,7 @@ package main.entities;
 import main.locations.Castle;
 import main.locations.Room;
 import main.objects.*;
+import main.utils.Parameters;
 
 /**
  * Player class
@@ -20,8 +21,9 @@ public class Player extends Entity {
      */
     public Player() {
         super();
-        this.weapon = weapon;
-        this.room = room;
+        this.setNom("Player");
+        this.setPv(Parameters.PLAYER_MAX_HP);
+        this.setDamage(Parameters.PLAYER_HAND_DAMAGE);
     }
 
 

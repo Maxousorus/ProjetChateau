@@ -53,4 +53,8 @@ public class Parameters {
      */
 //Chance for a item to be a Weapon (the chance for an item to be a potion is 1 - 'theNextParam')
     public static final double CHANCE_OF_ITEM_IS_WEAPON = 0.5;
+
+    public static final int PLAYER_MAX_HP = 100;
+
+    public static final int PLAYER_HAND_DAMAGE = 5;
 }
