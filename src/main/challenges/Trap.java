@@ -1,5 +1,8 @@
 package main.challenges;
 
+import main.locations.*;
+import main.utils.Utils;
+
 /**
  * Trap class.
  *
@@ -8,13 +11,27 @@ package main.challenges;
 public class Trap extends Challenge {
 
     private int damage;
-
+    private int numberFloor;
     /**
      * Instantiates a new Trap.
      */
-    public Trap() {
+    public Trap(int numberFloor) {
         super();
-        this.damage = damage;
+        this.damage = damageTrap(numberFloor);
+        this.numberFloor = numberFloor;
     }
 
+    private int damageTrap(int numberFloor){
+        if(numberFloor <= 10){
+            damage = Utils.randomInt(1,3*numberFloor);
+        }
+        else{
+            damage = Utils.randomInt(10,30);
+        }
+        return damage;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
 }

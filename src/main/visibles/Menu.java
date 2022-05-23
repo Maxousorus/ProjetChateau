@@ -55,6 +55,7 @@ public class Menu {
 
         for (int i = 0; i < options.length; i++) { //For each options
             if (i == selected) {
+
                 System.out.println("\u001b[107;30m" + options[i] + "\u001b[0m"); //Print the selected option in inverted
             } else {
                 System.out.println(options[i]); //Print the other options

@@ -175,8 +175,8 @@ public class Game {
             passageAccess = true; // Player can access to the next room
         }else {
             if(event instanceof Trap) { // If the event is a trap
-                new Notification("You have encountered a Trap !",map).choose();
-                //TODO faire le code
+                player.setPv(player.getPv() - ((Trap) event).getDamage());
+                new Notification("You have encountered a Trap, You received " + ((Trap) event).getDamage() + "damages.",map).choose();
             }else if(event instanceof Sage) { // If the event is a sage
                 new Notification("You have encountered a Sage !",map).choose();
                 //TODO faire le code
