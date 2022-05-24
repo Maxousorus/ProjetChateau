@@ -18,7 +18,39 @@ public class Entity implements CanBeInRoom {
             "Slime",
             "Baby Dragon",
             "Troll",
-            "Goat"};
+            "Goat",
+            "Goblin",
+            "Orc",
+            "Skeleton",
+            "Zombie",
+            "Golem",
+            "Giant",
+            "Dragon",
+            "Vampire",
+            "Werewolf",
+            "Ghost",
+            "Wizard",
+            "Warrior",
+            "Archer",
+            "Priest",
+            "Thief",
+            "Knight",
+            "Mage",
+            "Warlock",
+            "Bard",
+            "Druid",
+            "Monk",
+            "Paladin",
+            "Ranger",
+            "Necromancer",
+            "Assassin",
+            "Berserk",
+            "Sorcerer",
+            "Ninja",
+            "Samurai"
+    } ;
+
+
 
 
     /**
