@@ -1,6 +1,6 @@
 package main.utils;
 
-import main.entities.Monster;
+import main.entities.Entity;
 import main.locations.Castle;
 import main.objects.Item;
 import main.objects.Potion;
@@ -21,7 +21,7 @@ public class Generate {
      *
      * @param nbFloors The number of floors of the castle.
      * @return The castle.
-     * @see Castle,Utils
+     * @see , CastleUtils
      */
     public static Castle castle(int nbFloors) {
         Castle castle = new Castle(nbFloors); // Create the castle
@@ -36,6 +36,7 @@ public class Generate {
     /**
      * This method is used to generate a random Item.
      *
+     * @param floorNumber the floor number
      * @return The item.
      * @see Item
      */
@@ -49,10 +50,11 @@ public class Generate {
     /**
      * This method is used to generate a random Monster.
      *
+     * @param floorNumber the floor number
      * @return The monster.
-     * @see Monster
+     * @see Entity
      */
-    public static Monster monster(int floorNumber) {
-        return new Monster(  );
+    public static Entity monster(int floorNumber) {
+        return new Entity( floorNumber );
     }
 }
