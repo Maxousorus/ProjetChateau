@@ -22,7 +22,7 @@ public class Player extends Entity {
      * Instanciate a random new player
      */
     public Player() {
-        super();
+        super(0);
         this.setName("Player");
         this.setPv(Parameters.PLAYER_MAX_HP);
         this.setDamage(Parameters.PLAYER_HAND_DAMAGE);
@@ -86,11 +86,14 @@ public class Player extends Entity {
      * This method show player's stats
      */
     public void showStats() {
-        System.out.println("Information about your character :");
+        System.out.println(Parameters.FRAME_COLOR + "Information about your character :");
         if(this.getWeapon() == null) {
-            System.out.println("HP: " + this.getPv() + " - DMG: " + this.getDamage());
+            System.out.println("\033[38;5;46mHP: " + this.getPv() + "/" + Parameters.PLAYER_MAX_HP + Parameters.FRAME_COLOR +
+                    " - \033[38;5;196mDMG: " + this.getDamage());
         } else {
-            System.out.println("HP: " + this.getPv() + " - Weapon: " + this.getWeapon().getName() + " - DMG: " + this.getWeapon().getDamage());
+            System.out.println("\033[38;5;46mHP: " + this.getPv() + "/" + Parameters.PLAYER_MAX_HP + Parameters.FRAME_COLOR +
+                    " - \033[38;5;51mWeapon: " + this.getWeapon().getName() + Parameters.FRAME_COLOR +
+                    " - \033[38;5;196mDMG: " + this.getWeapon().getDamage());
         }
     }
 }
