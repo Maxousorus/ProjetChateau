@@ -17,6 +17,8 @@ public class Player extends Entity {
     private Weapon weapon;
     private Room room;
 
+    private Room previousRoom;
+
     /**
      * Player constructor
      * Instanciate a random new player
@@ -62,7 +64,14 @@ public class Player extends Entity {
      * @param room the player's room
      */
     public void setRoom(Room room) {
+
+        this.previousRoom = this.room;
         this.room = room;
+
+    }
+
+    public void runAway(){
+        this.setRoom(this.previousRoom);
     }
 
     /**

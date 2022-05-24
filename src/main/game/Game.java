@@ -66,6 +66,7 @@ public class Game {
 
             if(player.getRoom().getRoomEvent() != null){
                 CanBeInRoom event = player.getRoom().getRoomEvent();
+                boolean runAway = false;
                 switch (event.getClass().getSimpleName()){
                     case "Weapon" -> {
                         new Notification("You have found a Weapon, it's a " + ((Weapon)event).getName() +
@@ -83,9 +84,23 @@ public class Game {
                     case "Entity" -> {
                         new Notification("You have encountered a Monster, it's a " + ((Entity)event).getName(), map).choose();
                         //TODO faire le code
+                        Fight fight = new Fight(player, (Entity)event);
+                        switch (fight.fight()) {
+                            case -1 -> { // Player died
+                                new Notification("You died", map).choose();
+                            }
+                            case 0 -> { // Player run away
+                                new Notification("You run away", map).choose();
+                                runAway = true;
+                            }
+                            case 1 -> { // Player won
+                                new Notification("You won", map).choose();
+                            }
+                        }
                     }
                 }
-                player.getRoom().setRoomEvent(null); // Remove the room event
+                if(!runAway) player.getRoom().setRoomEvent(null); // Remove the room event
+                if(runAway) player.runAway(); // Run away
             }
 
             if(player.getRoom().isUpStairs() || player.getRoom().isDownStairs()) { // If the room has stairs

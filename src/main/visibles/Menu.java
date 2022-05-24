@@ -18,6 +18,19 @@ public class Menu {
     private final String title; //The title of the menu or the question
     private final Map map; //The map of the game
 
+    private final Popup popup; //The popup of the game
+
+    public Menu(String title, String[] options, Map map, Popup popup) {
+        this.title = title;
+        this.options = options;
+        this.map = map;
+        this.popup = popup;
+    }
+
+    public Menu(String title, String[] options, Popup popup) {
+        this(title, options, null, popup);
+    }
+
     /**
      * Constructor of the class Menu.
      *
@@ -27,9 +40,7 @@ public class Menu {
      * @see Map
      */
     public Menu(String title, String[] options,Map map) {
-        this.title = title;
-        this.options = options;
-        this.map = map;
+        this(title, options, map, null);
     }
 
     /**
@@ -39,7 +50,7 @@ public class Menu {
      * @param options the choices of the menu.
      */
     public Menu(String title, String[] options) {
-        this(title, options, null);
+        this(title, options, null, null);
     }
 
     /**
@@ -80,6 +91,9 @@ public class Menu {
     public int choose() throws IOException {
         while (true) { //While the user doesn't choose an option
             Utils.clearConsole();
+            if(popup != null) {
+                popup.show();
+            }
             if(map != null) {
                 System.out.println("Map of the floor n°" + map.getFloor() + " :");
                 map.show();

@@ -3,6 +3,7 @@ package main.game;
 import main.utils.Parameters;
 import main.visibles.Menu;
 import main.visibles.Notification;
+import main.visibles.Popup;
 
 import java.io.IOException;
 
