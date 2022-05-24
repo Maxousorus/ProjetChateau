@@ -131,6 +131,7 @@ public class Game {
                 Menu quitter = new Menu("Do you want to go out of the castle ?", new String[]{"Yes", "No"}, map); // Generate the menu
                 if (quitter.choose() == 0) { // If the player choose to quit
                     new Notification("You are out of the castle !", map).choose(); // Display the notification
+
                     break;
                 }
             }
@@ -227,5 +228,9 @@ public class Game {
             passage.setEvent(null); // The event is removed in the passage
         }
         return passageAccess;
+    }
+
+    private Boolean bossRoom(){
+        return true;
     }
 }

@@ -23,7 +23,7 @@ public class Entity implements CanBeInRoom {
             "Orc",
             "Skeleton",
             "Zombie",
-            "Golem",
+            "Gollum",
             "Giant",
             "Dragon",
             "Vampire",
@@ -47,7 +47,8 @@ public class Entity implements CanBeInRoom {
             "Berserk",
             "Sorcerer",
             "Ninja",
-            "Samurai"
+            "Samurai",
+            "Dark Sasuke"
     } ;
 
 

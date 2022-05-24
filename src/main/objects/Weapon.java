@@ -11,12 +11,27 @@ public class Weapon extends Item {
     private int numberFloor;
     private String name;
     private String [] names = {
-        "Sword",
-        "Spear",
-        "Boomerang",
-        "Bow",
-        "Dagger",
-        "Cudgel"
+            "Sword",
+            "Spear",
+            "Boomerang",
+            "Bow",
+            "Dagger",
+            "Cudgel",
+            "Axe",
+            "Mace",
+            "Staff",
+            "Wand",
+            "Scythe",
+            "Knife",
+            "Claw",
+            "Saber",
+            "Halberd",
+            "Sling",
+            "Shuriken",
+            "Dart",
+            "Javelin",
+            "Crossbow",
+            "Thanos Gauntlet"
     };
 
     /**
