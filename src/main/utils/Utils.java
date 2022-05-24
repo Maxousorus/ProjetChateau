@@ -177,7 +177,9 @@ public class Utils {
      */
     private static int[] randomPassage(int[][] grid, boolean h) {
         int a, b;
+        int debug = 0;
         do { //choose a random passage
+            if(debug > 100) h = !h;
             if (h) {
                 a = (int) (Math.random() * Parameters.FLOOR_SIZE);
                 b = (int) (Math.random() * Parameters.FLOOR_SIZE - 1);
@@ -185,6 +187,7 @@ public class Utils {
                 a = (int) (Math.random() * Parameters.FLOOR_SIZE - 1);
                 b = (int) (Math.random() * Parameters.FLOOR_SIZE);
             }
+            debug+=1;
         } while (!isRemovablePassage(grid, a, b, h)); //while the passage is not removable
 
         if (h) return new int[]{0, a, b}; //return the horizontal passage
