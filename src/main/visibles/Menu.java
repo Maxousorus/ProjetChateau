@@ -1,5 +1,6 @@
 package main.visibles;
 
+import main.utils.Parameters;
 import main.utils.RawConsoleInput;
 import main.utils.Utils;
 
@@ -49,18 +50,25 @@ public class Menu {
         for (int i = 0; i < title.length(); i++) {
             line += "\u2550";
         }
+        System.out.print(Parameters.FRAME_COLOR);
         System.out.println("\u2554\u2550\u2550" + line + "\u2550\u2550\u2557");
         System.out.println("\u2551  " + title +"  \u2551"); //Put the title in a frame
-        System.out.println("╚\u2550\u2550" + line + "\u2550\u2550╝");
+        System.out.println("\u255a\u2550\u2550" + line + "\u2550\u2550\u255d");
 
+        String usingColor;
         for (int i = 0; i < options.length; i++) { //For each options
-            if (i == selected) {
-
-                System.out.println("\u001b[107;30m" + options[i] + "\u001b[0m"); //Print the selected option in inverted
+            if(i % 2 == 0) {
+                usingColor = Parameters.COLOR_1;
             } else {
-                System.out.println(options[i]); //Print the other options
+                usingColor = Parameters.COLOR_2;
+            }
+            if (i == selected) {;
+                System.out.println(Parameters.SELECTED_COLOR + ">" + options[i]); //Print the selected option in selected color
+            } else {
+                System.out.println(usingColor + options[i]); //Print the other options
             }
         }
+        System.out.print(Parameters.RESET_COLOR);
     }
 
     /**
