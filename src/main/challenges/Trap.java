@@ -12,8 +12,11 @@ public class Trap extends Challenge {
 
     private int damage;
     private int numberFloor;
+
     /**
      * Instantiates a new Trap.
+     *
+     * @param numberFloor the number floor
      */
     public Trap(int numberFloor) {
         super();
@@ -32,6 +35,11 @@ public class Trap extends Challenge {
         return damage;
     }
 
+    /**
+     * Gets damage.
+     *
+     * @return the damage
+     */
     public int getDamage() {
         return damage;
     }

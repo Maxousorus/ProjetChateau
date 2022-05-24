@@ -6,7 +6,7 @@ import main.utils.Utils;
 /**
  * The type Entity.
  */
-public abstract class Entity implements CanBeInRoom {
+public class Entity implements CanBeInRoom {
 
     private int damage;
     private int pv;
@@ -23,6 +23,8 @@ public abstract class Entity implements CanBeInRoom {
 
     /**
      * Instantiates a new Entity.
+     *
+     * @param numberFloor the number floor
      */
     public Entity(int numberFloor) {
         this.damage = damageEntity(numberFloor);
@@ -53,6 +55,11 @@ public abstract class Entity implements CanBeInRoom {
         return pv;
     }
 
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
     public void setName(String name) {
         this.name = name;
     }

@@ -19,6 +19,8 @@ public class Passage {
     /**
      * Constructor of the Passage class.
      * Instantiate a random new Passage.
+     *
+     * @param floor the floor
      */
     public Passage(Floor floor) {
         if(Math.random() < Parameters.CHANCE_OF_CHALLENGE_IN_PASSAGE) {

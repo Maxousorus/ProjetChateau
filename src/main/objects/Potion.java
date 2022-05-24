@@ -14,6 +14,8 @@ public class Potion extends Item {
     /**
      * Constructor for the Potion class
      * Instantiate a random new Potion
+     *
+     * @param numberFloor the number floor
      */
     public Potion(int numberFloor) {
         super();
@@ -32,6 +34,11 @@ public class Potion extends Item {
         return pv;
     }
 
+    /**
+     * Gets pv.
+     *
+     * @return the pv
+     */
     public int getPv() {
         return pv;
     }

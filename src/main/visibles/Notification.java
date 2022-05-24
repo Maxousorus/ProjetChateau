@@ -4,7 +4,7 @@ package main.visibles;
  * This class permits to display a notification.
  *
  * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias.
- * @see Menu Extends of Menu
+ * @see MenuExtendsof Menu
  */
 public class Notification extends Menu{
 

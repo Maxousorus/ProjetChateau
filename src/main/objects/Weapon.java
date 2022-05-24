@@ -18,8 +18,11 @@ public class Weapon extends Item {
         "Dagger",
         "Cudgel"
     };
+
     /**
      * Instantiates a new Weapon.
+     *
+     * @param numberFloor the number floor
      */
     public Weapon(int numberFloor) {
         super();
@@ -28,6 +31,12 @@ public class Weapon extends Item {
         this.name = names[Utils.randomInt(0,names.length-1)];
     }
 
+    /**
+     * Get weapon int.
+     *
+     * @param numberFloor the number floor
+     * @return the int
+     */
     public int getWeapon (int numberFloor){
         numberFloor +=1;
         if(numberFloor <= 10){
@@ -39,10 +48,20 @@ public class Weapon extends Item {
         return damage;
     }
 
+    /**
+     * Gets damage.
+     *
+     * @return the damage
+     */
     public int getDamage() {
         return damage;
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }
