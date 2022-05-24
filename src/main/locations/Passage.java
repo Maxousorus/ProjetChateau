@@ -71,43 +71,43 @@ public class Passage {
         if (horizontal) { //Print horizontal passage
             if (this.visited) {
                 if (Parameters.ROOM_HEIGHT % 2 == 0) { //IDE find an error but it's not an error
-                    result.add("▓▓▓▓");
-                    result.add("    ");
-                    result.add("    ");
-                    result.add("▓▓▓▓");
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
+                    result.add(Parameters.RESET_COLOR + "    " );
+                    result.add(Parameters.RESET_COLOR + "    ");
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
                 } else {
-                    result.add("▓▓▓▓");
-                    result.add("    ");
-                    result.add("▓▓▓▓");
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
+                    result.add(Parameters.RESET_COLOR + "    ");
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
                 }
             } else {
                 if (Parameters.ROOM_HEIGHT % 2 == 0) { //IDE find an error but it's not an error
-                    result.add("▓▓▓▓");
-                    result.add("▓▓▓▓");
-                    result.add("▓▓▓▓");
-                    result.add("▓▓▓▓");
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
                 } else {
-                    result.add("▓▓▓▓");
-                    result.add("▓▓▓▓");
-                    result.add("▓▓▓▓");
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
                 }
             }
         } else { //Print vertical passage
             if (this.visited) {
                 if (Parameters.ROOM_SIZE % 2 == 0) { //IDE find an error but it's not an error
-                    result.add("▓  ▓");
-                    result.add("▓  ▓");
+                    result.add(Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR + "  " + Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR + "  " + Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR);
                 } else {
-                    result.add("▓ ▓");
-                    result.add("▓ ▓");
+                    result.add(Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR + " " + Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR + " " + Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR);
                 }
             } else {
                 if (Parameters.ROOM_SIZE % 2 == 0) { //IDE find an error but it's not an error
-                    result.add("▓▓▓▓");
-                    result.add("▓▓▓▓");
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR);
                 } else {
-                    result.add("▓▓▓");
-                    result.add("▓▓▓");
+                    result.add(Parameters.MAP_COLOR + "   " + Parameters.RESET_COLOR);
+                    result.add(Parameters.MAP_COLOR + "   " + Parameters.RESET_COLOR);
                 }
             }
         }

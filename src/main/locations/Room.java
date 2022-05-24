@@ -189,7 +189,7 @@ public class Room {
             for (int i = 0; i < Parameters.ROOM_SIZE; i++) {
                 String line = ""; //Create a line
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++) { //For each character in the line
-                    line += "▓"; //Add a wall
+                    line += Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR; //Add a wall
                 }
                 roomstring.add(line); //Add the line to the list
             }
@@ -213,7 +213,7 @@ public class Room {
                 roomstring.add("  └" + l1);
             }
             for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
-                String line = "";
+                String line = Parameters.RESET_COLOR;
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++)
                     line += " ";
                 roomstring.add(line);
@@ -222,13 +222,13 @@ public class Room {
         }
         if (upstairs) { //If the room is a room with upstairs
             for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
-                String line = "";
+                String line = Parameters.RESET_COLOR;
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
                     line += " ";
                 }
                 roomstring.add(line);
             }
-            String l1 = "";
+            String l1 = Parameters.RESET_COLOR;
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
             if(isPlayerInRoom) { //If the player is in the room
@@ -244,13 +244,13 @@ public class Room {
         }
         if (spawn) { //If the room is a room with spawn
             for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
-                String line = "";
+                String line = Parameters.RESET_COLOR;
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
                     line += " ";
                 }
                 roomstring.add(line);
             }
-            String l1 = "";
+            String l1 = Parameters.RESET_COLOR;
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
             if(isPlayerInRoom) { //If the player is in the room
@@ -266,13 +266,13 @@ public class Room {
         }
         if (exit) { //If the room is a room with exit
             for (int i = 0; i < Parameters.ROOM_HEIGHT - 3; i++) {
-                String line = "";
+                String line = Parameters.RESET_COLOR;
                 for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
                     line += " ";
                 }
                 roomstring.add(line);
             }
-            String l1 = "";
+            String l1 = Parameters.RESET_COLOR;
             for (int i = 0; i < Parameters.ROOM_SIZE - 3; i++)
                 l1 += " ";
             if(isPlayerInRoom) { //If the player is in the room
@@ -288,7 +288,7 @@ public class Room {
         }
         //If the room is not a room with stairs, spawn or exit
         for (int i = 0; i < Parameters.ROOM_HEIGHT; i++) {
-            String line = "";
+            String line = Parameters.RESET_COLOR;
             for (int j = 0; j < Parameters.ROOM_SIZE; j++) {
                 if(isPlayerInRoom && i == Parameters.ROOM_HEIGHT/2 && j == Parameters.ROOM_SIZE/2) //If the player is in the room
                     line += "\033[32mX\033[0m"; //Make the player in the room green

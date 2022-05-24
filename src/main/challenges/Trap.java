@@ -1,6 +1,5 @@
 package main.challenges;
 
-import main.locations.*;
 import main.utils.Utils;
 
 /**

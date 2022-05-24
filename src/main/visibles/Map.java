@@ -15,9 +15,9 @@ public class Map {
 
     private final Player player; // The player of the map.
 
-    private final String sidewall = "\u2593\u2593"; //Wall on side (left and right) of the map.
+    private final String sidewall = Parameters.MAP_COLOR + "  " + Parameters.RESET_COLOR; //Wall on side (left and right) of the map.
 
-    private final String aroundPassage = "\u2593\u2593\u2593\u2593"; //Wall around the passage and between rooms
+    private final String aroundPassage = Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR; //Wall around the passage and between rooms
 
     /**
      * Constructor of the class Map.
@@ -56,7 +56,7 @@ public class Map {
     private String updownwall() { //Wall on top and bottom of the map.
         String room = "";
         for (int i = 0; i < Parameters.ROOM_SIZE; i++) {
-            room += "\u2593";
+            room += Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR;
         }
         String updownwall = sidewall;
         for (int i = 0; i < Parameters.FLOOR_SIZE; i++) {
@@ -101,13 +101,13 @@ public class Map {
                             if (Parameters.ROOM_HEIGHT % 2 == 1) { //If the number of lines of the passage is not pair
                                 if (nbline >= (Parameters.ROOM_HEIGHT / 2) - 1 && nbline <= (Parameters.ROOM_HEIGHT / 2) + 1) { //If the line of the passage is in the middle of the passage
                                     line += passage.get(nbline - ((Parameters.ROOM_HEIGHT / 2) - 1)); //Add the line of the passage
-                                } else line += "\u2593\u2593\u2593\u2593"; //If the line of the passage is not in the middle of the passage, put a wall
+                                } else line += Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR; //If the line of the passage is not in the middle of the passage, put a wall
                             } else if (Parameters.ROOM_HEIGHT % 2 == 0) { //If the number of lines of the passage is pair
                                 if (nbline >= (Parameters.ROOM_HEIGHT / 2) - 2 && nbline <= (Parameters.ROOM_HEIGHT / 2) + 1) { //If the line of the passage is in the middle of the passage
                                     line += passage.get(nbline - ((Parameters.ROOM_HEIGHT / 2) - 2)); //Add the line of the passage
-                                } else line += "\u2593\u2593\u2593\u2593";  //If the line of the passage is not in the middle of the passage, put a wall
+                                } else line += Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR;  //If the line of the passage is not in the middle of the passage, put a wall
                             } else { //If the number of lines of the passage is not a number
-                                line += "\u2593\u2593\u2593\u2593"; //If the number of lines of the passage is not even, put a wall
+                                line += Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR; //If the number of lines of the passage is not even, put a wall
                             }
                         } else { //If there is no passage between the room and the next
                             line += aroundPassage; //If there is no passage between the room and the next, put a wall
@@ -115,7 +115,7 @@ public class Map {
                     }
                 }
                 line += sidewall; //Put sidewall on the right of the line
-                map += line + "\n"; //Add the line
+                map += line + Parameters.RESET_COLOR + "\n"; //Add the line
             }
             if (row < Parameters.FLOOR_SIZE - 1) { //If it's not the last row of the floor
                 for (int i = 0; i < 2; i++) { //For each line of the passage between the row of rooms and the next
@@ -124,17 +124,17 @@ public class Map {
                     for (int col = 0; col < Parameters.FLOOR_SIZE; col++) { //For each room of the column
                         if (v_passages[row][col] == null) { //If there is no passage between the room and the next
                             for (int j = 0; j < Parameters.ROOM_SIZE; j++) { //For each line of the room
-                                line += "\u2593"; //If there is no passage between the room and the next, put a wall
+                                line += Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR; //If there is no passage between the room and the next, put a wall
                             }
                         } else { //If there is a passage between the room and the next
                             String nextToPassage = "";//Add the line of the passage after the middle of the passage
                             if (Parameters.ROOM_SIZE % 2 == 1) { //If the number of lines of the passage is not pair
                                 for (int j = 0; j < (Parameters.ROOM_SIZE / 2) - 1; j++) { //For each line of the passage before the middle of the passage
-                                    nextToPassage += "\u2593"; //Put a wall
+                                    nextToPassage += Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR; //Put a wall
                                 }
                             } else {
                                 for (int j = 0; j < (Parameters.ROOM_SIZE / 2) - 2; j++) { //For each line of the passage before the middle of the passage
-                                    nextToPassage += "\u2593"; //Put a wall
+                                    nextToPassage += Parameters.MAP_COLOR + " " + Parameters.RESET_COLOR; //Put a wall
                                 }
                             }
                             line += nextToPassage; //Add the line of the passage before the middle of the passage
@@ -142,7 +142,7 @@ public class Map {
                             line += nextToPassage; //Add the line of the passage after the middle of the passage
                         }
                         if (col < Parameters.FLOOR_SIZE - 1) { //If it's not the last room of the column
-                            line += "\u2593\u2593\u2593\u2593"; //Put a wall between the room and the next
+                            line += Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR; //Put a wall between the room and the next
                         } else line += sidewall; //Put sidewall on the right of the line
                     }
                     map += line + "\n"; //Add the line

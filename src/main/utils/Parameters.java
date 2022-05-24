@@ -26,7 +26,7 @@ public class Parameters {
     /**
      * The constant MAP_COLOR.
      */
-    public static final String MAP_COLOR = "\033[38;5;13m";
+    public static final String MAP_COLOR = "\033[48;5;13m";
     /**
      * The constant FRAME_COLOR.
      */
