@@ -28,15 +28,24 @@ public class Game {
     /**
      * The Castle.
      */
-    Castle castle = Generate.castle(Parameters.FLOOR_SIZE); // Generate the castle
+    Castle castle;
     /**
      * The Player.
      */
-    Player player = new Player(); // Generate the player
+    Player player;
     /**
      * The Map.
      */
-    Map map = new Map(player); // Generate the map
+    Map map;
+
+    /**
+     * Instantiates a new Game.
+     */
+    public Game(){
+        this.castle = Generate.castle(Parameters.FLOOR_SIZE); // Generate the castle
+        this.player = new Player(); // Generate the player
+        this.map = new Map(player); // Generate the map
+    }
 
     /**
      * This method run the game.
@@ -71,7 +80,7 @@ public class Game {
                         if(player.getPv() > Parameters.PLAYER_MAX_HP) player.setPv(Parameters.PLAYER_MAX_HP);
                         new Notification("You have found a Potion, You received " + ((Potion)event).getPv() + "hp.", map).choose();
                     }
-                    case "Monster" -> {
+                    case "Entity" -> {
                         new Notification("You have encountered a Monster, it's a " + ((Entity)event).getName(), map).choose();
                         //TODO faire le code
                     }
@@ -82,7 +91,7 @@ public class Game {
             if(player.getRoom().isUpStairs() || player.getRoom().isDownStairs()) { // If the room has stairs
                 int[] thisRoomCoords = player.getRoom().getRoomCoordinates(); // Get the room coordinates
                 if (player.getRoom().isUpStairs()) { // If the room has an up stairs
-                    Menu descendre = new Menu("Do you want to go at the next floor ?", new String[]{"Yes", "No"},map); // Generate the menu
+                    Menu descendre = new Menu("Do you want to go at the previous floor ?", new String[]{"Yes", "No"},map); // Generate the menu
                     // Choose the option
                     if (descendre.choose() == 0) {// If the player choose to go down
                         int nextFloor = player.getRoom().getFloor().getFloorNumber() - 1; // Get the previous floor
@@ -137,7 +146,7 @@ public class Game {
                     directions.add("No Passage");
                 }
                 String[] directionsArray = directions.toArray(new String[0]); // Convert the list to an array
-                Menu choix = new Menu("Where do you want to go", directionsArray,map); // Generate the menu
+                Menu choix = new Menu("Where do you want to go ?", directionsArray,map); // Generate the menu
                 int direction;
                 do { // Choose the direction
                     direction = choix.choose();
@@ -189,7 +198,7 @@ public class Game {
                 new Notification("You have encountered a Trap, You received " + trap.getDamage() + "damages.",map).choose();
                 passageAccess = true;
             }else if(event instanceof Sage sage) { // If the event is a sage
-                new Notification("You have encountered a Sage !",map).choose();
+                new Notification("You have encountered " +  sage.getName() + " the Sage !",map).choose();
                 if(sage.questionSage() == 1) { // If the player have the good answer
                     new Notification("You have answered correctly !",map).choose();
                     passageAccess = true;
