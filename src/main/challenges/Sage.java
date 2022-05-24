@@ -4,6 +4,8 @@ import main.utils.Utils;
 import main.visibles.Menu;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Sage class.
@@ -12,39 +14,47 @@ import java.io.IOException;
  */
 public class Sage extends Challenge {
 
-    private final String[] possible_names = {
-            "Merlin l'Enchanteur",
+    private static final String[] possible_names = {
+            "Merlin the Enchanter",
             "TicTac",
-            "Canard Boiteux",
+            "Dull Duck",
             "Forms",
-            "Couecouette",
+            "Duduvet",
             "Krystofer"
 
     };
 
-    private final String[] possible_questions= {
-            "Combien font 5*9 ?",
-            "Quel est le gagnant de la coupe du monde de football en 2018 ?",
-            "Dans quelle équipe joue BENZEMA ?",
-            "Quelle est la meilleur note de josias ?",
-            "Pain au chocolat ou chocolatine ?",
-            "En quelle année le nouveau bâtiment du CNAM est censé ouvrir ?"
-
+    private static final String[] possible_questions= {
+            "How much is 5*9?",
+            "Who is the winner of the 2018 football world cup?",
+            "In which team does BENZEMA play?",
+            "Pain au chocolat or chocolatine ?",
+            "In what year is the new CNAM building due to open?",
+            "How many people worked on this dungeon crawler?",
+            "What is the name of the first president of the USA?",
+            "How many countries are there in the world?",
+            "What Jamy says when he is happy?",
+            "How many stairs are there in the Eiffel Tower to go at the first level?",
+            "In what year was the first world war?"
     };
-    private final String[][] possible_answers = {
+    private static final String[][] possible_answers = {
             {"45", "54", "71", "69"},
-            {"France", "Belgique", "Croatie", "Allemagne"},
+            {"France", "Belgium", "Croatia", "Germany"},
             {"Real Madrid", "Paris-Saint-Germain" , "L'Olympique de Marseille", "FC Barcelone"},
-            {"9"},
             {"Pain au chocolat", "Chocolatine"},
-            {"2022", "2021", "2024", "1415 AV-JC"}
+            {"2022", "2021", "2024", "1415J.C."},
+            {"4", "2.5", "3", "5"},
+            {"George Washington", "John Adams", "Thomas Jefferson", "James Madison"},
+            {"195", "1500", "120", "Approximately 2"},
+            {"\"The joy\"", "\"I'm not happy\"", "\"Do you know my little puppy ?\"", "\"I'm your father\""},
+            {"328", "215", "784", "512"},
+            {"1914", "1918", "1939", "1944"}
     };
 
-    private String name;
-    private String question;
-    private String[] answers;
-    private String goodAnswer;
-
+    private final String name;
+    private final String question;
+    private final String[] answers;
+    private final String goodAnswer;
 
 
     /**
@@ -59,22 +69,9 @@ public class Sage extends Challenge {
         this.goodAnswer = answers[0];
     }
 
-    /**
-     * Get question string [ ].
-     *
-     * @return the string [ ]
-     */
-    public String getQuestion() {
-        return question;
-    }
-
-    /**
-     * Get answer string [ ].
-     *
-     * @return the string [ ]
-     */
-    public String[] getAnswers(){
-        return answers;
+    @Override
+    public String getName() {
+        return name;
     }
 
     /**
@@ -83,9 +80,7 @@ public class Sage extends Challenge {
      * @return the int
      * @throws IOException the io exception
      */
-
     public int questionSage() throws IOException {
-        int reponse;
         String[] mixedAnswers = mixAnswers(answers);
         int index_goodAnswer = -1;
         for(int i = 0; i < mixedAnswers.length; i++){
@@ -93,21 +88,17 @@ public class Sage extends Challenge {
                 index_goodAnswer = i;
             }
         }
-        Menu choixanswer = new Menu(question, answers);
-        reponse = choixanswer.choose();
-        if(reponse == index_goodAnswer){
+        Menu questionning = new Menu(question, mixedAnswers);
+        if(questionning.choose() == index_goodAnswer){
             return 1;
         }
         return -1;
     }
 
     private String[] mixAnswers(String[] answers){
-        String[] mixedAnswers = new String[answers.length];
-        for(int i = 0; i < answers.length; i++){
-            int random = Utils.randomInt(0,answers.length-1);
-            mixedAnswers[i] = answers[random];
-            answers[random] = answers[i];
-        }
-        return mixedAnswers;
+        ArrayList<String> answersArray = new ArrayList<>();
+        Collections.addAll(answersArray, answers);
+        Collections.shuffle(answersArray);
+        return answersArray.toArray(new String[answersArray.size()]);
     }
 }
