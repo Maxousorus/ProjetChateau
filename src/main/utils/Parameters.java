@@ -65,6 +65,11 @@ public class Parameters {
      */
     public static double CHANCE_OF_CHALLENGE_IS_TRAP;
 
+    //Trap parameters at Ground Floor
+
+    public static int TRAP_MIN_DAMAGE;
+    public static int TRAP_MAX_DAMAGE;
+
     /**
      * The constant CHANCE_OF_ITEM_IN_ROOM.
      */
@@ -89,6 +94,11 @@ public class Parameters {
      */
     public static int PLAYER_HAND_DAMAGE;
 
+    //Boss parameters
+
+    public static int BOSS_MAX_HP;
+    public static int BOSS_FIRST_ATTACK_DAMAGE;
+
     /**
      * Init parameters.
      */
@@ -97,10 +107,13 @@ public class Parameters {
         FLOOR_SIZE = 3;
         ROOM_SIZE = 10;
         ROOM_HEIGHT = (int) (ROOM_SIZE * 0.6);
-        //Player Parameters
+        //Passage Parameters
         CHANCE_OF_LOCKED_PASSAGE = 0.2;
         CHANCE_OF_CHALLENGE_IN_PASSAGE = 0.5;
         CHANCE_OF_CHALLENGE_IS_TRAP = 0.7;
+        //Trap Parameters at Ground Floor
+        TRAP_MIN_DAMAGE = 1;
+        TRAP_MAX_DAMAGE = 3;
         //Room Parameters
         CHANCE_OF_ITEM_IN_ROOM = 0.45;
         CHANCE_OF_MONSTER_IN_ROOM = 0.45;
@@ -108,34 +121,48 @@ public class Parameters {
         //Player Parameters
         PLAYER_MAX_HP = 100;
         PLAYER_HAND_DAMAGE = 5;
+        //Boss Parameters
+        BOSS_MAX_HP = 250;
+        BOSS_FIRST_ATTACK_DAMAGE = 12;
     }
 
     private static void showParameters() {
         Utils.clearConsole();
         System.out.println(COLOR_1);
         System.out.println("\u2550\u2550\u2550   Castle Parameters   \u2550\u2550\u2550");
-        System.out.println("Floor Size : " + FLOOR_SIZE);
-        System.out.println("Room Size : " + ROOM_SIZE);
-        System.out.println("Room Height : " + ROOM_HEIGHT);
+        System.out.println(COLOR_1 + "Floor Size : " + Parameters.SELECTED_COLOR + FLOOR_SIZE);
+        System.out.println(COLOR_1 + "Room Size : " + Parameters.SELECTED_COLOR + ROOM_SIZE);
+        System.out.println(COLOR_1 + "Room Height : " + Parameters.SELECTED_COLOR + ROOM_HEIGHT);
 
         System.out.println(COLOR_2);
         System.out.println("\u2550\u2550\u2550   Passage Parameters   \u2550\u2550\u2550");
-        System.out.println("Chance of Locked Passage : " +(int)  (CHANCE_OF_LOCKED_PASSAGE*100) + "%");
-        System.out.println("Chance of Challenge in Passage : " +(int)  (CHANCE_OF_CHALLENGE_IN_PASSAGE*100) + "%");
-        System.out.println("Chance of Challenge is Trap : " +(int)  (CHANCE_OF_CHALLENGE_IS_TRAP*100) + "%");
-        System.out.println("Chance of Challenge is Sage : " +(int)  ((1 - CHANCE_OF_CHALLENGE_IS_TRAP)*100) + "%");
+        System.out.println(COLOR_2 + "Chance of Locked Passage : " + Parameters.SELECTED_COLOR + (int)  (CHANCE_OF_LOCKED_PASSAGE*100) + "%");
+        System.out.println(COLOR_2 + "Chance of Challenge in Passage : " + Parameters.SELECTED_COLOR +(int)  (CHANCE_OF_CHALLENGE_IN_PASSAGE*100) + "%");
+        System.out.println(COLOR_2 + "Chance of Challenge is Trap : " + Parameters.SELECTED_COLOR +(int)  (CHANCE_OF_CHALLENGE_IS_TRAP*100) + "%");
+        System.out.println(COLOR_2 + "Chance of Challenge is Sage : " + Parameters.SELECTED_COLOR +(int)  ((1 - CHANCE_OF_CHALLENGE_IS_TRAP)*100) + "%");
 
         System.out.println(COLOR_1);
-        System.out.println("\u2550\u2550\u2550   Room Parameters   \u2550\u2550\u2550");
-        System.out.println("Chance of Item in Room : " +(int)  (CHANCE_OF_ITEM_IN_ROOM*100) + "%");
-        System.out.println("Chance of Monster in Room : " +(int)  (CHANCE_OF_MONSTER_IN_ROOM*100) + "%");
-        System.out.println("Chance of Item is Weapon : " +(int)  (CHANCE_OF_ITEM_IS_WEAPON*100) + "%");
-        System.out.println("Chance of Item is Potion : " +(int) ((1 - CHANCE_OF_ITEM_IS_WEAPON)*100) + "%");
+        System.out.println("\u2550\u2550\u2550   Trap Parameters   \u2550\u2550\u2550");
+        System.out.println(COLOR_1 + "Trap Minimum Damage at ground floor : " + Parameters.SELECTED_COLOR + TRAP_MIN_DAMAGE);
+        System.out.println(COLOR_1 + "Trap Maximum Damage at ground floor : " + Parameters.SELECTED_COLOR  + TRAP_MAX_DAMAGE);
 
         System.out.println(COLOR_2);
+        System.out.println("\u2550\u2550\u2550   Room Parameters   \u2550\u2550\u2550");
+        System.out.println(COLOR_2 + "Chance of Item in Room : " + Parameters.SELECTED_COLOR +(int)  (CHANCE_OF_ITEM_IN_ROOM*100) + "%");
+        System.out.println(COLOR_2 + "Chance of Monster in Room : " + Parameters.SELECTED_COLOR +(int)  (CHANCE_OF_MONSTER_IN_ROOM*100) + "%");
+        System.out.println(COLOR_2 + "Chance of Item is Weapon : " + Parameters.SELECTED_COLOR +(int)  (CHANCE_OF_ITEM_IS_WEAPON*100) + "%");
+        System.out.println(COLOR_2 + "Chance of Item is Potion : " + Parameters.SELECTED_COLOR +(int) ((1 - CHANCE_OF_ITEM_IS_WEAPON)*100) + "%");
+
+        System.out.println(COLOR_1);
         System.out.println("\u2550\u2550\u2550   Player Parameters   \u2550\u2550\u2550");
-        System.out.println("Player Max HP : " + PLAYER_MAX_HP);
-        System.out.println("Player Hand Damage : " + PLAYER_HAND_DAMAGE);
+        System.out.println(COLOR_1 + "Player Max HP : " + Parameters.SELECTED_COLOR + PLAYER_MAX_HP);
+        System.out.println(COLOR_1 + "Player Hand Damage : " + Parameters.SELECTED_COLOR + PLAYER_HAND_DAMAGE);
+
+        System.out.println(COLOR_2);
+        System.out.println("\u2550\u2550\u2550   Boss Parameters   \u2550\u2550\u2550");
+        System.out.println(COLOR_2 + "Boss Max HP : " + Parameters.SELECTED_COLOR + BOSS_MAX_HP);
+        System.out.println(COLOR_2 + "Boss First Attack Damage : " + Parameters.SELECTED_COLOR + BOSS_FIRST_ATTACK_DAMAGE);
+
 
         System.out.println(FRAME_COLOR); //Reset Color
         String line = ""; //The line to display
@@ -160,7 +187,7 @@ public class Parameters {
      */
     public static void parametersMenu() throws IOException {
         Menu parametersMenu = new Menu("Parameters Categories :", new String[]{"Player Parameters", "Castle Parameters", "Passage Parameters",
-         "Room Parameters","Show Parameters","Reset Parameters","Back"});
+         "Trap Parameters","Room Parameters","Boss Parameters","Show Parameters","Reset Parameters","Back"});
         boolean back = false;
 
         while(!back) {
@@ -168,16 +195,31 @@ public class Parameters {
                 case 0 -> playerParametersMenu();
                 case 1 -> castleParametersMenu();
                 case 2 -> passageParametersMenu();
-                case 3 -> roomParametersMenu();
-                case 4 -> showParameters();
-                case 5 -> {
+                case 3 -> trapParametersMenu();
+                case 4 -> roomParametersMenu();
+                case 5 -> bossParameters();
+                case 6 -> showParameters();
+                case 7 -> {
                     initParameters();
                     new Notification("Parameters Reset !").choose();
                 }
-                case 6 -> back = true;
+                case 8 -> back = true;
             }
         }
     }
+
+    private static void bossParameters() throws IOException {
+        Menu bossParametersMenu = new Menu("Boss Parameters :", new String[]{"Boss Max HP", "Boss First Attack Damage","Back"});
+        boolean back = false;
+        while(!back) {
+            switch (bossParametersMenu.choose()) {
+                case 0 -> BOSS_MAX_HP = changeParameter("Boss Max HP", BOSS_MAX_HP, 10 , 100, PLAYER_MAX_HP, PLAYER_MAX_HP*20);
+                case 1 -> BOSS_FIRST_ATTACK_DAMAGE = changeParameter("Boss First Attack Damage", BOSS_FIRST_ATTACK_DAMAGE, 1, 10, PLAYER_HAND_DAMAGE, PLAYER_MAX_HP/2);
+                case 2 -> back = true;
+            }
+        }
+    }
+
 
     private static void playerParametersMenu() throws IOException {
         Menu playerParametersMenu = new Menu("Player Parameters :", new String[]{"Max HP", "Hand Damage", "Back"});
@@ -217,6 +259,17 @@ public class Parameters {
             }
         }
 
+    }
+    private static void trapParametersMenu() throws IOException {
+        Menu trapParametersMenu = new Menu("Trap Parameters :", new String[]{"Trap Minimum Damage", "Trap Maximum Damage", "Back"});
+        boolean back = false;
+        while(!back) {
+            switch (trapParametersMenu.choose()) {
+                case 0 -> TRAP_MIN_DAMAGE = changeParameter("Trap Minimum Damage", TRAP_MIN_DAMAGE, 1, 10, 1, 10);
+                case 1 -> TRAP_MAX_DAMAGE = changeParameter("Trap Maximum Damage", TRAP_MAX_DAMAGE, 1, 10, 1, 10);
+                case 2 -> back = true;
+            }
+        }
     }
     private static void roomParametersMenu() throws IOException {
         Menu roomParametersMenu = new Menu("Room Parameters :", new String[]{"Chance of Item in room", "Chance of Monster in room",

@@ -1,7 +1,5 @@
-package main.game;
+package main.entities;
 
-import main.entities.Entity;
-import main.entities.Player;
 import main.utils.Parameters;
 import main.utils.Utils;
 import main.visibles.Menu;
@@ -12,11 +10,11 @@ import java.io.IOException;
 
 public class Boss extends Entity {
 
-    private int[] attacksDamage;
-    private double[] attacksChance;
-    private String[] attacksName;
+    private final int[] attacksDamage;
+    private final double[] attacksChance;
+    private final String[] attacksName;
 
-    private int maxPv;
+    private final int maxPv;
 
     private static final String[] speech = new String[]{
             "I'm the boss !",
@@ -37,9 +35,9 @@ public class Boss extends Entity {
 
     public Boss() {
         super(0);
-        this.setPv(Parameters.PLAYER_MAX_HP * 2);
-        this.maxPv = this.getPv();
-        this.setDamage((int) (Parameters.PLAYER_HAND_DAMAGE * 2.5));
+        this.setPv(Parameters.BOSS_MAX_HP);
+        this.maxPv = Parameters.BOSS_MAX_HP;
+        this.setDamage(Parameters.BOSS_FIRST_ATTACK_DAMAGE);
         this.setName("Great Interstellar Monarch Civodul");
 
         this.attacksName = new String[]{
@@ -49,8 +47,8 @@ public class Boss extends Entity {
         };
 
         this.attacksDamage = new int[]{
-                (int) (this.getDamage() * 1),
-                (int) (this.getDamage() * 2),
+                this.getDamage(),
+                this.getDamage() * 2,
                 (int) (this.getDamage() * 3.5)
         };
 
@@ -71,8 +69,8 @@ public class Boss extends Entity {
 
 
     public boolean fight(Player player) throws IOException { //return true if the player won, false if the boss won
-        new Notification("A dark figure appears in front of you...");
-        new Notification("It's the Great Interstellar Monarch Civodul!");
+        new Notification("A dark figure appears in front of you...").choose();
+        new Notification("It's the Great Interstellar Monarch Civodul!").choose();
 
         String[] possibleAttacks = new String[player.getFinalAttacksName().length+1];
         String[] possibleAttacksDesc = new String[player.getFinalAttacksName().length+1];
@@ -93,6 +91,9 @@ public class Boss extends Entity {
         String[] infos;
 
         while(true){
+
+            int random = Utils.randomInt(0, speech.length - 1);
+            new Notification(speech[random]);
 
             infos = new String[this.stringListInfos().length + player.stringListInfos().length];
             for(int i = 0; i < this.stringListInfos().length; i++) {

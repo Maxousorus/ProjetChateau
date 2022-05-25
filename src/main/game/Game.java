@@ -2,6 +2,7 @@ package main.game;
 
 import main.challenges.Sage;
 import main.challenges.Trap;
+import main.entities.Boss;
 import main.entities.Entity;
 import main.entities.Player;
 import main.interfaces.CanBeInPassage;
