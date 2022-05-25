@@ -130,7 +130,17 @@ public class Game {
             if(player.getRoom().isExit()) { // If the room is the exit
                 Menu quitter = new Menu("Do you want to go out of the castle ?", new String[]{"Yes", "No"}, map); // Generate the menu
                 if (quitter.choose() == 0) { // If the player choose to quit
-                    new Notification("You are out of the castle !", map).choose(); // Display the notification
+                    new Notification("You are out of the castle !").choose(); // Display the notification
+
+                    player.setPv(Parameters.PLAYER_MAX_HP);
+                    new Notification("A fairy in a bottle is in your way and heal you !").choose();
+                    new Notification("You received a book \"JAVA : By Hervé Martinez\", this book permit you to attack with Java Code !").choose();
+
+                    if(bossRoom()){
+
+                    }else {
+
+                    }
 
                     break;
                 }
@@ -230,7 +240,10 @@ public class Game {
         return passageAccess;
     }
 
-    private Boolean bossRoom(){
-        return true;
+    private Boolean bossRoom() throws IOException {
+
+        Boss civodul = new Boss();
+        return civodul.fight(player);
+
     }
 }

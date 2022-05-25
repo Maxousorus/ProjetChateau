@@ -16,8 +16,11 @@ public class Player extends Entity {
 
     private Weapon weapon;
     private Room room;
-
     private Room previousRoom;
+
+    private String[] finalAttacksName = new String[]{};
+    private int[] finalAttacksDamage = new int[]{};
+    private double[] finalAttacksChance = new double[]{};
 
     /**
      * Player constructor
@@ -30,6 +33,17 @@ public class Player extends Entity {
         this.setDamage(Parameters.PLAYER_HAND_DAMAGE);
     }
 
+    public String[] getFinalAttacksName() {
+        return finalAttacksName;
+    }
+
+    public int[] getFinalAttacksDamage() {
+        return finalAttacksDamage;
+    }
+
+    public double[] getFinalAttacksChance() {
+        return finalAttacksChance;
+    }
 
     /**
      * This method permits to get the player's weapon
@@ -95,14 +109,49 @@ public class Player extends Entity {
      * This method show player's stats
      */
     public void showStats() {
-        System.out.println(Parameters.FRAME_COLOR + "Information about your character :");
-        if(this.getWeapon() == null) {
-            System.out.println("\033[38;5;46mHP: " + this.getPv() + "/" + Parameters.PLAYER_MAX_HP + Parameters.FRAME_COLOR +
-                    " - \033[38;5;196mDMG: " + this.getDamage());
-        } else {
-            System.out.println("\033[38;5;46mHP: " + this.getPv() + "/" + Parameters.PLAYER_MAX_HP + Parameters.FRAME_COLOR +
-                    " - \033[38;5;51mWeapon: " + this.getWeapon().getName() + Parameters.FRAME_COLOR +
-                    " - \033[38;5;196mDMG: " + this.getWeapon().getDamage());
+        for (String line : this.stringStats()) {
+            System.out.println(line);
         }
+    }
+
+    public String[] stringStats() {
+        String line = (Parameters.FRAME_COLOR + "Information about your character :" + "\n");
+        if(this.getWeapon() == null) {
+            line += ("\033[38;5;46mHP: " + this.getPv() + "/" + Parameters.PLAYER_MAX_HP + Parameters.FRAME_COLOR +
+                    " - \033[38;5;196mDMG: " + this.getDamage())+ "\n";
+        } else {
+            line += ("\033[38;5;46mHP: " + this.getPv() + "/" + Parameters.PLAYER_MAX_HP + Parameters.FRAME_COLOR +
+                    " - \033[38;5;51mWeapon: " + this.getWeapon().getName() + Parameters.FRAME_COLOR +
+                    " - \033[38;5;196mDMG: " + this.getWeapon().getDamage()) + "\n";
+        }
+        return line.split("\n");
+    }
+
+    public void initFinalsAttacks(){
+        this.finalAttacksName = new String[]{
+                "Bubble sort Algorithm !",
+                "Infinite while loop !",
+                "Git push !"
+        };
+
+        if(getWeapon() == null) {
+            this.finalAttacksDamage = new int[]{
+                    (int) (this.getDamage() * 1.5),
+                    (int) (this.getDamage() * 2.5),
+                    (int) (this.getDamage() * 3.5)
+            };
+        } else {
+            this.finalAttacksDamage = new int[]{
+                    (int) (this.getWeapon().getDamage() * 1.5),
+                    (int) (this.getWeapon().getDamage() * 2.5),
+                    (int) (this.getWeapon().getDamage() * 3.5)
+            };
+        }
+
+        this.finalAttacksChance = new double[]{
+                1,
+                0.85,
+                0.50
+        };
     }
 }
