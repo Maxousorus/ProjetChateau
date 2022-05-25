@@ -62,7 +62,7 @@ public class Game {
         }
 
         while (true){ // While the game is running (player can stop this loop if he goes to the exit and choose to quit)
-            player.showStats(); // Show the player stats
+            player.showInfos(); // Show the player stats
 
             if(player.getRoom().getRoomEvent() != null){
                 CanBeInRoom event = player.getRoom().getRoomEvent();
@@ -133,16 +133,16 @@ public class Game {
                     new Notification("You are out of the castle !").choose(); // Display the notification
 
                     player.setPv(Parameters.PLAYER_MAX_HP);
-                    new Notification("A fairy in a bottle is in your way and heal you !").choose();
+                    new Notification("A fairy in a bottle is on your way and heal you !").choose();
                     new Notification("You received a book \"JAVA : By Hervé Martinez\", this book permit you to attack with Java Code !").choose();
+                    player.initFinalsAttacks();
 
                     if(bossRoom()){
-
+                        new Notification("You have defeated the boss !").choose();
                     }else {
-
+                        new Notification("You have failed to defeat the boss !").choose();
                     }
-
-                    break;
+                    return;
                 }
             }
 
@@ -206,7 +206,6 @@ public class Game {
             }
 
         }
-        player.getRoom().setVisited(); // Set the room as visited
     }
 
     /**

@@ -5,8 +5,6 @@ import main.locations.Room;
 import main.objects.*;
 import main.utils.Parameters;
 
-import java.sql.SQLOutput;
-
 /**
  * Player class
  *
@@ -108,13 +106,13 @@ public class Player extends Entity {
     /**
      * This method show player's stats
      */
-    public void showStats() {
-        for (String line : this.stringStats()) {
+    public void showInfos() {
+        for (String line : this.stringListInfos()) {
             System.out.println(line);
         }
     }
 
-    public String[] stringStats() {
+    public String[] stringListInfos() {
         String line = (Parameters.FRAME_COLOR + "Information about your character :" + "\n");
         if(this.getWeapon() == null) {
             line += ("\033[38;5;46mHP: " + this.getPv() + "/" + Parameters.PLAYER_MAX_HP + Parameters.FRAME_COLOR +
@@ -136,22 +134,22 @@ public class Player extends Entity {
 
         if(getWeapon() == null) {
             this.finalAttacksDamage = new int[]{
-                    (int) (this.getDamage() * 1.5),
-                    (int) (this.getDamage() * 2.5),
-                    (int) (this.getDamage() * 3.5)
+                    (int) (this.getDamage() * 1.75),
+                    (int) (this.getDamage() * 3.5),
+                    (int) (this.getDamage() * 5)
             };
         } else {
             this.finalAttacksDamage = new int[]{
-                    (int) (this.getWeapon().getDamage() * 1.5),
-                    (int) (this.getWeapon().getDamage() * 2.5),
-                    (int) (this.getWeapon().getDamage() * 3.5)
+                    (int) (this.getWeapon().getDamage() * 1.75),
+                    (int) (this.getWeapon().getDamage() * 3.5),
+                    (int) (this.getWeapon().getDamage() * 5)
             };
         }
 
         this.finalAttacksChance = new double[]{
-                1,
-                0.85,
-                0.50
+                0.95,
+                0.80,
+                0.45
         };
     }
 }

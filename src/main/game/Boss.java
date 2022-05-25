@@ -16,6 +16,8 @@ public class Boss extends Entity {
     private double[] attacksChance;
     private String[] attacksName;
 
+    private int maxPv;
+
     private static final String[] speech = new String[]{
             "I'm the boss !",
             "Prepare to die !",
@@ -36,6 +38,7 @@ public class Boss extends Entity {
     public Boss() {
         super(0);
         this.setPv(Parameters.PLAYER_MAX_HP * 2);
+        this.maxPv = this.getPv();
         this.setDamage((int) (Parameters.PLAYER_HAND_DAMAGE * 2.5));
         this.setName("Great Interstellar Monarch Civodul");
 
@@ -46,16 +49,24 @@ public class Boss extends Entity {
         };
 
         this.attacksDamage = new int[]{
-                (int) (this.getDamage() * 1.5),
-                (int) (this.getDamage() * 2.5),
-                (this.getDamage() * 4)
+                (int) (this.getDamage() * 1),
+                (int) (this.getDamage() * 2),
+                (int) (this.getDamage() * 3.5)
         };
 
         this.attacksChance = new double[]{
                 1,
                 0.80,
-                0.45
+                0.40
         };
+    }
+
+    public String[] stringListInfos() {
+        String[] info = new String[]{
+                Parameters.FRAME_COLOR + this.getName() + " : ",
+                "\033[38;5;46mHP: " + this.getPv() + "/" + this.maxPv + "\033[0m",
+        };
+        return info;
     }
 
 
@@ -70,7 +81,7 @@ public class Boss extends Entity {
             possibleAttacksDesc[0] = "Hand punch ! (DMG : " + player.getDamage() + " | CHANCE : 100%)";
         } else {
             possibleAttacks[0] = player.getWeapon().getName() + " Slash !";
-            possibleAttacksDesc[0] = player.getWeapon().getName() + " Slash ! + (DMG : " + player.getWeapon().getDamage() + " | CHANCE : 100%)";
+            possibleAttacksDesc[0] = player.getWeapon().getName() + " Slash ! (DMG : " + player.getWeapon().getDamage() + " | CHANCE : 100%)";
         }
 
         for(int i = 0; i < player.getFinalAttacksName().length; i++) {
@@ -78,44 +89,54 @@ public class Boss extends Entity {
             possibleAttacksDesc[i + 1] = player.getFinalAttacksName()[i] + " (DMG : " + player.getFinalAttacksDamage()[i] + " | CHANCE : " + (int) (player.getFinalAttacksChance()[i] * 100) + "%)";
         }
 
+        //Add strings tabs stringListInfo() and player.stringListInfo()
+        String[] infos;
 
         while(true){
 
-            Menu menuAttack = new Menu("It's time to attack him ! What will you do ?", possibleAttacksDesc, new Popup(player.stringStats()));
+            infos = new String[this.stringListInfos().length + player.stringListInfos().length];
+            for(int i = 0; i < this.stringListInfos().length; i++) {
+                infos[i] = this.stringListInfos()[i];
+            }
+            for(int i = 0; i < player.stringListInfos().length; i++) {
+                infos[i + this.stringListInfos().length] = player.stringListInfos()[i];
+            }
+
+            Menu menuAttack = new Menu("It's time to attack him ! What will you do ?", possibleAttacksDesc, new Popup(infos,false));
             int attack = menuAttack.choose();
 
             if(attack == 0) {
                 if(player.getWeapon() == null) {
-                    new Notification("You punch the Great Interstellar Monarch Civodul with your hand for " + player.getDamage() + " damages !");
+                    new Notification("You punch the Great Interstellar Monarch Civodul with your hand for " + player.getDamage() + " damages !").choose();
                     this.setPv(this.getPv() - player.getDamage());
                 } else {
                     new Notification("You slash the Great Interstellar Monarch Civodul with your " + player.getWeapon().getName() +
-                            " for " + player.getWeapon().getDamage() + " damages !");
+                            " for " + player.getWeapon().getDamage() + " damages !").choose();
                     this.setPv(this.getPv() - player.getWeapon().getDamage());
                 }
-            } else if(Math.random() <= player.getFinalAttacksChance()[attack]) {
-                this.setPv(this.getPv() - player.getFinalAttacksDamage()[attack]);
-                new Notification("You hit the Great Interstellar Monarch Civodul for " + player.getFinalAttacksDamage()[attack] + " damages !");
+            } else if(Math.random() <= player.getFinalAttacksChance()[attack-1]) {
+                this.setPv(this.getPv() - player.getFinalAttacksDamage()[attack-1]);
+                new Notification("You hit the Great Interstellar Monarch Civodul for " + player.getFinalAttacksDamage()[attack-1] + " damages !").choose();
             } else {
-                new Notification("You missed the Great Interstellar Monarch Civodul !");
+                new Notification("You missed the Great Interstellar Monarch Civodul !").choose();
             }
 
             if(this.getPv() <= 0) {
-                new Notification("You killed the Great Interstellar Monarch Civodul !");
+                new Notification("You killed the Great Interstellar Monarch Civodul !").choose();
                 return true; // Player won
             } else {
                 int bossAttack = Utils.randomInt(0,3);
-                new Notification("The Great Interstellar Monarch Civodul prepare to throw you a " + this.attacksName[attack] + " !");
+                new Notification("The Great Interstellar Monarch Civodul prepare to throw you a " + this.attacksName[bossAttack] + " !").choose();
                 if(Math.random() <= this.attacksChance[bossAttack]) {
                     player.setPv(player.getPv() - this.attacksDamage[bossAttack]);
-                    new Notification("The Great Interstellar Monarch Civodul hit you for " + this.attacksDamage[bossAttack] + " damages !");
+                    new Notification("The Great Interstellar Monarch Civodul hit you for " + this.attacksDamage[bossAttack] + " damages !").choose();
                 } else {
-                    new Notification("The Great Interstellar Monarch Civodul missed you !");
+                    new Notification("The Great Interstellar Monarch Civodul missed you !").choose();
                 }
             }
 
             if(player.getPv() <= 0) {
-                new Notification("You died !");
+                new Notification("You died !").choose();
                 return false; // Player lost
             }
         }

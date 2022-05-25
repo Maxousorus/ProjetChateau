@@ -97,7 +97,7 @@ public class Menu {
             if(map != null) {
                 System.out.println("Map of the floor n°" + map.getFloor() + " :");
                 map.show();
-                map.getPlayer().showStats();
+                map.getPlayer().showInfos();
             }
             show(); //Display the menu
             int choice = RawConsoleInput.read(true); //Get the keyboard input
