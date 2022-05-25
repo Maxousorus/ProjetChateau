@@ -26,7 +26,7 @@ public class Parameters {
     /**
      * The constant MAP_COLOR.
      */
-    public static final String MAP_COLOR = "\033[48;5;13m";
+    public static final String MAP_COLOR = "\033[48;5;243m";
     /**
      * The constant FRAME_COLOR.
      */
@@ -108,22 +108,22 @@ public class Parameters {
         ROOM_SIZE = 10;
         ROOM_HEIGHT = (int) (ROOM_SIZE * 0.6);
         //Passage Parameters
-        CHANCE_OF_LOCKED_PASSAGE = 0.2;
+        CHANCE_OF_LOCKED_PASSAGE = 0;
         CHANCE_OF_CHALLENGE_IN_PASSAGE = 0.5;
         CHANCE_OF_CHALLENGE_IS_TRAP = 0.7;
         //Trap Parameters at Ground Floor
         TRAP_MIN_DAMAGE = 1;
-        TRAP_MAX_DAMAGE = 3;
+        TRAP_MAX_DAMAGE = 2;
         //Room Parameters
         CHANCE_OF_ITEM_IN_ROOM = 0.45;
         CHANCE_OF_MONSTER_IN_ROOM = 0.45;
         CHANCE_OF_ITEM_IS_WEAPON = 0.5;
         //Player Parameters
-        PLAYER_MAX_HP = 100;
-        PLAYER_HAND_DAMAGE = 5;
+        PLAYER_MAX_HP = 120;
+        PLAYER_HAND_DAMAGE = 3;
         //Boss Parameters
-        BOSS_MAX_HP = 250;
-        BOSS_FIRST_ATTACK_DAMAGE = 12;
+        BOSS_MAX_HP = 200;
+        BOSS_FIRST_ATTACK_DAMAGE = 8;
     }
 
     private static void showParameters() {

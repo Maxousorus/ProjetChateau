@@ -95,7 +95,8 @@ public class Menu {
                 popup.show();
             }
             if(map != null) {
-                System.out.println("Map of the floor n°" + map.getFloor() + " :");
+                System.out.print(Parameters.SELECTED_COLOR);
+                System.out.println("Map of the floor n°" + map.getFloor() + " :" + Parameters.RESET_COLOR);
                 map.show();
                 map.getPlayer().showInfos();
             }
