@@ -43,7 +43,7 @@ public class Game {
      * Instantiates a new Game.
      */
     public Game(){
-        this.castle = Generate.castle(Parameters.FLOOR_SIZE); // Generate the castle
+        this.castle = Generate.castle(Parameters.NUMBER_OF_FLOOR); // Generate the castle
         this.player = new Player(); // Generate the player
         this.map = new Map(player); // Generate the map
     }

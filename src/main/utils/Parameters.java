@@ -41,6 +41,9 @@ public class Parameters {
      * The constant FLOOR_SIZE.
      */
 //Castle parameters
+
+
+    public static int NUMBER_OF_FLOOR;
     public static int FLOOR_SIZE;
     /**
      * The constant ROOM_SIZE.
@@ -104,6 +107,7 @@ public class Parameters {
      */
     public static void initParameters() { //Recommended Parameters
         //Castle Parameters
+        NUMBER_OF_FLOOR = 3;
         FLOOR_SIZE = 3;
         ROOM_SIZE = 10;
         ROOM_HEIGHT = (int) (ROOM_SIZE * 0.6);
@@ -130,6 +134,7 @@ public class Parameters {
         Utils.clearConsole();
         System.out.println(COLOR_1);
         System.out.println("\u2550\u2550\u2550   Castle Parameters   \u2550\u2550\u2550");
+        System.out.println(COLOR_1 + "Number of floors : " + Parameters.SELECTED_COLOR + NUMBER_OF_FLOOR);
         System.out.println(COLOR_1 + "Floor Size : " + Parameters.SELECTED_COLOR + FLOOR_SIZE);
         System.out.println(COLOR_1 + "Room Size : " + Parameters.SELECTED_COLOR + ROOM_SIZE);
         System.out.println(COLOR_1 + "Room Height : " + Parameters.SELECTED_COLOR + ROOM_HEIGHT);
@@ -233,16 +238,17 @@ public class Parameters {
         }
     }
     private static void castleParametersMenu() throws IOException {
-        Menu castleParametersMenu = new Menu("Castle Parameters :", new String[]{"Floor Size", "Room Size", "Back"});
+        Menu castleParametersMenu = new Menu("Castle Parameters :", new String[]{"Number of Floor","Floor Size", "Room Size", "Back"});
         boolean back = false;
         while(!back) {
             switch (castleParametersMenu.choose()) {
-                case 0 -> FLOOR_SIZE = changeParameter("Floor Size", FLOOR_SIZE, 1, 10, 2, 6);
-                case 1 -> {
+                case 0 -> NUMBER_OF_FLOOR = changeParameter("Number of Floor", NUMBER_OF_FLOOR, 1, 3, 2, 15);
+                case 1 -> FLOOR_SIZE = changeParameter("Floor Size", FLOOR_SIZE, 1, 10, 2, 6);
+                case 2 -> {
                     ROOM_SIZE = changeParameter("Room Size", ROOM_SIZE, 1, 10, 4, 20);
                     ROOM_HEIGHT = (int) (ROOM_SIZE * 0.6);
                 }
-                case 2 -> back = true;
+                case 3 -> back = true;
             }
         }
     }
