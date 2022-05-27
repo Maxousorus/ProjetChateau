@@ -12,18 +12,18 @@ import main.locations.Room;
  */
 public class Utils {
     /**
-     * This method set the player spawn in the groundfloor of the castle.
+     * This method set the player spawn in the ground floor of the castle.
      *
      * @param castle the castle where the player will be spawn.
      * @see Castle
      */
     public static void setCastleSpawn(Castle castle) {
-        Floor stage0 = castle.getFloors()[0]; //groundfloor
+        Floor stage0 = castle.getFloors()[0]; //ground floor
         int random = (int) (Math.random() * (Parameters.FLOOR_SIZE * Parameters.FLOOR_SIZE));
-        Room[][] rooms = stage0.getRooms(); //rooms of the groundfloor
+        Room[][] rooms = stage0.getRooms(); //rooms of the ground floor
         int x = random / Parameters.FLOOR_SIZE;
         int y = random % Parameters.FLOOR_SIZE;
-        rooms[x][y].setSpawn(); //Set the spawn at the random room of the groundfloor
+        rooms[x][y].setSpawn(); //Set the spawn at the random room of the ground floor
     }
 
     /**
@@ -205,9 +205,9 @@ public class Utils {
      */
     private static boolean isRemovablePassage(int[][] grid, int x, int y, boolean h) {
         if (h) { //horizontal passage
-            return grid[x][y] != grid[x][y + 1]; //if two cells have same index the passage is not removable
+            return grid[x][y] != grid[x][y + 1]; //if two cells have the same index the passage is not removable
         } else { //vertical passage
-            return grid[x][y] != grid[x + 1][y]; //if two cells have same index the passage is not removable
+            return grid[x][y] != grid[x + 1][y]; //if two cells have the same index the passage is not removable
         }
     }
 
@@ -249,7 +249,7 @@ public class Utils {
     }
 
     /**
-     * This method permite to generate a random integer between min and max.
+     * This method permit to generate a random integer between min and max.
      *
      * @param min the minimum value of the random integer.
      * @param max the maximum value of the random integer.

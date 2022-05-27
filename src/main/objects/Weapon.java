@@ -8,9 +8,8 @@ import main.utils.Utils;
 public class Weapon extends Item {
 
     private int damage;
-    private int numberFloor;
-    private String name;
-    private String [] names = {
+    private final String name;
+    private final String [] names = {
             "Sword",
             "Spear",
             "Boomerang",
@@ -41,26 +40,20 @@ public class Weapon extends Item {
      */
     public Weapon(int numberFloor) {
         super();
-        this.damage = getWeapon(numberFloor);
-        this.numberFloor = numberFloor;
+        setDamage(numberFloor);
         this.name = names[Utils.randomInt(0,names.length-1)];
     }
 
     /**
-     * Get weapon int.
+     * Sets damage.
      *
      * @param numberFloor the number floor
-     * @return the int
      */
-    public int getWeapon (int numberFloor){
-        numberFloor +=1;
-        if(numberFloor <= 10){
-            damage = Utils.randomInt(5,5 + (3 * numberFloor));
-        }
-        else{
-            damage = Utils.randomInt(10,30);
-        }
-        return damage;
+    public void setDamage(int numberFloor){
+        if(numberFloor <= 10)
+            damage = Utils.randomInt((5 + numberFloor),(5 + (3 * (numberFloor+1))));
+        else
+            damage = Utils.randomInt(10,35);
     }
 
     /**

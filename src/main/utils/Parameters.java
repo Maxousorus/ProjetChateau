@@ -44,6 +44,9 @@ public class Parameters {
 
 
     public static int NUMBER_OF_FLOOR;
+    /**
+     * The constant FLOOR_SIZE.
+     */
     public static int FLOOR_SIZE;
     /**
      * The constant ROOM_SIZE.
@@ -70,7 +73,13 @@ public class Parameters {
 
     //Trap parameters at Ground Floor
 
+    /**
+     * The constant TRAP_MIN_DAMAGE.
+     */
     public static int TRAP_MIN_DAMAGE;
+    /**
+     * The constant TRAP_MAX_DAMAGE.
+     */
     public static int TRAP_MAX_DAMAGE;
 
     /**
@@ -99,7 +108,13 @@ public class Parameters {
 
     //Boss parameters
 
+    /**
+     * The constant BOSS_MAX_HP.
+     */
     public static int BOSS_MAX_HP;
+    /**
+     * The constant BOSS_FIRST_ATTACK_DAMAGE.
+     */
     public static int BOSS_FIRST_ATTACK_DAMAGE;
 
     /**

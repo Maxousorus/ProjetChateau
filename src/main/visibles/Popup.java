@@ -2,21 +2,38 @@ package main.visibles;
 
 import main.utils.Parameters;
 
+/**
+ * The type Popup.
+ */
 public class Popup {
 
     private String[] lines;
 
     private boolean hasFrame;
 
+    /**
+     * Instantiates a new Popup.
+     *
+     * @param lines    the lines
+     * @param hasFrame the has frame
+     */
     public Popup(String[] lines, boolean hasFrame) {
         this.lines = lines;
         this.hasFrame = hasFrame;
     }
 
+    /**
+     * Instantiates a new Popup.
+     *
+     * @param lines the lines
+     */
     public Popup(String... lines) {
         this(lines, true);
     }
 
+    /**
+     * Show.
+     */
     public void show() {
         if (hasFrame) {
             int longest = longestLine();

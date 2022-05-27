@@ -8,6 +8,9 @@ import main.visibles.Popup;
 
 import java.io.IOException;
 
+/**
+ * The type Boss.
+ */
 public class Boss extends Entity {
 
     private final int[] attacksDamage;
@@ -33,6 +36,9 @@ public class Boss extends Entity {
             "No one can stop me !"
     };
 
+    /**
+     * Instantiates a new Boss.
+     */
     public Boss() {
         super(0);
         this.setPv(Parameters.BOSS_MAX_HP);
@@ -59,6 +65,11 @@ public class Boss extends Entity {
         };
     }
 
+    /**
+     * String list infos string [ ].
+     *
+     * @return the string [ ]
+     */
     public String[] stringListInfos() {
         String[] info = new String[]{
                 Parameters.FRAME_COLOR + this.getName() + " : ",
@@ -68,6 +79,13 @@ public class Boss extends Entity {
     }
 
 
+    /**
+     * Fight boolean.
+     *
+     * @param player the player
+     * @return the boolean
+     * @throws IOException the io exception
+     */
     public boolean fight(Player player) throws IOException { //return true if the player won, false if the boss won
         new Notification("A dark figure appears in front of you...").choose();
         new Notification("It's the Great Interstellar Monarch Civodul!").choose();

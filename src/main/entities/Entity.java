@@ -52,8 +52,6 @@ public class Entity implements CanBeInRoom {
     } ;
 
 
-
-
     /**
      * Instantiates a new Entity.
      *

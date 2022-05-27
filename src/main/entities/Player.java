@@ -31,14 +31,29 @@ public class Player extends Entity {
         this.setDamage(Parameters.PLAYER_HAND_DAMAGE);
     }
 
+    /**
+     * Get final attacks name string [ ].
+     *
+     * @return the string [ ]
+     */
     public String[] getFinalAttacksName() {
         return finalAttacksName;
     }
 
+    /**
+     * Get final attacks damage int [ ].
+     *
+     * @return the int [ ]
+     */
     public int[] getFinalAttacksDamage() {
         return finalAttacksDamage;
     }
 
+    /**
+     * Get final attacks chance double [ ].
+     *
+     * @return the double [ ]
+     */
     public double[] getFinalAttacksChance() {
         return finalAttacksChance;
     }
@@ -82,6 +97,9 @@ public class Player extends Entity {
 
     }
 
+    /**
+     * Run away.
+     */
     public void runAway(){
         this.setRoom(this.previousRoom);
     }
@@ -112,6 +130,11 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * String list infos string [ ].
+     *
+     * @return the string [ ]
+     */
     public String[] stringListInfos() {
         String line = (Parameters.FRAME_COLOR + "Information about your character :" + "\n");
         if(this.getWeapon() == null) {
@@ -125,6 +148,9 @@ public class Player extends Entity {
         return line.split("\n");
     }
 
+    /**
+     * Init finals attacks.
+     */
     public void initFinalsAttacks(){
         this.finalAttacksName = new String[]{
                 "Bubble sort Algorithm !",
