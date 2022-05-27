@@ -239,7 +239,7 @@ public class Utils {
      * @return true if the maze is finish, false otherwise.
      */
     private static boolean isMazeFinish(int[][] grid) {
-        //Si toutes les grilles ont le même numéro retourne TRUE
+        //If all cells have the same numbers return TRUE
         int FS = Parameters.FLOOR_SIZE;
         int verif = grid[0][0]; //the index of the first cell
         for (int i = 0; i < FS * FS; i++) { //for each cell
@@ -264,6 +264,7 @@ public class Utils {
      * This method permit to clear the console.
      */
     public static void clearConsole() {
-        System.out.println("\033[1J");
+        //This method permit to clear the console.
+        System.out.print("\033[0;0H\033[0;0f\033[0J");
     }
 }
