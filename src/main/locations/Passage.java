@@ -2,7 +2,7 @@ package main.locations;
 
 import main.challenges.*;
 import main.interfaces.CanBeInPassage;
-import main.utils.*;
+import main.options.Parameters;
 
 import java.util.ArrayList;
 

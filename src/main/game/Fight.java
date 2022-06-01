@@ -3,7 +3,6 @@ import main.entities.*;
 import main.visibles.Menu;
 import main.visibles.Notification;
 import main.visibles.Popup;
-import main.utils.Parameters;
 
 import java.io.IOException;
 
@@ -16,6 +15,8 @@ public class Fight {
     private Player player;
     private Entity entity;
 
+    private Game game;
+
     /**
      * Instantiates a new Fight.
      *
@@ -23,9 +24,10 @@ public class Fight {
      * @param entity the entity
      * @throws IOException the io exception
      */
-    public Fight(Player player, Entity entity) throws IOException {
+    public Fight(Player player, Entity entity, Game game) throws IOException {
         this.player = player;
         this.entity = entity;
+        this.game = game;
     }
 
     /**
@@ -34,6 +36,7 @@ public class Fight {
     private void attackPlayer() throws IOException {
         new Notification("The " + entity.getName() + " attacks you ! You take " + entity.getDamage() + " damages !").choose();
         player.setPv(player.getPv() - entity.getDamage());
+        game.getGame_statistics().addDamageTaken(entity.getDamage());
     }
 
     /**
@@ -43,10 +46,12 @@ public class Fight {
         if(player.getWeapon() == null) {
             new Notification("You attack the " + entity.getName() + " ! He takes " + player.getDamage() + " damages !").choose();
             entity.setPv(entity.getPv() - player.getDamage());
+            game.getGame_statistics().addDamageDealt(player.getDamage());
         } else {
             new Notification("You attack the " + entity.getName() + " with you " + player.getWeapon().getName() +
                     " ! He takes " + player.getWeapon().getDamage() + " damages !").choose();
             entity.setPv(entity.getPv() - player.getWeapon().getDamage());
+            game.getGame_statistics().addDamageDealt(player.getWeapon().getDamage());
         }
     }
 

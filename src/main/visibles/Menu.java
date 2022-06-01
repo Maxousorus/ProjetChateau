@@ -1,6 +1,6 @@
 package main.visibles;
 
-import main.utils.Parameters;
+import main.options.Parameters;
 import main.utils.RawConsoleInput;
 import main.utils.Utils;
 

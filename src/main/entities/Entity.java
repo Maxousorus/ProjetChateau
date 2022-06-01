@@ -1,10 +1,8 @@
 package main.entities;
 
 import main.interfaces.CanBeInRoom;
-import main.utils.Parameters;
+import main.options.Parameters;
 import main.utils.Utils;
-
-import java.lang.reflect.Parameter;
 
 /**
  * The type Entity.

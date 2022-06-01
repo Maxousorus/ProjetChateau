@@ -1,11 +1,10 @@
-package main.utils;
+package main.options;
 
+import main.utils.Utils;
 import main.visibles.Menu;
 import main.visibles.Notification;
 
-import javax.sound.midi.Soundbank;
 import java.io.IOException;
-import java.sql.SQLOutput;
 
 public class Parameters {
 

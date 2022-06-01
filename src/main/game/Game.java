@@ -12,8 +12,9 @@ import main.locations.Passage;
 
 import main.objects.Potion;
 import main.objects.Weapon;
+import main.options.GameStatistics;
 import main.utils.Generate;
-import main.utils.Parameters;
+import main.options.Parameters;
 import main.visibles.Map;
 import main.visibles.Menu;
 import main.visibles.Notification;
@@ -29,15 +30,17 @@ public class Game {
     /**
      * The Castle.
      */
-    Castle castle;
+    private Castle castle;
     /**
      * The Player.
      */
-    Player player;
+    private Player player;
     /**
      * The Map.
      */
-    Map map;
+    private Map map;
+
+    private GameStatistics game_statistics;
 
     /**
      * Instantiates a new Game.
@@ -45,7 +48,12 @@ public class Game {
     public Game(){
         this.castle = Generate.castle(Parameters.NUMBER_OF_FLOOR); // Generate the castle
         this.player = new Player(); // Generate the player
-        this.map = new Map(player); // Generate the map
+        this.map = new Map(player); // Generate the map*
+        this.game_statistics = new GameStatistics(); // Generate the game statistics
+    }
+
+    public GameStatistics getGame_statistics() {
+        return game_statistics;
     }
 
     /**
@@ -57,6 +65,7 @@ public class Game {
 
         player.spawn(castle); // Spawn the player in the castle
         player.getRoom().setVisited(); // Set the room as visited
+        game_statistics.addRoomVisited(); // Add the room visited to the statistics
         for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) { // Set the passages as visited
             if(passage != null)
                 passage.setVisited();
@@ -75,19 +84,24 @@ public class Game {
                         Menu weapon = new Menu("Do you want to take it ?", new String[]{"Yes", "No"}, map);
                         if(weapon.choose() == 0){
                             player.setWeapon((Weapon)event);
+                            game_statistics.addWeaponsTaken();
                         }
                     }
                     case "Potion" -> {
                         player.setPv(player.getPv() + ((Potion)event).getPv());
                         if(player.getPv() > Parameters.PLAYER_MAX_HP) player.setPv(Parameters.PLAYER_MAX_HP);
                         new Notification("You have found a Potion, You received " + ((Potion)event).getPv() + "hp.", map).choose();
+                        game_statistics.addPotionFound();
                     }
                     case "Entity" -> {
                         new Notification("You have encountered a Monster, it's a " + ((Entity)event).getName(), map).choose();
-                        Fight fight = new Fight(player, (Entity)event);
+                        Fight fight = new Fight(player, (Entity)event, this);
                         switch (fight.fight()) {
                             case -1 -> { // Player died
                                 new Notification("You died", map).choose();
+                                game_statistics.addDeath();
+                                game_statistics.scoreCalculation();
+                                game_statistics.showGameStatistics();
                                 return;
                             }
                             case 0 -> { // Player run away
@@ -96,6 +110,7 @@ public class Game {
                             }
                             case 1 -> { // Player won
                                 new Notification("You won", map).choose();
+                                game_statistics.addEnemyKilled();
                             }
                         }
                     }
@@ -121,7 +136,10 @@ public class Game {
                         player.setRoom(castle.getFloors()[nextFloor].getRooms()[thisRoomCoords[0]][thisRoomCoords[1]]); // Set the player room
                     }
                 }
-                player.getRoom().setVisited(); // Set the room as visited
+                if(!player.getRoom().isVisited()) {
+                    player.getRoom().setVisited(); // Set the room as visited
+                    game_statistics.addRoomVisited(); // Add the room visited to the statistics
+                }
                 for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) { // Set the passages as visited
                     if(passage != null)
                         passage.setVisited();
@@ -140,9 +158,13 @@ public class Game {
 
                     if(bossRoom()){
                         new Notification("You have defeated the boss !").choose();
+                        game_statistics.addBossKilled();
                     }else {
                         new Notification("You have failed to defeat the boss !").choose();
+                        game_statistics.addDeath();
                     }
+                    game_statistics.scoreCalculation();
+                    game_statistics.showGameStatistics();
                     return;
                 }
             }
@@ -200,7 +222,10 @@ public class Game {
                     }
                 }
             }
-            player.getRoom().setVisited(); // Set the room as visited
+            if(!player.getRoom().isVisited()) {
+                player.getRoom().setVisited(); // Set the room as visited
+                game_statistics.addRoomVisited(); // Add the room visited to the statistics
+            }
             for(Passage passage : player.getRoom().getFloor().getPassageOfRoom(player.getRoom())) { // For each passage of the room
                 if(passage != null)
                     passage.setVisited(); // Set the passage as visited
@@ -222,11 +247,14 @@ public class Game {
             if(event instanceof Trap trap) { // If the event is a trap
                 player.setPv(player.getPv() - (trap.getDamage()));
                 new Notification("You have encountered a Trap, You received " + trap.getDamage() + "damages.",map).choose();
+                game_statistics.addTrapFound();
+                game_statistics.addDamageTaken(trap.getDamage());
                 passageAccess = true;
             }else if(event instanceof Sage sage) { // If the event is a sage
                 new Notification("You have encountered " +  sage.getName() + " the Sage !",map).choose();
                 if(sage.questionSage() == 1) { // If the player have the good answer
                     new Notification("You have answered correctly !",map).choose();
+                    game_statistics.addSageQuestionSolved(); // Add the question solved to the statistics
                     passageAccess = true;
                 } else {
                     new Notification("You have answered incorrectly !",map).choose();

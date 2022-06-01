@@ -1,6 +1,6 @@
 package main.entities;
 
-import main.utils.Parameters;
+import main.options.Parameters;
 import main.utils.Utils;
 import main.visibles.Menu;
 import main.visibles.Notification;

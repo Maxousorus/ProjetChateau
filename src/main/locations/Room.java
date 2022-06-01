@@ -3,7 +3,7 @@ package main.locations;
 import main.entities.Player;
 import main.interfaces.CanBeInRoom;
 import main.utils.Generate;
-import main.utils.Parameters;
+import main.options.Parameters;
 
 import java.util.ArrayList;
 

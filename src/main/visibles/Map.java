@@ -2,7 +2,7 @@ package main.visibles;
 
 import main.entities.Player;
 import main.locations.*;
-import main.utils.Parameters;
+import main.options.Parameters;
 
 import java.util.ArrayList;
 

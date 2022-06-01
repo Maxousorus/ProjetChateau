@@ -4,6 +4,7 @@ import main.locations.Castle;
 import main.locations.Floor;
 import main.locations.Passage;
 import main.locations.Room;
+import main.options.Parameters;
 
 /**
  * Utility class for various methods.

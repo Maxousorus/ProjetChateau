@@ -3,7 +3,7 @@ package main.entities;
 import main.locations.Castle;
 import main.locations.Room;
 import main.objects.*;
-import main.utils.Parameters;
+import main.options.Parameters;
 
 /**
  * Player class

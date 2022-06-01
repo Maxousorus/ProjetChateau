@@ -1,6 +1,6 @@
 package main.challenges;
 
-import main.utils.Parameters;
+import main.options.Parameters;
 import main.utils.Utils;
 
 /**

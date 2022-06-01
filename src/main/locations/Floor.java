@@ -1,6 +1,6 @@
 package main.locations;
 
-import main.utils.Parameters;
+import main.options.Parameters;
 
 /**
  * This class represents a floor in the castle.

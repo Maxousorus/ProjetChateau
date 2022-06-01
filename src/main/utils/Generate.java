@@ -5,6 +5,7 @@ import main.locations.Castle;
 import main.objects.Item;
 import main.objects.Potion;
 import main.objects.Weapon;
+import main.options.Parameters;
 
 import static java.lang.Math.random;
 
