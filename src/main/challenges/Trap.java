@@ -1,5 +1,6 @@
 package main.challenges;
 
+import main.utils.Parameters;
 import main.utils.Utils;
 
 /**
@@ -9,8 +10,7 @@ import main.utils.Utils;
  */
 public class Trap extends Challenge {
 
-    private int damage;
-    private int numberFloor;
+    private final int damage;
 
     /**
      * Instantiates a new Trap.
@@ -20,18 +20,15 @@ public class Trap extends Challenge {
     public Trap(int numberFloor) {
         super();
         this.damage = damageTrap(numberFloor);
-        this.numberFloor = numberFloor;
     }
 
     private int damageTrap(int numberFloor){
-        numberFloor +=1;
         if(numberFloor <= 10){
-            damage = Utils.randomInt(1,3*numberFloor);
+            return Utils.randomInt(Parameters.TRAP_MIN_DAMAGE + numberFloor, Parameters.TRAP_MIN_DAMAGE + Parameters.TRAP_DAMAGE_FLOOR_MULTIPLIER*numberFloor);
         }
         else{
-            damage = Utils.randomInt(10,30);
+            return Utils.randomInt(Parameters.TRAP_MIN_DAMAGE + 10,Parameters.TRAP_MIN_DAMAGE + Parameters.TRAP_DAMAGE_FLOOR_MULTIPLIER * 10);
         }
-        return damage;
     }
 
     /**

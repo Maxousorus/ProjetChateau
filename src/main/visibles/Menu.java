@@ -20,6 +20,14 @@ public class Menu {
 
     private final Popup popup; //The popup of the game
 
+    /**
+     * Instantiates a new Menu.
+     *
+     * @param title   the title
+     * @param options the options
+     * @param map     the map
+     * @param popup   the popup
+     */
     public Menu(String title, String[] options, Map map, Popup popup) {
         this.title = title;
         this.options = options;
@@ -27,6 +35,13 @@ public class Menu {
         this.popup = popup;
     }
 
+    /**
+     * Instantiates a new Menu.
+     *
+     * @param title   the title
+     * @param options the options
+     * @param popup   the popup
+     */
     public Menu(String title, String[] options, Popup popup) {
         this(title, options, null, popup);
     }

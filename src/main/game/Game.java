@@ -84,11 +84,11 @@ public class Game {
                     }
                     case "Entity" -> {
                         new Notification("You have encountered a Monster, it's a " + ((Entity)event).getName(), map).choose();
-                        //TODO faire le code
                         Fight fight = new Fight(player, (Entity)event);
                         switch (fight.fight()) {
                             case -1 -> { // Player died
                                 new Notification("You died", map).choose();
+                                return;
                             }
                             case 0 -> { // Player run away
                                 new Notification("You run away", map).choose();

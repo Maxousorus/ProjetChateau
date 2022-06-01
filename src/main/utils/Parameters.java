@@ -3,123 +3,67 @@ package main.utils;
 import main.visibles.Menu;
 import main.visibles.Notification;
 
+import javax.sound.midi.Soundbank;
 import java.io.IOException;
+import java.sql.SQLOutput;
 
-/**
- * The type Parameters.
- */
 public class Parameters {
 
-    /**
-     * The constant COLOR_1.
-     */
-//Color Parameters
+    //Color Parameters
     public static final String COLOR_1 = "\033[38;5;49m";
-    /**
-     * The constant COLOR_2.
-     */
     public static final String COLOR_2 = "\033[38;5;42m";
-    /**
-     * The constant SELECTED_COLOR.
-     */
     public static final String SELECTED_COLOR = "\033[38;5;208m";
-    /**
-     * The constant MAP_COLOR.
-     */
     public static final String MAP_COLOR = "\033[48;5;243m";
-    /**
-     * The constant FRAME_COLOR.
-     */
     public static final String FRAME_COLOR = "\033[38;5;226m";
-    /**
-     * The constant RESET_COLOR.
-     */
     public static final String RESET_COLOR = "\033[0m";
 
 
-    /**
-     * The constant FLOOR_SIZE.
-     */
-//Castle parameters
+    //Castle parameters
 
 
     public static int NUMBER_OF_FLOOR;
-    /**
-     * The constant FLOOR_SIZE.
-     */
     public static int FLOOR_SIZE;
-    /**
-     * The constant ROOM_SIZE.
-     */
     public static int ROOM_SIZE;
-    /**
-     * The constant ROOM_HEIGHT.
-     */
     public static int ROOM_HEIGHT;
 
-    /**
-     * The constant CHANCE_OF_LOCKED_PASSAGE.
-     */
-//Passage parameters
+    //Passage parameters
     public static double CHANCE_OF_LOCKED_PASSAGE;
-    /**
-     * The constant CHANCE_OF_CHALLENGE_IN_PASSAGE.
-     */
     public static double CHANCE_OF_CHALLENGE_IN_PASSAGE;
-    /**
-     * The constant CHANCE_OF_CHALLENGE_IS_TRAP.
-     */
     public static double CHANCE_OF_CHALLENGE_IS_TRAP;
 
-    //Trap parameters at Ground Floor
+    //Trap parameters
 
-    /**
-     * The constant TRAP_MIN_DAMAGE.
-     */
     public static int TRAP_MIN_DAMAGE;
-    /**
-     * The constant TRAP_MAX_DAMAGE.
-     */
-    public static int TRAP_MAX_DAMAGE;
+    public static int TRAP_DAMAGE_FLOOR_MULTIPLIER;
 
-    /**
-     * The constant CHANCE_OF_ITEM_IN_ROOM.
-     */
-//Room parameters
+    //Room parameters
     public static double CHANCE_OF_ITEM_IN_ROOM;
-    /**
-     * The constant CHANCE_OF_ITEM_IS_WEAPON.
-     */
     public static double CHANCE_OF_ITEM_IS_WEAPON;
-    /**
-     * The constant CHANCE_OF_MONSTER_IN_ROOM.
-     */
     public static double CHANCE_OF_MONSTER_IN_ROOM;
 
-    /**
-     * The constant PLAYER_MAX_HP.
-     */
-//Player parameters
+    //Monster parameters
+    public static int MONSTER_MIN_HEALTH;
+    public static int MONSTER_HEALTH_FLOOR_MULTIPLIER;
+    public static int MONSTER_MIN_DAMAGE;
+    public static int MONSTER_DAMAGE_FLOOR_MULTIPLIER;
+
+    //Potion parameters
+    public static int POTION_MIN_HEALTH;
+    public static int POTION_HEALTH_FLOOR_MULTIPLIER;
+
+    //Weapon parameters
+    public static int WEAPON_MIN_DAMAGE;
+    public static int WEAPON_DAMAGE_FLOOR_MULTIPLIER;
+
+    //Player parameters
     public static int PLAYER_MAX_HP;
-    /**
-     * The constant PLAYER_HAND_DAMAGE.
-     */
     public static int PLAYER_HAND_DAMAGE;
 
     //Boss parameters
 
-    /**
-     * The constant BOSS_MAX_HP.
-     */
     public static int BOSS_MAX_HP;
-    /**
-     * The constant BOSS_FIRST_ATTACK_DAMAGE.
-     */
     public static int BOSS_FIRST_ATTACK_DAMAGE;
 
-    /**
-     * Init parameters.
-     */
     public static void initParameters() { //Recommended Parameters
         //Castle Parameters
         NUMBER_OF_FLOOR = 3;
@@ -130,13 +74,24 @@ public class Parameters {
         CHANCE_OF_LOCKED_PASSAGE = 0;
         CHANCE_OF_CHALLENGE_IN_PASSAGE = 0.5;
         CHANCE_OF_CHALLENGE_IS_TRAP = 0.7;
-        //Trap Parameters at Ground Floor
+        //Trap Parameters
         TRAP_MIN_DAMAGE = 1;
-        TRAP_MAX_DAMAGE = 2;
+        TRAP_DAMAGE_FLOOR_MULTIPLIER = 3;
         //Room Parameters
         CHANCE_OF_ITEM_IN_ROOM = 0.45;
         CHANCE_OF_MONSTER_IN_ROOM = 0.45;
         CHANCE_OF_ITEM_IS_WEAPON = 0.5;
+        //Monster Parameters
+        MONSTER_MIN_HEALTH = 20;
+        MONSTER_HEALTH_FLOOR_MULTIPLIER = 8;
+        MONSTER_MIN_DAMAGE = 2;
+        MONSTER_DAMAGE_FLOOR_MULTIPLIER = 2;
+        //Potion Parameters
+        POTION_MIN_HEALTH = 1;
+        POTION_HEALTH_FLOOR_MULTIPLIER = 4;
+        //Weapon Parameters
+        WEAPON_MIN_DAMAGE = 5;
+        WEAPON_DAMAGE_FLOOR_MULTIPLIER = 3;
         //Player Parameters
         PLAYER_MAX_HP = 120;
         PLAYER_HAND_DAMAGE = 3;
@@ -163,8 +118,8 @@ public class Parameters {
 
         System.out.println(COLOR_1);
         System.out.println("\u2550\u2550\u2550   Trap Parameters   \u2550\u2550\u2550");
-        System.out.println(COLOR_1 + "Trap Minimum Damage at ground floor : " + Parameters.SELECTED_COLOR + TRAP_MIN_DAMAGE);
-        System.out.println(COLOR_1 + "Trap Maximum Damage at ground floor : " + Parameters.SELECTED_COLOR  + TRAP_MAX_DAMAGE);
+        System.out.println(COLOR_1 + "Trap Minimum Damage : " + Parameters.SELECTED_COLOR + TRAP_MIN_DAMAGE);
+        System.out.println(COLOR_1 + "Trap Damage Floor Multiplier : " + Parameters.SELECTED_COLOR  + TRAP_DAMAGE_FLOOR_MULTIPLIER);
 
         System.out.println(COLOR_2);
         System.out.println("\u2550\u2550\u2550   Room Parameters   \u2550\u2550\u2550");
@@ -174,14 +129,31 @@ public class Parameters {
         System.out.println(COLOR_2 + "Chance of Item is Potion : " + Parameters.SELECTED_COLOR +(int) ((1 - CHANCE_OF_ITEM_IS_WEAPON)*100) + "%");
 
         System.out.println(COLOR_1);
-        System.out.println("\u2550\u2550\u2550   Player Parameters   \u2550\u2550\u2550");
-        System.out.println(COLOR_1 + "Player Max HP : " + Parameters.SELECTED_COLOR + PLAYER_MAX_HP);
-        System.out.println(COLOR_1 + "Player Hand Damage : " + Parameters.SELECTED_COLOR + PLAYER_HAND_DAMAGE);
+        System.out.println("\u2550\u2550\u2550   Monster Parameters   \u2550\u2550\u2550");
+        System.out.println(COLOR_1 + "Monster Minimum Health : " + Parameters.SELECTED_COLOR + MONSTER_MIN_HEALTH);
+        System.out.println(COLOR_1 + "Monster Health Floor Multiplier : " + Parameters.SELECTED_COLOR + MONSTER_HEALTH_FLOOR_MULTIPLIER);
+        System.out.println(COLOR_1 + "Monster Minimum Damage : " + Parameters.SELECTED_COLOR + MONSTER_MIN_DAMAGE);
+        System.out.println(COLOR_1 + "Monster Damage Floor Multiplier : " + Parameters.SELECTED_COLOR + MONSTER_DAMAGE_FLOOR_MULTIPLIER);
 
         System.out.println(COLOR_2);
+        System.out.println("\u2550\u2550\u2550   Potion Parameters   \u2550\u2550\u2550");
+        System.out.println(COLOR_2 + "Potion Minimum Health : " + Parameters.SELECTED_COLOR + POTION_MIN_HEALTH);
+        System.out.println(COLOR_2 + "Potion Health Floor Multiplier : " + Parameters.SELECTED_COLOR + POTION_HEALTH_FLOOR_MULTIPLIER);
+
+        System.out.println(COLOR_1);
+        System.out.println("\u2550\u2550\u2550   Weapon Parameters   \u2550\u2550\u2550");
+        System.out.println(COLOR_1 + "Weapon Minimum Damage : " + Parameters.SELECTED_COLOR + WEAPON_MIN_DAMAGE);
+        System.out.println(COLOR_1 + "Weapon Damage Floor Multiplier : " + Parameters.SELECTED_COLOR + WEAPON_DAMAGE_FLOOR_MULTIPLIER);
+
+        System.out.println(COLOR_2);
+        System.out.println("\u2550\u2550\u2550   Player Parameters   \u2550\u2550\u2550");
+        System.out.println(COLOR_2 + "Player Max HP : " + Parameters.SELECTED_COLOR + PLAYER_MAX_HP);
+        System.out.println(COLOR_2 + "Player Hand Damage : " + Parameters.SELECTED_COLOR + PLAYER_HAND_DAMAGE);
+
+        System.out.println(COLOR_1);
         System.out.println("\u2550\u2550\u2550   Boss Parameters   \u2550\u2550\u2550");
-        System.out.println(COLOR_2 + "Boss Max HP : " + Parameters.SELECTED_COLOR + BOSS_MAX_HP);
-        System.out.println(COLOR_2 + "Boss First Attack Damage : " + Parameters.SELECTED_COLOR + BOSS_FIRST_ATTACK_DAMAGE);
+        System.out.println(COLOR_1 + "Boss Max HP : " + Parameters.SELECTED_COLOR + BOSS_MAX_HP);
+        System.out.println(COLOR_1 + "Boss First Attack Damage : " + Parameters.SELECTED_COLOR + BOSS_FIRST_ATTACK_DAMAGE);
 
 
         System.out.println(FRAME_COLOR); //Reset Color
@@ -200,14 +172,20 @@ public class Parameters {
         System.out.print(RESET_COLOR);
     }
 
-    /**
-     * Parameters menu.
-     *
-     * @throws IOException the io exception
-     */
     public static void parametersMenu() throws IOException {
-        Menu parametersMenu = new Menu("Parameters Categories :", new String[]{"Player Parameters", "Castle Parameters", "Passage Parameters",
-         "Trap Parameters","Room Parameters","Boss Parameters","Show Parameters","Reset Parameters","Back"});
+        Menu parametersMenu = new Menu("Parameters Categories :", new String[]{
+                "Player Parameters",
+                "Castle Parameters",
+                "Passage Parameters",
+                "Trap Parameters",
+                "Room Parameters",
+                "Monster Parameters",
+                "Potion Parameters",
+                "Weapon Parameters",
+                "Boss Parameters",
+                "Show Parameters",
+                "Reset Parameters",
+                "Back"});
         boolean back = false;
 
         while(!back) {
@@ -217,19 +195,74 @@ public class Parameters {
                 case 2 -> passageParametersMenu();
                 case 3 -> trapParametersMenu();
                 case 4 -> roomParametersMenu();
-                case 5 -> bossParameters();
-                case 6 -> showParameters();
-                case 7 -> {
+                case 5 -> monsterParametersMenu();
+                case 6 -> potionParametersMenu();
+                case 7 -> weaponParametersMenu();
+                case 8 -> bossParameters();
+                case 9 -> showParameters();
+                case 10 -> {
                     initParameters();
                     new Notification("Parameters Reset !").choose();
                 }
-                case 8 -> back = true;
+                case 11 -> back = true;
+            }
+        }
+    }
+
+    private static void monsterParametersMenu() throws IOException {
+        Menu monsterParametersMenu = new Menu("Monster Parameters :", new String[]{
+                "Monster Minimum Health" ,
+                "Monster Health Floor Multiplier",
+                "Monster Minimum Damage",
+                "Monster Damage Floor Multiplier",
+                "Back"});
+        boolean back = false;
+        while(!back){
+            switch (monsterParametersMenu.choose()){
+                case 0 -> MONSTER_MIN_HEALTH = changeParameter("Monster Minimum Health",MONSTER_MIN_HEALTH,2, 5, 5, 50);
+                case 1 -> MONSTER_HEALTH_FLOOR_MULTIPLIER = changeParameter("Monster Health Floor Multiplier",MONSTER_HEALTH_FLOOR_MULTIPLIER,1, 5, 1, 15);
+                case 2 -> MONSTER_MIN_DAMAGE = changeParameter("Monster Minimum Damage",MONSTER_MIN_DAMAGE,2, 5, 5, 50);
+                case 3 -> MONSTER_DAMAGE_FLOOR_MULTIPLIER = changeParameter("Monster Damage Floor Multiplier",MONSTER_DAMAGE_FLOOR_MULTIPLIER,1, 5, 1, 15);
+                case 4 -> back = true;
+            }
+        }
+    }
+
+    private static void potionParametersMenu() throws IOException {
+        Menu potionParametersMenu = new Menu("Potion Parameters :", new String[]{
+                "Potion Minimum Health" ,
+                "Potion Health Floor Multiplier",
+                "Back"});
+        boolean back = false;
+        while(!back){
+            switch (potionParametersMenu.choose()){
+                case 0 -> POTION_MIN_HEALTH = changeParameter("Potion Minimum Health",POTION_MIN_HEALTH,2, 5, 1, 20);
+                case 1 -> POTION_HEALTH_FLOOR_MULTIPLIER = changeParameter("Potion Health Floor Multiplier",POTION_HEALTH_FLOOR_MULTIPLIER,1, 5, 1, 15);
+                case 2 -> back = true;
+            }
+        }
+    }
+
+    private static void weaponParametersMenu() throws IOException {
+        Menu weaponParametersMenu = new Menu("Weapon Parameters :", new String[]{
+                "Weapon Minimum Damage" ,
+                "Weapon Damage Floor Multiplier",
+                "Back"});
+        boolean back = false;
+        while(!back){
+            switch (weaponParametersMenu.choose()){
+                case 0 -> WEAPON_MIN_DAMAGE = changeParameter("Weapon Minimum Damage",WEAPON_MIN_DAMAGE,2, 5, 1, 20);
+                case 1 -> WEAPON_DAMAGE_FLOOR_MULTIPLIER = changeParameter("Weapon Damage Floor Multiplier",WEAPON_DAMAGE_FLOOR_MULTIPLIER,1, 5, 1, 15);
+                case 2 -> back = true;
             }
         }
     }
 
     private static void bossParameters() throws IOException {
-        Menu bossParametersMenu = new Menu("Boss Parameters :", new String[]{"Boss Max HP", "Boss First Attack Damage","Back"});
+        Menu bossParametersMenu = new Menu("Boss Parameters :", new String[]{
+                "Boss Max HP",
+                "Boss First Attack Damage",
+                "Back"});
         boolean back = false;
         while(!back) {
             switch (bossParametersMenu.choose()) {
@@ -286,8 +319,8 @@ public class Parameters {
         boolean back = false;
         while(!back) {
             switch (trapParametersMenu.choose()) {
-                case 0 -> TRAP_MIN_DAMAGE = changeParameter("Trap Minimum Damage", TRAP_MIN_DAMAGE, 1, 10, 1, 10);
-                case 1 -> TRAP_MAX_DAMAGE = changeParameter("Trap Maximum Damage", TRAP_MAX_DAMAGE, 1, 10, 1, 10);
+                case 0 -> TRAP_MIN_DAMAGE = changeParameter("Trap Minimum Damage", TRAP_MIN_DAMAGE, 1, 5, 1, 15);
+                case 1 -> TRAP_DAMAGE_FLOOR_MULTIPLIER = changeParameter("Trap Damage Floor Multiplier", TRAP_DAMAGE_FLOOR_MULTIPLIER, 2, 5, 1, 15);
                 case 2 -> back = true;
             }
         }

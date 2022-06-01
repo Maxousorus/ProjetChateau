@@ -9,21 +9,10 @@ import main.interfaces.CanBeInPassage;
  */
 public abstract class Challenge implements CanBeInPassage {
 
-    private String name;
-
     /**
      * Constructor of the class Challenge.
      * Instantiate a random new challenge.
      */
     public Challenge() {
-    }
-
-    /**
-     * Getter of the name of the challenge.
-     *
-     * @return the name of the challenge.
-     */
-    public String getName() {
-        return name;
     }
 }

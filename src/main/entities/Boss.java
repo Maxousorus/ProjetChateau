@@ -111,7 +111,7 @@ public class Boss extends Entity {
         while(true){
 
             int random = Utils.randomInt(0, speech.length - 1);
-            new Notification(speech[random]);
+            new Notification("Great Interstellar Monarch Civodul : " + speech[random]).choose();
 
             infos = new String[this.stringListInfos().length + player.stringListInfos().length];
             for(int i = 0; i < this.stringListInfos().length; i++) {
@@ -144,7 +144,7 @@ public class Boss extends Entity {
                 new Notification("You killed the Great Interstellar Monarch Civodul !").choose();
                 return true; // Player won
             } else {
-                int bossAttack = Utils.randomInt(0,3);
+                int bossAttack = Utils.randomInt(0,attacksName.length-1);
                 new Notification("The Great Interstellar Monarch Civodul prepare to throw you a " + this.attacksName[bossAttack] + " !").choose();
                 if(Math.random() <= this.attacksChance[bossAttack]) {
                     player.setPv(player.getPv() - this.attacksDamage[bossAttack]);

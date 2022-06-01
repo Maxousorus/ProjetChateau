@@ -69,7 +69,6 @@ public class Sage extends Challenge {
         this.goodAnswer = answers[0];
     }
 
-    @Override
     public String getName() {
         return name;
     }

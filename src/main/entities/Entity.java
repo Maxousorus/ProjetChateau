@@ -1,7 +1,10 @@
 package main.entities;
 
 import main.interfaces.CanBeInRoom;
+import main.utils.Parameters;
 import main.utils.Utils;
+
+import java.lang.reflect.Parameter;
 
 /**
  * The type Entity.
@@ -10,7 +13,6 @@ public class Entity implements CanBeInRoom {
 
     private int damage;
     private int pv;
-    private int numberFloor;
     private String name;
 
     private String[] tabName = {
@@ -48,7 +50,13 @@ public class Entity implements CanBeInRoom {
             "Sorcerer",
             "Ninja",
             "Samurai",
-            "Dark Sasuke"
+            "Dark Sasuke",
+            "GodJonas",
+            "Tigrou",
+            "Dumbo",
+            "Grizzly",
+            "Poulpi",
+            "Goat"
     } ;
 
 
@@ -61,29 +69,24 @@ public class Entity implements CanBeInRoom {
         this.damage = damageEntity(numberFloor);
         this.pv = pvEntity(numberFloor);
         this.name = tabName[Utils.randomInt(0,tabName.length-1)];
-        this.numberFloor = numberFloor;
     }
 
     private int damageEntity (int numberFloor){
-        numberFloor +=1;
         if(numberFloor <= 10){
-            damage = Utils.randomInt(2,5 + (2 * numberFloor));
+            return Utils.randomInt(Parameters.MONSTER_MIN_DAMAGE + numberFloor,Parameters.MONSTER_MIN_DAMAGE + Parameters.MONSTER_DAMAGE_FLOOR_MULTIPLIER * numberFloor);
         }
         else{
-            damage = Utils.randomInt(10,30);
+            return Utils.randomInt(Parameters.MONSTER_MIN_DAMAGE + 10,Parameters.MONSTER_MIN_DAMAGE + Parameters.MONSTER_DAMAGE_FLOOR_MULTIPLIER * 10);
         }
-        return damage;
     }
 
     private int pvEntity (int numberFloor){
-        numberFloor +=1;
         if(numberFloor <= 10){
-            pv = Utils.randomInt(20, 8 * numberFloor);
+            return Utils.randomInt(Parameters.MONSTER_MIN_HEALTH + numberFloor,Parameters.MONSTER_MIN_HEALTH + Parameters.MONSTER_HEALTH_FLOOR_MULTIPLIER * numberFloor);
         }
         else{
-            pv = Utils.randomInt(60,90);
+            return Utils.randomInt(Parameters.MONSTER_MIN_HEALTH + 10,Parameters.MONSTER_MIN_HEALTH + Parameters.MONSTER_HEALTH_FLOOR_MULTIPLIER * 10);
         }
-        return pv;
     }
 
     /**

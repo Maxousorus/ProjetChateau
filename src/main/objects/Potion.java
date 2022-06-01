@@ -1,5 +1,6 @@
 package main.objects;
 
+import main.utils.Parameters;
 import main.utils.Utils;
 
 /**
@@ -8,8 +9,7 @@ import main.utils.Utils;
  * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
  */
 public class Potion extends Item {
-    private int pv;
-    private int numberFloor;
+    private final int pv;
 
     /**
      * Constructor for the Potion class
@@ -20,18 +20,15 @@ public class Potion extends Item {
     public Potion(int numberFloor) {
         super();
         this.pv = healPotion(numberFloor);
-        this.numberFloor = numberFloor;
     }
 
     private int healPotion (int numberFloor){
-        numberFloor +=1;
         if(numberFloor <= 10){
-            pv = Utils.randomInt(1,4*numberFloor);
+            return Utils.randomInt(Parameters.POTION_MIN_HEALTH + numberFloor,Parameters.POTION_MIN_HEALTH + 4*numberFloor);
         }
         else{
-            pv = Utils.randomInt(10,40);
+            return Utils.randomInt(Parameters.POTION_MIN_HEALTH + 10,Parameters.POTION_MIN_HEALTH + Parameters.POTION_HEALTH_FLOOR_MULTIPLIER * 10);
         }
-        return pv;
     }
 
     /**

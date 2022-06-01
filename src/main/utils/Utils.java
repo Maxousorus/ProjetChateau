@@ -257,7 +257,7 @@ public class Utils {
      */
     public static int randomInt(int min, int max) {
         //Mathematical formula to return a random integer between two bounds passed as parameters.
-        return (int) (min + (Math.random() * (max - min)));
+        return (int) (min + (Math.random() * (max - min + 1)));
     }
 
     /**

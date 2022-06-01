@@ -13,7 +13,7 @@ public class Floor {
     private final Room[][] rooms = new Room[floorSize][floorSize];
     private Passage[][] horizontal_passages = new Passage[floorSize][floorSize - 1];
     private Passage[][] vertical_passages = new Passage[floorSize - 1][floorSize];
-    private final int floorNumber;
+    private int floorNumber;
 
     /**
      * Constructor of the Floor class.
@@ -22,12 +22,12 @@ public class Floor {
      * @param floorNumber the floor number
      */
     public Floor(int floorNumber) {
+        this.floorNumber = floorNumber;
         for (int i = 0; i < floorSize; i++) {
             for (int j = 0; j < floorSize; j++) {
                 rooms[i][j] = new Room(this);
             }
         }
-        this.floorNumber = floorNumber;
     }
 
     /**

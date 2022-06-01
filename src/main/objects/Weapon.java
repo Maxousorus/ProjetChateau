@@ -1,5 +1,6 @@
 package main.objects;
 
+import main.utils.Parameters;
 import main.utils.Utils;
 
 /**
@@ -7,7 +8,7 @@ import main.utils.Utils;
  */
 public class Weapon extends Item {
 
-    private int damage;
+    private final int damage;
     private final String name;
     private final String [] names = {
             "Sword",
@@ -40,7 +41,7 @@ public class Weapon extends Item {
      */
     public Weapon(int numberFloor) {
         super();
-        setDamage(numberFloor);
+        this.damage = createDamage(numberFloor);
         this.name = names[Utils.randomInt(0,names.length-1)];
     }
 
@@ -49,11 +50,11 @@ public class Weapon extends Item {
      *
      * @param numberFloor the number floor
      */
-    public void setDamage(int numberFloor){
+    public int createDamage(int numberFloor){
         if(numberFloor <= 10)
-            damage = Utils.randomInt((5 + numberFloor),(5 + (3 * (numberFloor+1))));
+            return Utils.randomInt(Parameters.WEAPON_MIN_DAMAGE + numberFloor,Parameters.WEAPON_MIN_DAMAGE + Parameters.WEAPON_DAMAGE_FLOOR_MULTIPLIER * numberFloor);
         else
-            damage = Utils.randomInt(10,35);
+            return Utils.randomInt(Parameters.WEAPON_MIN_DAMAGE + 10,Parameters.WEAPON_MIN_DAMAGE + Parameters.WEAPON_DAMAGE_FLOOR_MULTIPLIER * 10);
     }
 
     /**
