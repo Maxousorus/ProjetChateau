@@ -44,6 +44,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
           clean: true
-          folder: javadoc
+          folder: ~ProjetChateau/tree/javadoc
           target-folder: docs/nfa032/miniprojetchateau/javadoc
           repository-name: Maxousorus/Maxousorus.github.io
