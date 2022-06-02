@@ -17,7 +17,6 @@ public class Notification extends Menu{
      *
      * @param title Title of the notification.
      * @param map   map of the notification.
-     * @see Map
      */
     public Notification(String title, Map map) {
         super(title, OK, map);

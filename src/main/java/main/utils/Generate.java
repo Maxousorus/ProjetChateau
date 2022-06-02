@@ -22,7 +22,6 @@ public class Generate {
      *
      * @param nbFloors The number of floors of the castle.
      * @return The castle.
-     * @see , CastleUtils
      */
     public static Castle castle(int nbFloors) {
         Castle castle = new Castle(nbFloors); // Create the castle
@@ -39,7 +38,6 @@ public class Generate {
      *
      * @param floorNumber the floor number
      * @return The item.
-     * @see Item
      */
     public static Item item(int floorNumber) {
         if(random() < Parameters.CHANCE_OF_ITEM_IS_WEAPON) {
@@ -53,7 +51,6 @@ public class Generate {
      *
      * @param floorNumber the floor number
      * @return The monster.
-     * @see Entity
      */
     public static Entity monster(int floorNumber) {
         return new Entity( floorNumber );

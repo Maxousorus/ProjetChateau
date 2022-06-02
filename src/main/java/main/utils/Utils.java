@@ -16,7 +16,6 @@ public class Utils {
      * This method set the player spawn in the ground floor of the castle.
      *
      * @param castle the castle where the player will be spawn.
-     * @see Castle
      */
     public static void setCastleSpawn(Castle castle) {
         Floor stage0 = castle.getFloors()[0]; //ground floor
@@ -31,8 +30,7 @@ public class Utils {
      * This method set stairs in the castle.
      * One downstairs and one upstairs per floor.
      *
-     * @param castle the castle where the stairs will be set.
-     * @see Castle
+     * @param castle the castle where the stairs will be set
      */
     public static void setCastleStairs(Castle castle) {
         Floor[] floors = castle.getFloors(); //get floors of the castle
@@ -55,7 +53,6 @@ public class Utils {
      * This method set the exit of the castle at the last floor.
      *
      * @param castle the castle where the exit will be set.
-     * @see Castle
      */
     public static void setCastleExit(Castle castle) {
         Floor[] floors = castle.getFloors(); //get floors of the castle
@@ -77,7 +74,6 @@ public class Utils {
      * This method set the passages in the castle like a maze (kruskal algorithm).
      *
      * @param castle the castle where the passages will be set.
-     * @see Castle
      */
     public static void setCastlePassages(Castle castle) {
         Floor[] floors = castle.getFloors(); //get floors of the castle

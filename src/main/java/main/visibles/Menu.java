@@ -52,7 +52,6 @@ public class Menu {
      * @param title   the title of the menu or the question.
      * @param options the choices of the menu.
      * @param map     the map of the floor.
-     * @see Map
      */
     public Menu(String title, String[] options,Map map) {
         this(title, options, map, null);

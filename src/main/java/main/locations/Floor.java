@@ -43,7 +43,6 @@ public class Floor {
      * This method is used to get the rooms list of the floor.
      *
      * @return rooms list of the floor.
-     * @see Room
      */
     public Room[][] getRooms() {
         return rooms;
@@ -53,7 +52,6 @@ public class Floor {
      * This method is used to set the horizontal passages list of the floor.
      *
      * @param horizontal_passages horizontal passages list of the floor.
-     * @see Passage
      */
     public void setHorizontal_passage(Passage[][] horizontal_passages) {
         this.horizontal_passages = horizontal_passages;
@@ -63,7 +61,6 @@ public class Floor {
      * This method is used to get horizontal passages between rooms.
      *
      * @return horizontal passages list of the floor.
-     * @see Passage
      */
     public Passage[][] getHorizontal_passages() {
         return horizontal_passages;
@@ -73,7 +70,6 @@ public class Floor {
      * This method is used to set the vertical passages list of the floor.
      *
      * @param vertical_passages vertical passages list of the floor.
-     * @see Passage
      */
     public void setVertical_passage(Passage[][] vertical_passages) {
         this.vertical_passages = vertical_passages;
@@ -83,7 +79,6 @@ public class Floor {
      * This method is used to get the vertical passages list of the floor.
      *
      * @return vertical passages list of the floor.
-     * @see Passage
      */
     public Passage[][] getVertical_passages() {
         return vertical_passages;
@@ -94,7 +89,6 @@ public class Floor {
      *
      * @param room room to get coordinates.
      * @return coordinates of the room.
-     * @see Room
      */
     public int[] getRoomCoordinates(Room room) {
         int[] coordinates = new int[2]; // x, y
@@ -117,7 +111,6 @@ public class Floor {
      *
      * @param room room to get passages.
      * @return Passages connected to a room.
-     * @see , PassageRoom
      */
     public Passage[] getPassageOfRoom(Room room) {
         int roomX = getRoomCoordinates(room)[0]; // get the x coordinate of the room

@@ -48,7 +48,6 @@ public class Room {
      * This method returns the floor of the room.
      *
      * @return the floor of the room.
-     * @see Floor
      */
     public Floor getFloor() {
         return floor;
@@ -58,7 +57,6 @@ public class Room {
      * This method returns the event of the room.
      *
      * @return the event of the room.
-     * @see CanBeInRoom
      */
     public CanBeInRoom getRoomEvent() {
         return roomEvent;
@@ -68,7 +66,6 @@ public class Room {
      * This method set a room event in the room.
      *
      * @param roomEvent the room event to set.
-     * @see CanBeInRoom
      */
     public void setRoomEvent(CanBeInRoom roomEvent) {
         this.roomEvent = roomEvent;
@@ -181,7 +178,6 @@ public class Room {
      *
      * @param player the player.
      * @return a list of each line of the visible room.
-     * @see Player
      */
     public ArrayList<String> toStringList(Player player) {
         ArrayList<String> roomstring = new ArrayList<>(); //Create a list of strings

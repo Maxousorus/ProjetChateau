@@ -25,7 +25,6 @@ public class Map {
      * Constructor of the class Map.
      *
      * @param player the player.
-     * @see Player
      */
     public Map(Player player) {
         this.player = player;
@@ -35,7 +34,6 @@ public class Map {
      * This method returns the player of the map.
      *
      * @return the player of the map.
-     * @see Player
      */
     public Player getPlayer() {
         return player;

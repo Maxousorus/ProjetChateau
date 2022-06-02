@@ -38,7 +38,6 @@ public class Passage {
      * This method return the event of the passage.
      *
      * @return the event of the passage.
-     * @see CanBeInPassage
      */
     public CanBeInPassage getEvent() {
         return event;
@@ -48,7 +47,6 @@ public class Passage {
      * This method return the event of the passage.
      *
      * @param event the event
-     * @see CanBeInPassage
      */
     public void setEvent(CanBeInPassage event) {
         this.event = event;
