@@ -23,7 +23,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          branch: javadoc
           clean: true
           folder: javadoc/
           target-folder: docs/nfa032/miniprojetchateau/javadoc
