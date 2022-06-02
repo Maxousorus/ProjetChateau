@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class Menu {
 
-    private final String[] options; //The choices of the menu
+    private final String[] options; //The choices of the menu.
     private int selected = 0; //The selected choice of the user
     private final String title; //The title of the menu or the question
     private final Map map; //The map of the game
