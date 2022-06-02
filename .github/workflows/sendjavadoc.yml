@@ -3,7 +3,7 @@ name: Send javadoc
 on:
   push:
     branches:
-      - master
+      - javadoc
 
 jobs:
   publish:
