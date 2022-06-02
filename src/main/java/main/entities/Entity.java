@@ -13,7 +13,7 @@ public class Entity implements CanBeInRoom {
     private int pv;
     private String name;
 
-    private String[] tabName = { //All names of mobs
+    private String[] tabName = {
             "Witch",
             "Slime",
             "Baby Dragon",
