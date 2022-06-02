@@ -10,6 +10,7 @@ import java.io.IOException;
 public class GlobalStatistics extends Statistics{
 
     private int bestScore;
+    private int GamesPlayed;
 
     /**
      * Instantiates a new Global statistics.
@@ -17,6 +18,7 @@ public class GlobalStatistics extends Statistics{
     public GlobalStatistics() {
         super();
         this.bestScore = 0;
+        this.GamesPlayed = 0;
     }
 
     /**
@@ -28,6 +30,7 @@ public class GlobalStatistics extends Statistics{
         if(gameStatistics.getScore() > this.bestScore) {
             this.bestScore = gameStatistics.getScore();
         }
+        this.GamesPlayed++;
         this.setBossKilled(this.getBossKilled() + gameStatistics.getBossKilled());
         this.setDamageDealt(this.getDamageDealt() + gameStatistics.getDamageDealt());
         this.setDamageTaken(this.getDamageTaken() + gameStatistics.getDamageTaken());
@@ -57,8 +60,9 @@ public class GlobalStatistics extends Statistics{
         String stats = this.getStatistics();
 
         String bestScore = Parameters.COLOR_1 + "Best Score : " + Parameters.SELECTED_COLOR + this.bestScore;
+        String gamesPlayed = Parameters.COLOR_2 + "Games Played : " + Parameters.SELECTED_COLOR + this.GamesPlayed;
 
-        System.out.println(Parameters.FRAME_COLOR + frame + stats + bestScore);
+        System.out.println(Parameters.FRAME_COLOR + frame + stats + bestScore + "\n" + gamesPlayed);
 
         line = "";
         for (int i = 0; i < "Press Enter to continue !".length(); i++) {
