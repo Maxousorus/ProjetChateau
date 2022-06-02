@@ -6,63 +6,159 @@ import main.visibles.Notification;
 
 import java.io.IOException;
 
+/**
+ * The type Parameters.
+ */
 public class Parameters {
 
-    //Color Parameters
+    /**
+     * The constant COLOR_1.
+     */
+//Color Parameters
     public static final String COLOR_1 = "\033[38;5;49m";
+    /**
+     * The constant COLOR_2.
+     */
     public static final String COLOR_2 = "\033[38;5;42m";
+    /**
+     * The constant SELECTED_COLOR.
+     */
     public static final String SELECTED_COLOR = "\033[38;5;208m";
+    /**
+     * The constant MAP_COLOR.
+     */
     public static final String MAP_COLOR = "\033[48;5;243m";
+    /**
+     * The constant FRAME_COLOR.
+     */
     public static final String FRAME_COLOR = "\033[38;5;226m";
+    /**
+     * The constant RESET_COLOR.
+     */
     public static final String RESET_COLOR = "\033[0m";
 
 
     //Castle parameters
 
 
+    /**
+     * The constant NUMBER_OF_FLOOR.
+     */
     public static int NUMBER_OF_FLOOR;
+    /**
+     * The constant FLOOR_SIZE.
+     */
     public static int FLOOR_SIZE;
+    /**
+     * The constant ROOM_SIZE.
+     */
     public static int ROOM_SIZE;
+    /**
+     * The constant ROOM_HEIGHT.
+     */
     public static int ROOM_HEIGHT;
 
-    //Passage parameters
+    /**
+     * The constant CHANCE_OF_LOCKED_PASSAGE.
+     */
+//Passage parameters
     public static double CHANCE_OF_LOCKED_PASSAGE;
+    /**
+     * The constant CHANCE_OF_CHALLENGE_IN_PASSAGE.
+     */
     public static double CHANCE_OF_CHALLENGE_IN_PASSAGE;
+    /**
+     * The constant CHANCE_OF_CHALLENGE_IS_TRAP.
+     */
     public static double CHANCE_OF_CHALLENGE_IS_TRAP;
 
     //Trap parameters
 
+    /**
+     * The constant TRAP_MIN_DAMAGE.
+     */
     public static int TRAP_MIN_DAMAGE;
+    /**
+     * The constant TRAP_DAMAGE_FLOOR_MULTIPLIER.
+     */
     public static int TRAP_DAMAGE_FLOOR_MULTIPLIER;
 
-    //Room parameters
+    /**
+     * The constant CHANCE_OF_ITEM_IN_ROOM.
+     */
+//Room parameters
     public static double CHANCE_OF_ITEM_IN_ROOM;
+    /**
+     * The constant CHANCE_OF_ITEM_IS_WEAPON.
+     */
     public static double CHANCE_OF_ITEM_IS_WEAPON;
+    /**
+     * The constant CHANCE_OF_MONSTER_IN_ROOM.
+     */
     public static double CHANCE_OF_MONSTER_IN_ROOM;
 
-    //Monster parameters
+    /**
+     * The constant MONSTER_MIN_HEALTH.
+     */
+//Monster parameters
     public static int MONSTER_MIN_HEALTH;
+    /**
+     * The constant MONSTER_HEALTH_FLOOR_MULTIPLIER.
+     */
     public static int MONSTER_HEALTH_FLOOR_MULTIPLIER;
+    /**
+     * The constant MONSTER_MIN_DAMAGE.
+     */
     public static int MONSTER_MIN_DAMAGE;
+    /**
+     * The constant MONSTER_DAMAGE_FLOOR_MULTIPLIER.
+     */
     public static int MONSTER_DAMAGE_FLOOR_MULTIPLIER;
 
-    //Potion parameters
+    /**
+     * The constant POTION_MIN_HEALTH.
+     */
+//Potion parameters
     public static int POTION_MIN_HEALTH;
+    /**
+     * The constant POTION_HEALTH_FLOOR_MULTIPLIER.
+     */
     public static int POTION_HEALTH_FLOOR_MULTIPLIER;
 
-    //Weapon parameters
+    /**
+     * The constant WEAPON_MIN_DAMAGE.
+     */
+//Weapon parameters
     public static int WEAPON_MIN_DAMAGE;
+    /**
+     * The constant WEAPON_DAMAGE_FLOOR_MULTIPLIER.
+     */
     public static int WEAPON_DAMAGE_FLOOR_MULTIPLIER;
 
-    //Player parameters
+    /**
+     * The constant PLAYER_MAX_HP.
+     */
+//Player parameters
     public static int PLAYER_MAX_HP;
+    /**
+     * The constant PLAYER_HAND_DAMAGE.
+     */
     public static int PLAYER_HAND_DAMAGE;
 
     //Boss parameters
 
+    /**
+     * The constant BOSS_MAX_HP.
+     */
     public static int BOSS_MAX_HP;
+    /**
+     * The constant BOSS_FIRST_ATTACK_DAMAGE.
+     */
     public static int BOSS_FIRST_ATTACK_DAMAGE;
 
+    /**
+     * Init parameters.
+     */
     public static void initParameters() { //Recommended Parameters
         //Castle Parameters
         NUMBER_OF_FLOOR = 3;
@@ -171,6 +267,11 @@ public class Parameters {
         System.out.print(RESET_COLOR);
     }
 
+    /**
+     * Parameters menu.
+     *
+     * @throws IOException the io exception
+     */
     public static void parametersMenu() throws IOException {
         Menu parametersMenu = new Menu("Parameters Categories :", new String[]{
                 "Player Parameters",

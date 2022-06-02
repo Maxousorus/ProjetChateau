@@ -22,6 +22,7 @@ public class Fight {
      *
      * @param player the player
      * @param entity the entity
+     * @param game   the game
      * @throws IOException the io exception
      */
     public Fight(Player player, Entity entity, Game game) throws IOException {

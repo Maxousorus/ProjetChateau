@@ -52,6 +52,11 @@ public class Game {
         this.game_statistics = new GameStatistics(); // Generate the game statistics
     }
 
+    /**
+     * Gets game statistics.
+     *
+     * @return the game statistics
+     */
     public GameStatistics getGame_statistics() {
         return game_statistics;
     }
@@ -221,6 +226,13 @@ public class Game {
                         player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0] + 1][thisRoomCoords[1]]); // Set the player room
                     }
                 }
+            }
+            if(player.getPv() <= 0) { // If the player is dead
+                new Notification("You are dead !").choose(); // Display the notification
+                game_statistics.addDeath();
+                game_statistics.scoreCalculation();
+                game_statistics.showGameStatistics();
+                return;
             }
             if(!player.getRoom().isVisited()) {
                 player.getRoom().setVisited(); // Set the room as visited

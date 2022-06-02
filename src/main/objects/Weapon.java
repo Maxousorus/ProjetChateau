@@ -49,6 +49,7 @@ public class Weapon extends Item {
      * Sets damage.
      *
      * @param numberFloor the number floor
+     * @return the int
      */
     public int createDamage(int numberFloor){
         if(numberFloor <= 10)

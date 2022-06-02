@@ -4,19 +4,33 @@ import main.utils.Utils;
 
 import java.io.IOException;
 
+/**
+ * The type Game statistics.
+ */
 public class GameStatistics extends Statistics{
 
     private int score;
 
+    /**
+     * Instantiates a new Game statistics.
+     */
     public GameStatistics() {
         super();
         this.score = 0;
     }
 
+    /**
+     * Gets score.
+     *
+     * @return the score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Score calculation.
+     */
     public void scoreCalculation() {
         int score = getEnemyKilled() * 5;
         score += getRoomVisited();
@@ -31,6 +45,9 @@ public class GameStatistics extends Statistics{
         this.score = score;
     }
 
+    /**
+     * Show game statistics.
+     */
     public void showGameStatistics() {
         Utils.clearConsole();
         String line = "";

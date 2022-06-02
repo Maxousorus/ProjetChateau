@@ -35,7 +35,21 @@ public class Sage extends Challenge {
             "How many countries are there in the world?",
             "What Jamy says when he is happy?",
             "How many stairs are there in the Eiffel Tower to go at the first level?",
-            "In what year was the first world war?"
+            "In what year was the first world war?",
+            "In which country can we find the Catalonia, the Andalusia and the Castile?",
+            "What's the name of the plaqueminier's fruit ?",
+            "What series of six films is a boxing champion the star of?",
+            "What is the capital of New Zealand?",
+            "What is the name of the word processing software developed by Microsoft?",
+            "What animal class does the scorpion belong to?",
+            "What is the only value to the roulette to be green?",
+            "What is the smallest memory unit that can be used on a computer?",
+            "How long is the term of the President of the United States?",
+            "Which animal is the fastest on land?",
+            "How do you measure the depth of the oceans?",
+            "In which adventures do we find the characters of Lois and Clark?",
+            "What was the name of the mission during which Neil Armstrong made the first steps on the Moon in 1969?",
+            "What is the name of the school where the adventures of Harry Potter take place?"
     };
     private static final String[][] possible_answers = {
             {"45", "54", "71", "69"},
@@ -48,7 +62,21 @@ public class Sage extends Challenge {
             {"195", "1500", "120", "Approximately 2"},
             {"\"The joy\"", "\"I'm not happy\"", "\"Do you know my little puppy ?\"", "\"I'm your father\""},
             {"328", "215", "784", "512"},
-            {"1914", "1918", "1939", "1944"}
+            {"1914", "1918", "1939", "1944"},
+            {"L'Espagne", "L'Italie", "L'Allemagne", "L'Ecosse"},
+            {"Kaki", "Kakou", "Kakao", "Klik"},
+            {"Rocky", "Rambo", "Randy", "Ritchie"},
+            {"Wellington", "Auckland", "Christchurch", "Hamilton"},
+            {"Microsoft Word", "Microsoft Excel", "Microsoft PowerPoint", "Microsoft Access"},
+            {"Arachnid", "Mammal", "Reptile", "Insect"},
+            {"0", "40", "13", "27"},
+            {"Bit", "Byte", "Kilobyte", "GigaByte"},
+            {"4yo", "5yo", "6yo", "7yo"},
+            {"Cheetah", "Lion", "Tiger", "Elephant"},
+            {"With a sonar", "With a compass", "With a GPS", "With a Nokia 3310"},
+            {"Superman", "Batman", "Spider-man", "Wonder Woman"},
+            {"Apollo 11", "Apollo 13", "Objective Moon", "Apollo 1"},
+            {"Poudlard", "Azkaban", "Nurmengard", "CNAM"}
     };
 
     private final String name;
@@ -69,6 +97,11 @@ public class Sage extends Challenge {
         this.goodAnswer = answers[0];
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }

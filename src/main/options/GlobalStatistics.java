@@ -4,15 +4,26 @@ import main.utils.Utils;
 
 import java.io.IOException;
 
+/**
+ * The type Global statistics.
+ */
 public class GlobalStatistics extends Statistics{
 
     private int bestScore;
 
+    /**
+     * Instantiates a new Global statistics.
+     */
     public GlobalStatistics() {
         super();
         this.bestScore = 0;
     }
 
+    /**
+     * Update global statistics.
+     *
+     * @param gameStatistics the game statistics
+     */
     public void updateGlobalStatistics(GameStatistics gameStatistics) {
         if(gameStatistics.getScore() > this.bestScore) {
             this.bestScore = gameStatistics.getScore();
@@ -28,6 +39,9 @@ public class GlobalStatistics extends Statistics{
         this.setTrapFound(this.getTrapFound() + gameStatistics.getTrapFound());
     }
 
+    /**
+     * Show global statistics.
+     */
     public void showGlobalStatistics() {
 
         Utils.clearConsole();
