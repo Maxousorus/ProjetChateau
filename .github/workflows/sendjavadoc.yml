@@ -23,8 +23,8 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: javadoc
+          branch: main
           clean: true
-          folder: javadoc
+          folder: tree/javadoc/javadoc
           target-folder: docs/nfa032/miniprojetchateau/javadoc
           repository-name: Maxousorus/Maxousorus.github.io
