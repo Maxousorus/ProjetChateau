@@ -1,9 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="MiniProjetChateau:jar">
+  <artifact type="jar" name="MiniProjetChateau:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/MiniProjetChateau_jar</output-path>
-    <root id="archive" name="MiniProjetChateau.jar">
-      <element id="module-output" name="MiniProjetChateau" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/java/dev/jna/jna/5.5.0/jna-5.5.0.jar" path-in-jar="/" />
-    </root>
+    <root id="archive" name="MiniProjetChateau.jar" />
   </artifact>
 </component>
