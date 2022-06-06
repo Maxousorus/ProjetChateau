@@ -9,9 +9,7 @@ import main.options.Parameters;
 import java.util.ArrayList;
 
 /**
- * This class represents a map.
- *
- * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias.
+ * The type Map.
  */
 public class Map {
 
@@ -22,37 +20,32 @@ public class Map {
     private final String aroundPassage = Parameters.MAP_COLOR + "    " + Parameters.RESET_COLOR; //Wall around the passage and between rooms
 
     /**
-     * Constructor of the class Map.
+     * Instantiates a new Map.
      *
-     * @param player the player.
+     * @param player the player
      */
     public Map(Player player) {
         this.player = player;
     }
 
     /**
-     * This method returns the player of the map.
+     * Gets player.
      *
-     * @return the player of the map.
+     * @return the player
      */
     public Player getPlayer() {
         return player;
     }
 
     /**
-     * This method returns the current floor of the map.
+     * Gets floor.
      *
-     * @return the floor number of the map.
+     * @return the floor
      */
     public int getFloor() {
         return player.getRoom().getFloor().getFloorNumber();
     }
 
-    /**
-     * This method returns the string of the updownwall.
-     *
-     * @return the string of the updownwall.
-     */
     private String updownwall() { //Wall on top and bottom of the map.
         String room = "";
         for (int i = 0; i < Parameters.ROOM_SIZE; i++) {
@@ -70,16 +63,12 @@ public class Map {
     }
 
     /**
-     * This method print the map.
+     * Show.
      */
     public void show() {
         System.out.println(this); //Print the map.
     }
 
-    /**
-     * This method returns the string of the map.
-     * @return the string of the map.
-     */
     @Override
     public String toString() {
         Floor floor = player.getRoom().getFloor();

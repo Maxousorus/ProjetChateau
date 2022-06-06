@@ -5,7 +5,7 @@ import main.options.Parameters;
 import main.utils.Utils;
 
 /**
- * The type Entity.
+ * The class Entity.
  */
 public class Entity implements CanBeInRoom {
 
@@ -59,7 +59,7 @@ public class Entity implements CanBeInRoom {
 
 
     /**
-     * Instantiates a new Entity.
+     * Constructor of the class Entity.
      *
      * @param numberFloor the number floor
      */
@@ -97,9 +97,9 @@ public class Entity implements CanBeInRoom {
     }
 
     /**
-     * Gets nom.
+     * Gets name.
      *
-     * @return the nom
+     * @return the name
      */
     public String getName() {
         return name;

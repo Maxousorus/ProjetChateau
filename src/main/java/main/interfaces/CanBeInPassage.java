@@ -1,9 +1,7 @@
 package main.interfaces;
 
 /**
- * Interface for objects that can be in a passage.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
+ * The interface Can be in passage.
  */
 public interface CanBeInPassage {
 }

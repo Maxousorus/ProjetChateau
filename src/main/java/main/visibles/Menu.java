@@ -7,9 +7,7 @@ import main.utils.Utils;
 import java.io.IOException;
 
 /**
- * This class permits to display a menu and to get the choice of the user.
- *
- * @author BOUDIER Maxime; BAYEN MAXIME; FOURNIER Victor; DOSSA Josias.
+ * The type Menu.
  */
 public class Menu {
 
@@ -47,29 +45,26 @@ public class Menu {
     }
 
     /**
-     * Constructor of the class Menu.
+     * Instantiates a new Menu.
      *
-     * @param title   the title of the menu or the question.
-     * @param options the choices of the menu.
-     * @param map     the map of the floor.
+     * @param title   the title
+     * @param options the options
+     * @param map     the map
      */
     public Menu(String title, String[] options,Map map) {
         this(title, options, map, null);
     }
 
     /**
-     * Constructor of the class Menu.
+     * Instantiates a new Menu.
      *
-     * @param title   the title of the menu or the question.
-     * @param options the choices of the menu.
+     * @param title   the title
+     * @param options the options
      */
     public Menu(String title, String[] options) {
         this(title, options, null, null);
     }
 
-    /**
-     * Display the menu.
-     */
     private void show() {
         String line = ""; //The line to display
         for (int i = 0; i < title.length(); i++) {
@@ -97,12 +92,11 @@ public class Menu {
     }
 
     /**
-     * Get the choice of the user.
+     * Choose int.
      *
-     * @return the index in options of the choice.
-     * @throws IOException if the user doesn't enter a valid keyboard.
+     * @return the int
      */
-    public int choose() throws IOException {
+    public int choose() {
         while (true) { //While the user doesn't choose an option
             Utils.clearConsole();
             if(popup != null) {
@@ -115,7 +109,15 @@ public class Menu {
                 map.getPlayer().showInfos();
             }
             show(); //Display the menu
-            int choice = RawConsoleInput.read(true); //Get the keyboard input
+
+            int choice; //Get the keyboard input
+            try {
+                choice = RawConsoleInput.read(true);
+            } catch (IOException e) {
+                new Notification("Invalid keyboard input.");
+                continue;
+            }
+
             if(choice == 10 || choice == 13) { // If input is enter
                 return selected; //Return the selected option
             }

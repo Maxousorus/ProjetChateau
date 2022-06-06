@@ -1,5 +1,6 @@
 package main.utils;
 
+import main.exception.UntraceableRemovablePassageException;
 import main.locations.Castle;
 import main.locations.Floor;
 import main.locations.Passage;
@@ -7,15 +8,13 @@ import main.locations.Room;
 import main.options.Parameters;
 
 /**
- * Utility class for various methods.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
+ * The type Utils.
  */
 public class Utils {
     /**
-     * This method set the player spawn in the ground floor of the castle.
+     * Sets castle spawn.
      *
-     * @param castle the castle where the player will be spawn.
+     * @param castle the castle
      */
     public static void setCastleSpawn(Castle castle) {
         Floor stage0 = castle.getFloors()[0]; //ground floor
@@ -27,10 +26,9 @@ public class Utils {
     }
 
     /**
-     * This method set stairs in the castle.
-     * One downstairs and one upstairs per floor.
+     * Sets castle stairs.
      *
-     * @param castle the castle where the stairs will be set
+     * @param castle the castle
      */
     public static void setCastleStairs(Castle castle) {
         Floor[] floors = castle.getFloors(); //get floors of the castle
@@ -50,9 +48,9 @@ public class Utils {
     }
 
     /**
-     * This method set the exit of the castle at the last floor.
+     * Sets castle exit.
      *
-     * @param castle the castle where the exit will be set.
+     * @param castle the castle
      */
     public static void setCastleExit(Castle castle) {
         Floor[] floors = castle.getFloors(); //get floors of the castle
@@ -71,9 +69,9 @@ public class Utils {
     }
 
     /**
-     * This method set the passages in the castle like a maze (kruskal algorithm).
+     * Sets castle passages.
      *
-     * @param castle the castle where the passages will be set.
+     * @param castle the castle
      */
     public static void setCastlePassages(Castle castle) {
         Floor[] floors = castle.getFloors(); //get floors of the castle
@@ -97,11 +95,6 @@ public class Utils {
         }
     }
 
-    /**
-     * This method generate a maze using kruskal algorithm.
-     *
-     * @return the vertical and horizontal walls/passages of the maze.
-     */
     private static int[][][] generateMaze() {
         int FS = Parameters.FLOOR_SIZE;
         int[][] grid = new int[FS][FS]; //grid of the maze
@@ -125,7 +118,7 @@ public class Utils {
 
         //While the maze is not finished
         while (!isMazeFinish(grid)) {
-            int[] infosp; //info of the passage
+            int[] infosp; //infos about the passage
             do {
                 infosp = randomPassageDirection(grid); //get a random passage
             } while (infosp[0] == -1);
@@ -151,32 +144,38 @@ public class Utils {
         return new int[][][]{h_passages, v_passages}; //return the horizontal and vertical passages
     }
 
-    /**
-     * This method choose a random direction (horizontal or vertical) of the futur remove passage.
-     *
-     * @param grid       the grid of the maze (Room with index).
-     * @return the direction of the passage and the position of the passage.
-     */
     private static int[] randomPassageDirection(int[][] grid) {
         if (Math.random() < 0.5) //mur horizontaux
-            return randomPassage(grid, true); //choose a random horizontal passage
+        {
+            try {
+                return randomPassage(grid, true); //choose a random horizontal passage
+            } catch (UntraceableRemovablePassageException e) {
+                System.out.println("Error : " + e.getMessage());
+            }
+            try {
+                return randomPassage(grid, false); //choose a random horizontal passage
+            } catch (UntraceableRemovablePassageException ignored) {}
+        }
 
         else //mur verticaux
-            return randomPassage(grid, false); //choose a random vertical passage
+        {
+            try {
+                return randomPassage(grid, false); //choose a random vertical passage
+            } catch (UntraceableRemovablePassageException e) {
+                System.out.println("Error : " + e.getMessage());
+            }
+            try {
+                return randomPassage(grid, true); //choose a random vertical passage
+            } catch (UntraceableRemovablePassageException ignored) {}
+        }
+        return new int[0];
     }
 
-    /**
-     * This method choose a random passage.
-     *
-     * @param grid     the grid of the maze (Room with index).
-     * @param h        true if the passages are horizontal, false if they are vertical.
-     * @return the direction of the passage and the position of the passage.
-     */
-    private static int[] randomPassage(int[][] grid, boolean h) {
+    private static int[] randomPassage(int[][] grid, boolean h) throws UntraceableRemovablePassageException {
         int a, b;
         int debug = 0;
         do { //choose a random passage
-            if(debug > 100) h = !h;
+            if(debug > 100) throw new UntraceableRemovablePassageException();
             if (h) {
                 a = (int) (Math.random() * Parameters.FLOOR_SIZE);
                 b = (int) (Math.random() * Parameters.FLOOR_SIZE - 1);
@@ -191,15 +190,6 @@ public class Utils {
         else return new int[]{1, a, b}; //return the vertical passage
     }
 
-    /**
-     * This method check if the passage is removable.
-     *
-     * @param grid     the grid of the maze (Room with index).
-     * @param x        the x position of the passage.
-     * @param y        the y position of the passage.
-     * @param h        true if the passages are horizontal, false if they are vertical.
-     * @return true if the passage is removable, false otherwise.
-     */
     private static boolean isRemovablePassage(int[][] grid, int x, int y, boolean h) {
         if (h) { //horizontal passage
             return grid[x][y] != grid[x][y + 1]; //if two cells have the same index the passage is not removable
@@ -208,16 +198,6 @@ public class Utils {
         }
     }
 
-    /**
-     * This method merge two ways (a way is a group of room connected by passages).
-     * This is the principle of the algorithm to create the maze.
-     *
-     * @param grid the grid of the maze (Room with index).
-     * @param x1   the x position of the first room to merge.
-     * @param y1   the y position of the first room to merge.
-     * @param x2   the x position of the second room to merge.
-     * @param y2   the y position of the second room to merge.
-     */
     private static void mergeWays(int[][] grid, int x1, int y1, int x2, int y2) {
         int a = grid[x1][y1]; //the index of the first cell
         int b = grid[x2][y2]; //the index of the second cell
@@ -228,13 +208,6 @@ public class Utils {
         }
     }
 
-    /**
-     * This method check if the solving of the maze is finish or not.
-     * A maze is finish if there is only one way in the maze.
-     *
-     * @param grid the grid of the maze (Room with index).
-     * @return true if the maze is finish, false otherwise.
-     */
     private static boolean isMazeFinish(int[][] grid) {
         //If all cells have the same numbers return TRUE
         int FS = Parameters.FLOOR_SIZE;
@@ -246,11 +219,11 @@ public class Utils {
     }
 
     /**
-     * This method permit to generate a random integer between min and max.
+     * Random int int.
      *
-     * @param min the minimum value of the random integer.
-     * @param max the maximum value of the random integer.
-     * @return the random integer.
+     * @param min the min
+     * @param max the max
+     * @return the int
      */
     public static int randomInt(int min, int max) {
         //Mathematical formula to return a random integer between two bounds passed as parameters.
@@ -258,7 +231,7 @@ public class Utils {
     }
 
     /**
-     * This method permit to clear the console.
+     * Clear console.
      */
     public static void clearConsole() {
         //This method permit to clear the console.

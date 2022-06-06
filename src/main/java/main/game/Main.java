@@ -5,20 +5,17 @@ import main.options.Parameters;
 import main.visibles.Menu;
 import main.visibles.Notification;
 
-import java.io.IOException;
-
 /**
  * The type Main.
  */
 public class Main {
 
     /**
-     * The main method who run the Game.
+     * The entry point of application.
      *
      * @param args the input arguments
-     * @throws IOException the io exception
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Parameters.initParameters();
 

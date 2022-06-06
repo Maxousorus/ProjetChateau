@@ -5,6 +5,7 @@ import main.challenges.Trap;
 import main.entities.Boss;
 import main.entities.Entity;
 import main.entities.Player;
+import main.exception.RoomCoordinateException;
 import main.interfaces.CanBeInPassage;
 import main.interfaces.CanBeInRoom;
 import main.locations.Castle;
@@ -19,25 +20,15 @@ import main.visibles.Map;
 import main.visibles.Menu;
 import main.visibles.Notification;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Method to manage the game.
+ * The type Game.
  */
 public class Game {
 
-    /**
-     * The Castle.
-     */
     private Castle castle;
-    /**
-     * The Player.
-     */
     private Player player;
-    /**
-     * The Map.
-     */
     private Map map;
 
     private GameStatistics game_statistics;
@@ -62,11 +53,9 @@ public class Game {
     }
 
     /**
-     * This method run the game.
-     *
-     * @throws IOException if the file is not found.
+     * Run the game.
      */
-    public void run() throws IOException {
+    public void run() {
 
         player.spawn(castle); // Spawn the player in the castle
         player.getRoom().setVisited(); // Set the room as visited
@@ -125,7 +114,12 @@ public class Game {
             }
 
             if(player.getRoom().isUpStairs() || player.getRoom().isDownStairs()) { // If the room has stairs
-                int[] thisRoomCoords = player.getRoom().getRoomCoordinates(); // Get the room coordinates
+                int[] thisRoomCoords = new int[0]; // Get the room coordinates
+                try {
+                    thisRoomCoords = player.getRoom().getRoomCoordinates();
+                } catch (RoomCoordinateException e) {
+                    System.out.println(e.getMessage() + "/!\\ Untraceable room coordinates /!\\");
+                }
                 if (player.getRoom().isUpStairs()) { // If the room has an up stairs
                     Menu descendre = new Menu("Do you want to go at the previous floor ?", new String[]{"Yes", "No"},map); // Generate the menu
                     // Choose the option
@@ -205,7 +199,12 @@ public class Game {
                 do { // Choose the direction
                     direction = choix.choose();
                 } while (passages[direction] == null); // While the passage is null
-                int[] thisRoomCoords = player.getRoom().getRoomCoordinates();
+                int[] thisRoomCoords = null;
+                try {
+                    thisRoomCoords = player.getRoom().getRoomCoordinates();
+                } catch (RoomCoordinateException e) {
+                    System.out.println(e.getMessage() + "/!\\ Untraceable room coordinates /!\\");
+                }
                 if (direction == 0) { // If the direction is west
                     if(eventPassage(passages[direction])) { //Do the event of the passage
                         player.setRoom(player.getRoom().getFloor().getRooms()[thisRoomCoords[0]][thisRoomCoords[1] - 1]); // Set the player room
@@ -246,11 +245,7 @@ public class Game {
         }
     }
 
-    /**
-     * Do the event of the passage if it has one
-     * @return true if the player access to the next room, false otherwise
-     */
-    private boolean eventPassage(Passage passage) throws IOException {
+    private boolean eventPassage(Passage passage) {
         CanBeInPassage event = passage.getEvent(); // Get the event of the passage
         boolean passageAccess = false;
         if(event == null) { // If the passage has no event
@@ -280,7 +275,7 @@ public class Game {
         return passageAccess;
     }
 
-    private Boolean bossRoom() throws IOException {
+    private Boolean bossRoom() {
 
         Boss civodul = new Boss();
         return civodul.fight(player);

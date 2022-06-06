@@ -1,6 +1,7 @@
 package main.locations;
 
 import main.entities.Player;
+import main.exception.RoomCoordinateException;
 import main.interfaces.CanBeInRoom;
 import main.options.Parameters;
 import main.utils.Generate;
@@ -8,9 +9,7 @@ import main.utils.Generate;
 import java.util.ArrayList;
 
 /**
- * This class represents a room in the game.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
+ * The type Room.
  */
 public class Room {
 
@@ -23,8 +22,7 @@ public class Room {
     private final Floor floor;
 
     /**
-     * Constructor of the Room class.
-     * Instantiates a random new Room.
+     * Instantiates a new Room.
      *
      * @param floor the floor
      */
@@ -45,50 +43,50 @@ public class Room {
     }
 
     /**
-     * This method returns the floor of the room.
+     * Gets floor.
      *
-     * @return the floor of the room.
+     * @return the floor
      */
     public Floor getFloor() {
         return floor;
     }
 
     /**
-     * This method returns the event of the room.
+     * Gets room event.
      *
-     * @return the event of the room.
+     * @return the room event
      */
     public CanBeInRoom getRoomEvent() {
         return roomEvent;
     }
 
     /**
-     * This method set a room event in the room.
+     * Sets room event.
      *
-     * @param roomEvent the room event to set.
+     * @param roomEvent the room event
      */
     public void setRoomEvent(CanBeInRoom roomEvent) {
         this.roomEvent = roomEvent;
     }
 
     /**
-     * This method returns if the room has been visited.
+     * Is visited boolean.
      *
-     * @return true if the room has been visited, false otherwise.
+     * @return the boolean
      */
     public boolean isVisited() {
         return this.visited;
     }
 
     /**
-     * This method set the room as visited.
+     * Sets visited.
      */
     public void setVisited() {
         this.visited = true;
     }
 
     /**
-     * This method set the room as spawn.
+     * Sets spawn.
      */
     public void setSpawn() {
         this.spawn = true; //Spawn is a room with no event
@@ -96,16 +94,16 @@ public class Room {
     }
 
     /**
-     * This method returns if the room is a spawn.
+     * Is spawn boolean.
      *
-     * @return true if the room is a spawn, false otherwise.
+     * @return the boolean
      */
     public boolean isSpawn() {
         return spawn;
     }
 
     /**
-     * This method set room as a room with upstairs.
+     * Sets upstairs.
      */
     public void setUpStairs() {
         this.upstairs = true; //Upstairs is a room with no event
@@ -113,16 +111,16 @@ public class Room {
     }
 
     /**
-     * This method returns if the room is a room with upstairs.
+     * Is upstairs boolean.
      *
-     * @return true if the room is a room with upstairs, false otherwise.
+     * @return the boolean
      */
     public boolean isUpStairs() {
         return upstairs;
     }
 
     /**
-     * This method set the room as a room with downstairs.
+     * Sets downstairs.
      */
     public void setDownStairs() {
         this.downstairs = true; //Downstairs is a room with no event
@@ -130,18 +128,18 @@ public class Room {
     }
 
     /**
-     * This method returns if the room is a room with downstairs.
+     * Is downstairs boolean.
      *
-     * @return true if the room is a room with downstairs, false otherwise.
+     * @return the boolean
      */
     public boolean isDownStairs() {
         return downstairs;
     }
 
     /**
-     * This method set the room as an exit.
+     * Sets exit.
      *
-     * @param exit true if the room is an exit, false otherwise.
+     * @param exit the exit
      */
     public void setExit(boolean exit) {
         this.exit = exit; //Exit is a room with no event
@@ -149,20 +147,20 @@ public class Room {
     }
 
     /**
-     * This method returns if the room is an exit.
+     * Is exit boolean.
      *
-     * @return true if the room is an exit, false otherwise.
+     * @return the boolean
      */
     public boolean isExit() {
         return exit;
     }
 
     /**
-     * This method returns coordinates of the room (x,y).
+     * Get room coordinates int [ ].
      *
-     * @return coordinates of the room (x,y).
+     * @return the int [ ]
      */
-    public int[] getRoomCoordinates() {
+    public int[] getRoomCoordinates() throws RoomCoordinateException {
         for(int x = 0 ; x < floor.getRooms().length ; x++) { //For each room
             for(int y = 0 ; y < floor.getRooms()[x].length ; y++) {
                 if(floor.getRooms()[x][y] == this) { //If the room is the one we are looking for
@@ -170,14 +168,14 @@ public class Room {
                 }
             }
         }
-        return new int[] {-1,-1}; //If the room is not found, return (-1,-1)
+        throw new RoomCoordinateException();
     }
 
     /**
-     * This method return a list of each line of the visible room like appears in the map.
+     * This method permit to do a visual of the room to print the map.
      *
-     * @param player the player.
-     * @return a list of each line of the visible room.
+     * @param player the player
+     * @return the array list
      */
     public ArrayList<String> toStringList(Player player) {
         ArrayList<String> roomstring = new ArrayList<>(); //Create a list of strings

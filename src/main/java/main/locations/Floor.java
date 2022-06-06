@@ -3,9 +3,7 @@ package main.locations;
 import main.options.Parameters;
 
 /**
- * This class represents a floor in the castle.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
+ * The type Floor.
  */
 public class Floor {
 
@@ -16,8 +14,7 @@ public class Floor {
     private int floorNumber;
 
     /**
-     * Constructor of the Floor class.
-     * Instantiate all the rooms and passages of the floor.
+     * Instantiates a new Floor.
      *
      * @param floorNumber the floor number
      */
@@ -31,64 +28,64 @@ public class Floor {
     }
 
     /**
-     * This method is used to get the floor number.
+     * Gets floor number.
      *
-     * @return floor number.
+     * @return the floor number
      */
     public int getFloorNumber() {
         return floorNumber;
     }
 
     /**
-     * This method is used to get the rooms list of the floor.
+     * Get rooms room [ ] [ ].
      *
-     * @return rooms list of the floor.
+     * @return the room [ ] [ ]
      */
     public Room[][] getRooms() {
         return rooms;
     }
 
     /**
-     * This method is used to set the horizontal passages list of the floor.
+     * Sets horizontal passage.
      *
-     * @param horizontal_passages horizontal passages list of the floor.
+     * @param horizontal_passages the horizontal passages
      */
     public void setHorizontal_passage(Passage[][] horizontal_passages) {
         this.horizontal_passages = horizontal_passages;
     }
 
     /**
-     * This method is used to get horizontal passages between rooms.
+     * Get horizontal passages passage [ ] [ ].
      *
-     * @return horizontal passages list of the floor.
+     * @return the passage [ ] [ ]
      */
     public Passage[][] getHorizontal_passages() {
         return horizontal_passages;
     }
 
     /**
-     * This method is used to set the vertical passages list of the floor.
+     * Sets vertical passage.
      *
-     * @param vertical_passages vertical passages list of the floor.
+     * @param vertical_passages the vertical passages
      */
     public void setVertical_passage(Passage[][] vertical_passages) {
         this.vertical_passages = vertical_passages;
     }
 
     /**
-     * This method is used to get the vertical passages list of the floor.
+     * Get vertical passages passage [ ] [ ].
      *
-     * @return vertical passages list of the floor.
+     * @return the passage [ ] [ ]
      */
     public Passage[][] getVertical_passages() {
         return vertical_passages;
     }
 
     /**
-     * This method is used to get the coordinates of a room in the floor.
+     * Get room coordinates int [ ].
      *
-     * @param room room to get coordinates.
-     * @return coordinates of the room.
+     * @param room the room
+     * @return the int [ ]
      */
     public int[] getRoomCoordinates(Room room) {
         int[] coordinates = new int[2]; // x, y
@@ -107,10 +104,10 @@ public class Floor {
     }
 
     /**
-     * This method is used to get Passages connected to a room.
+     * Get passage of room passage [ ].
      *
-     * @param room room to get passages.
-     * @return Passages connected to a room.
+     * @param room the room
+     * @return the passage [ ]
      */
     public Passage[] getPassageOfRoom(Room room) {
         int roomX = getRoomCoordinates(room)[0]; // get the x coordinate of the room

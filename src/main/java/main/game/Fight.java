@@ -5,8 +5,6 @@ import main.visibles.Menu;
 import main.visibles.Notification;
 import main.visibles.Popup;
 
-import java.io.IOException;
-
 
 /**
  * The type Fight.
@@ -24,27 +22,20 @@ public class Fight {
      * @param player the player
      * @param entity the entity
      * @param game   the game
-     * @throws IOException the io exception
      */
-    public Fight(Player player, Entity entity, Game game) throws IOException {
+    public Fight(Player player, Entity entity, Game game) {
         this.player = player;
         this.entity = entity;
         this.game = game;
     }
 
-    /**
-     * Attack player.
-     */
-    private void attackPlayer() throws IOException {
+    private void attackPlayer() {
         new Notification("The " + entity.getName() + " attacks you ! You take " + entity.getDamage() + " damages !").choose();
         player.setPv(player.getPv() - entity.getDamage());
         game.getGame_statistics().addDamageTaken(entity.getDamage());
     }
 
-    /**
-     * Attack monster.
-     */
-    private void attackMonster() throws IOException {
+    private void attackMonster() {
         if(player.getWeapon() == null) {
             new Notification("You attack the " + entity.getName() + " ! He takes " + player.getDamage() + " damages !").choose();
             entity.setPv(entity.getPv() - player.getDamage());
@@ -58,12 +49,11 @@ public class Fight {
     }
 
     /**
-     * Fight round int.
+     * The method who manage the fight between the player and the monster
      *
      * @return the int
-     * @throws IOException the io exception
      */
-    public int fight() throws IOException {
+    public int fight() {
 
         Menu chooseAction;
         int choice;

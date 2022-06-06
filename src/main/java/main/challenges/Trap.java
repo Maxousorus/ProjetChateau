@@ -4,16 +4,15 @@ import main.options.Parameters;
 import main.utils.Utils;
 
 /**
- * Trap class.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * The class Trap.
+ * Is a subclass of the Challenge class.
  */
 public class Trap extends Challenge {
 
     private final int damage;
 
     /**
-     * Instantiates a new Trap.
+     * Constructor of Trap.
      *
      * @param numberFloor the number floor
      */
@@ -32,7 +31,7 @@ public class Trap extends Challenge {
     }
 
     /**
-     * Gets damage.
+     * Get damage by the Trap.
      *
      * @return the damage
      */

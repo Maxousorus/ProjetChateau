@@ -3,15 +3,13 @@ package main.challenges;
 import main.interfaces.CanBeInPassage;
 
 /**
- * Challenge class.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
+ * The class Challenge.
+ * Permit to manage Challenge in Passage
  */
 public abstract class Challenge implements CanBeInPassage {
 
     /**
-     * Constructor of the class Challenge.
-     * Instantiate a random new challenge.
+     * Constructor of Challenge
      */
     public Challenge() {
     }

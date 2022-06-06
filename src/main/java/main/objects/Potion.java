@@ -4,16 +4,13 @@ import main.options.Parameters;
 import main.utils.Utils;
 
 /**
- * Potion class
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * The type Potion.
  */
 public class Potion extends Item {
     private final int pv;
 
     /**
-     * Constructor for the Potion class
-     * Instantiate a random new Potion
+     * Instantiates a new Potion.
      *
      * @param numberFloor the number floor
      */

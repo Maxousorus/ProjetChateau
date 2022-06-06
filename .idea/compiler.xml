@@ -11,7 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="chateau" target="17" />
-      <module name="MiniProjetChateau" target="17" />
+      <module name="MiniProjetChateau" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

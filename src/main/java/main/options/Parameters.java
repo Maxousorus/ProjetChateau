@@ -157,7 +157,7 @@ public class Parameters {
     public static int BOSS_FIRST_ATTACK_DAMAGE;
 
     /**
-     * Init parameters.
+     * Init parameters with recommended parameters.
      */
     public static void initParameters() { //Recommended Parameters
         //Castle Parameters
@@ -269,10 +269,8 @@ public class Parameters {
 
     /**
      * Parameters menu.
-     *
-     * @throws IOException the io exception
      */
-    public static void parametersMenu() throws IOException {
+    public static void parametersMenu() {
         Menu parametersMenu = new Menu("Parameters Categories :", new String[]{
                 "Player Parameters",
                 "Castle Parameters",
@@ -309,7 +307,7 @@ public class Parameters {
         }
     }
 
-    private static void monsterParametersMenu() throws IOException {
+    private static void monsterParametersMenu() {
         Menu monsterParametersMenu = new Menu("Monster Parameters :", new String[]{
                 "Monster Minimum Health" ,
                 "Monster Health Floor Multiplier",
@@ -328,7 +326,7 @@ public class Parameters {
         }
     }
 
-    private static void potionParametersMenu() throws IOException {
+    private static void potionParametersMenu() {
         Menu potionParametersMenu = new Menu("Potion Parameters :", new String[]{
                 "Potion Minimum Health" ,
                 "Potion Health Floor Multiplier",
@@ -343,7 +341,7 @@ public class Parameters {
         }
     }
 
-    private static void weaponParametersMenu() throws IOException {
+    private static void weaponParametersMenu() {
         Menu weaponParametersMenu = new Menu("Weapon Parameters :", new String[]{
                 "Weapon Minimum Damage" ,
                 "Weapon Damage Floor Multiplier",
@@ -358,7 +356,7 @@ public class Parameters {
         }
     }
 
-    private static void bossParameters() throws IOException {
+    private static void bossParameters() {
         Menu bossParametersMenu = new Menu("Boss Parameters :", new String[]{
                 "Boss Max HP",
                 "Boss First Attack Damage",
@@ -374,7 +372,7 @@ public class Parameters {
     }
 
 
-    private static void playerParametersMenu() throws IOException {
+    private static void playerParametersMenu() {
         Menu playerParametersMenu = new Menu("Player Parameters :", new String[]{"Max HP", "Hand Damage", "Back"});
         boolean back = false;
         while(!back) {
@@ -385,7 +383,7 @@ public class Parameters {
             }
         }
     }
-    private static void castleParametersMenu() throws IOException {
+    private static void castleParametersMenu() {
         Menu castleParametersMenu = new Menu("Castle Parameters :", new String[]{"Number of Floor","Floor Size", "Room Size", "Back"});
         boolean back = false;
         while(!back) {
@@ -400,7 +398,7 @@ public class Parameters {
             }
         }
     }
-    private static void passageParametersMenu() throws IOException {
+    private static void passageParametersMenu() {
         Menu passageParametersMenu = new Menu("Passage Parameters :", new String[]{"Chance of locked passage", "Chance of Challenge in Passage"
                 , "Chance of Challenge is Trap", "Back"});
         boolean back = false;
@@ -414,7 +412,7 @@ public class Parameters {
         }
 
     }
-    private static void trapParametersMenu() throws IOException {
+    private static void trapParametersMenu() {
         Menu trapParametersMenu = new Menu("Trap Parameters :", new String[]{"Trap Minimum Damage", "Trap Maximum Damage", "Back"});
         boolean back = false;
         while(!back) {
@@ -425,7 +423,7 @@ public class Parameters {
             }
         }
     }
-    private static void roomParametersMenu() throws IOException {
+    private static void roomParametersMenu() {
         Menu roomParametersMenu = new Menu("Room Parameters :", new String[]{"Chance of Item in room", "Chance of Monster in room",
                 "Chance of Item is a Weapon", "Back"});
         boolean back = false;
@@ -451,11 +449,11 @@ public class Parameters {
         }
 
     }
-    private static double changeParameter(String parameterName, double beforeValue) throws IOException {
+    private static double changeParameter(String parameterName, double beforeValue) {
         int valueinpercent = changeParameter(parameterName + " (percentage)", (int) (beforeValue * 100), 1,10, 0, 100);
         return valueinpercent / 100.0;
     }
-    private static int changeParameter(String paramName, int beforeValue, int little, int big, int min, int max) throws IOException {
+    private static int changeParameter(String paramName, int beforeValue, int little, int big, int min, int max) {
         int newValue = beforeValue;
         while(true) {
             Menu changeParameter = new Menu(paramName + " : " + newValue,

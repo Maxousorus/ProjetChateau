@@ -6,10 +6,9 @@ import main.visibles.Menu;
 import main.visibles.Notification;
 import main.visibles.Popup;
 
-import java.io.IOException;
-
 /**
- * The type Boss.
+ * The class Boss.
+ * Is a subclass of the class Entities.
  */
 public class Boss extends Entity {
 
@@ -37,7 +36,7 @@ public class Boss extends Entity {
     };
 
     /**
-     * Instantiates a new Boss.
+     * Constructor of the class Boss.
      */
     public Boss() {
         super(0);
@@ -66,9 +65,9 @@ public class Boss extends Entity {
     }
 
     /**
-     * String list infos string [ ].
+     * Get info's about the boss.
      *
-     * @return the string [ ]
+     * @return the string []
      */
     public String[] stringListInfos() {
         String[] info = new String[]{
@@ -80,13 +79,12 @@ public class Boss extends Entity {
 
 
     /**
-     * Fight boolean.
+     * Manage of the fight between player and boss.
      *
      * @param player the player
      * @return the boolean
-     * @throws IOException the io exception
      */
-    public boolean fight(Player player) throws IOException { //return true if the player won, false if the boss won
+    public boolean fight(Player player) { //return true if the player won, false if the boss won
         new Notification("A dark figure appears in front of you...").choose();
         new Notification("It's the Great Interstellar Monarch Civodul!").choose();
 

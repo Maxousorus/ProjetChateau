@@ -3,14 +3,12 @@ package main.challenges;
 import main.utils.Utils;
 import main.visibles.Menu;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Sage class.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * The class Sage class.
+ * Is a subclass of the Challenge class.
  */
 public class Sage extends Challenge {
 
@@ -20,8 +18,18 @@ public class Sage extends Challenge {
             "Dull Duck",
             "Forms",
             "Duduvet",
-            "Krystofer"
-
+            "Krystofer",
+            "Frederica",
+            "Orlando",
+            "Marianne",
+            "Kaneki",
+            "Sophia",
+            "Luna",
+            "Marcel",
+            "Lili",
+            "Casper",
+            "Bruno",
+            "Lara Croft"
     };
 
     private static final String[] possible_questions= {
@@ -86,7 +94,7 @@ public class Sage extends Challenge {
 
 
     /**
-     * Instantiates a new Sage.
+     * Constructor of the class Sage.
      */
     public Sage(){
         super();
@@ -98,21 +106,20 @@ public class Sage extends Challenge {
     }
 
     /**
-     * Gets name.
+     * Get the name of the Sage.
      *
-     * @return the name
+     * @return String name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Question sage int.
+     * Ask of the Sage.
      *
-     * @return the int
-     * @throws IOException the io exception
+     * @return Int index of the answer choose.
      */
-    public int questionSage() throws IOException {
+    public int questionSage() {
         String[] mixedAnswers = mixAnswers(answers);
         int index_goodAnswer = -1;
         for(int i = 0; i < mixedAnswers.length; i++){

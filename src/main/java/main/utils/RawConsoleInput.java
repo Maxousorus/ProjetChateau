@@ -17,12 +17,7 @@ import com.sun.jna.Pointer;
 import com.sun.jna.ptr.IntByReference;
 
 /**
- * RawConsoleInput is a class to read a character from the console without
- * any echo or special character handling.
- * <p>
- * Source: https://www.source-code.biz/snippets/java/RawConsoleInput/
- *
- * @author Christian d'Heureuse
+ * The type Raw console input.
  */
 public class RawConsoleInput {
     private static final boolean isWindows = System.getProperty("os.name").startsWith("Windows");
@@ -34,11 +29,10 @@ public class RawConsoleInput {
     private static boolean consoleModeAltered;
 
     /**
-     * Reads a character from the console without echo.
-     * System.exit(0) is called if the user presses the Ctrl+C key.
+     * Read int.
      *
-     * @param wait <code>true</code> to wait until an input character is available,             <code>false</code> to return immediately if no character is             available.
-     * @return -2 if <code>wait</code> is <code>false</code> and no character is         available.         -1 on EOF.         Otherwise an Unicode character code within the range 0 to 0xFFFF.
+     * @param wait the wait
+     * @return the int
      * @throws IOException the io exception
      */
     public static int read(boolean wait) throws IOException {
@@ -56,14 +50,7 @@ public class RawConsoleInput {
     }
 
     /**
-     * Resets console mode to normal line mode with echo.
-     *
-     * <p>
-     * On Windows this method re-enables Ctrl-C processing.
-     *
-     * <p>
-     * On Unix this method switches the console back to echo mode.
-     * read() leaves the console in non-echo mode.
+     * Reset console mode.
      *
      * @throws IOException the io exception
      */

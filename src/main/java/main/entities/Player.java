@@ -6,9 +6,7 @@ import main.locations.Castle;
 import main.locations.Room;
 
 /**
- * Player class
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * The type Player.
  */
 public class Player extends Entity {
 
@@ -21,8 +19,7 @@ public class Player extends Entity {
     private double[] finalAttacksChance = new double[]{};
 
     /**
-     * Player constructor
-     * Instanciate a random new player
+     * Instantiates a new Player.
      */
     public Player() {
         super(0);
@@ -32,7 +29,8 @@ public class Player extends Entity {
     }
 
     /**
-     * Get final attacks name string [ ].
+     * Get final attacks name string [].
+     * Final attacks are the attacks that the player can choose to use in the fight versus the boss.
      *
      * @return the string [ ]
      */
@@ -42,6 +40,7 @@ public class Player extends Entity {
 
     /**
      * Get final attacks damage int [ ].
+     * Final attacks are the attacks that the player can choose to use in the fight versus the boss.
      *
      * @return the int [ ]
      */
@@ -51,6 +50,7 @@ public class Player extends Entity {
 
     /**
      * Get final attacks chance double [ ].
+     * Final attacks are the attacks that the player can choose to use in the fight versus the boss.
      *
      * @return the double [ ]
      */
@@ -59,36 +59,36 @@ public class Player extends Entity {
     }
 
     /**
-     * This method permits to get the player's weapon
+     * Gets weapon.
      *
-     * @return the player's weapon
+     * @return the weapon
      */
     public Weapon getWeapon() {
         return weapon;
     }
 
     /**
-     * This method permits to set the player's weapon
+     * Sets weapon.
      *
-     * @param weapon the player's weapon
+     * @param weapon the weapon
      */
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
     /**
-     * This method permits to get the player's room
+     * Gets room.
      *
-     * @return the player's room
+     * @return the room
      */
     public Room getRoom() {
         return room;
     }
 
     /**
-     * This method permits to set the player's room
+     * Sets room.
      *
-     * @param room the player's room
+     * @param room the room
      */
     public void setRoom(Room room) {
 
@@ -99,13 +99,14 @@ public class Player extends Entity {
 
     /**
      * Run away.
+     * Can be used to go at the previous room.
      */
     public void runAway(){
         this.setRoom(this.previousRoom);
     }
 
     /**
-     * This method permits to place the player at the enter of the castle.
+     * Spawn the player in the spawn room.
      *
      * @param castle the castle
      */
@@ -122,7 +123,7 @@ public class Player extends Entity {
     }
 
     /**
-     * This method show player's stats
+     * Show infos.
      */
     public void showInfos() {
         for (String line : this.stringListInfos()) {

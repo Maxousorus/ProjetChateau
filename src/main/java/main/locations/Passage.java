@@ -8,9 +8,7 @@ import main.options.Parameters;
 import java.util.ArrayList;
 
 /**
- * Passage class represents a passage between two rooms.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * The type Passage.
  */
 public class Passage {
     private CanBeInPassage event;
@@ -18,8 +16,7 @@ public class Passage {
     private boolean visited = false;
 
     /**
-     * Constructor of the Passage class.
-     * Instantiate a random new Passage.
+     * Instantiates a new Passage.
      *
      * @param floor the floor
      */
@@ -35,16 +32,16 @@ public class Passage {
     }
 
     /**
-     * This method return the event of the passage.
+     * Gets event.
      *
-     * @return the event of the passage.
+     * @return the event
      */
     public CanBeInPassage getEvent() {
         return event;
     }
 
     /**
-     * This method return the event of the passage.
+     * Sets event.
      *
      * @param event the event
      */
@@ -53,17 +50,17 @@ public class Passage {
     }
 
     /**
-     * This method set the passage as visited.
+     * Sets visited.
      */
     public void setVisited() {
         this.visited = true;
     }
 
     /**
-     * This method return a list of each line of the visible passage like appear in the map.
+     * This method permit to do a visual of the passage to print the map.
      *
      * @param horizontal the horizontal
-     * @return a list of each line of the visible passage.
+     * @return the array list
      */
     public ArrayList<String> toStringList(boolean horizontal) {
         ArrayList<String> result = new ArrayList<>();

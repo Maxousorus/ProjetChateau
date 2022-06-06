@@ -1,9 +1,7 @@
 package main.locations;
 
 /**
- * Castle class
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * The type Castle.
  */
 public class Castle {
 
@@ -11,9 +9,9 @@ public class Castle {
     private final Floor[] floors;
 
     /**
-     * Constructor of the class Castle
+     * Instantiates a new Castle.
      *
-     * @param nbFloors number of floors
+     * @param nbFloors the nb floors
      */
     public Castle(int nbFloors) {
         this.nbFloors = nbFloors;
@@ -24,9 +22,9 @@ public class Castle {
     }
 
     /**
-     * Getter of the list of floors
+     * Get floors floor [ ].
      *
-     * @return the list of floors
+     * @return the floor [ ]
      */
     public Floor[] getFloors() {
         return floors;

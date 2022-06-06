@@ -1,9 +1,7 @@
 package main.interfaces;
 
 /**
- * Interface for objects that can be in a room
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias
+ * The interface Can be in room.
  */
 public interface CanBeInRoom {
 }

@@ -10,18 +10,15 @@ import main.objects.Weapon;
 import static java.lang.Math.random;
 
 /**
- * This class is used to generate random objects and monsters.
- *
- * @author BOUDIER Maxime; BAYEN Maxime; FOURNIER Victor; DOSSA Josias.
+ * The type Generate.
  */
 public class Generate {
 
     /**
-     * This method is used to generate a random castle.
-     * Using Utils methods to set properties of the castle.
+     * Generate a castle.
      *
-     * @param nbFloors The number of floors of the castle.
-     * @return The castle.
+     * @param nbFloors the nb floors
+     * @return the castle
      */
     public static Castle castle(int nbFloors) {
         Castle castle = new Castle(nbFloors); // Create the castle
@@ -34,10 +31,10 @@ public class Generate {
     }
 
     /**
-     * This method is used to generate a random Item.
+     * Generate an item.
      *
      * @param floorNumber the floor number
-     * @return The item.
+     * @return the item
      */
     public static Item item(int floorNumber) {
         if(random() < Parameters.CHANCE_OF_ITEM_IS_WEAPON) {
@@ -47,10 +44,10 @@ public class Generate {
     }
 
     /**
-     * This method is used to generate a random Monster.
+     * Generate a monster.
      *
      * @param floorNumber the floor number
-     * @return The monster.
+     * @return the entity
      */
     public static Entity monster(int floorNumber) {
         return new Entity( floorNumber );
