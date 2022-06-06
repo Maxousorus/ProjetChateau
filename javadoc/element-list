@@ -1,5 +1,6 @@
 main.challenges
 main.entities
+main.exception
 main.game
 main.interfaces
 main.locations
